@@ -84,18 +84,38 @@
     .nav-toggle { display: block; background: none; border: 1px solid var(--line); color: var(--ink); border-radius: 6px; padding: 6px 10px; font-family: var(--mono); }
   }
 
-  /* ---- hero ---- */
-  .hero { padding: 76px 0 60px; border-bottom: 1px solid var(--line); }
-  .hero-status { font-size: 12px; color: var(--accent); margin-bottom: 22px; }
-  .hero-status::before { content: '// '; opacity: .6; }
-  h1.hero-title {
-    font-weight: 700; font-size: clamp(30px, 5vw, 46px); line-height: 1.2;
-    margin: 0 0 20px; max-width: 15ch; text-wrap: balance;
+  /* ---- hero: Blueprint Seam (gates + fading grid), centered ---- */
+  .hero {
+    position: relative; overflow: hidden;
+    padding: 64px 0 60px; border-bottom: 1px solid var(--line);
+    text-align: center; display: flex; flex-direction: column; align-items: center;
   }
-  .hero-lede { font-size: 15px; color: var(--ink-soft); max-width: 62ch; margin: 0 0 12px; line-height: 1.75; }
-  .hero-scale { font-size: 12.5px; color: var(--ink-faint); margin: 0 0 34px; }
+  .hero::before {
+    content: ''; position: absolute; top: 0; left: -5%; right: -5%; height: 260px;
+    background: repeating-linear-gradient(180deg, var(--surface-2), var(--surface-2) 34px, var(--bg) 34px, var(--bg) 36px);
+    opacity: 0.7; pointer-events: none;
+  }
+  .hero::after {
+    content: ''; position: absolute; top: 250px; left: 0; right: 0; height: 220px;
+    background-image:
+      linear-gradient(color-mix(in srgb, var(--accent) 30%, transparent) 1px, transparent 1px),
+      linear-gradient(90deg, color-mix(in srgb, var(--accent) 30%, transparent) 1px, transparent 1px);
+    background-size: 22px 22px;
+    -webkit-mask-image: linear-gradient(180deg, black, transparent);
+    mask-image: linear-gradient(180deg, black, transparent);
+    pointer-events: none;
+  }
+  .hero-status { position: relative; font-size: 12px; color: var(--accent); margin-bottom: 22px; letter-spacing: 0.1em; text-transform: uppercase; }
+  h1.hero-title {
+    position: relative;
+    font-family: var(--serif); font-weight: 600;
+    font-size: clamp(30px, 5vw, 44px); line-height: 1.2;
+    margin: 0 0 20px; max-width: 16ch; text-wrap: balance;
+  }
+  .hero-lede { position: relative; font-size: 15.5px; color: var(--ink-soft); max-width: 480px; margin: 0 auto 12px; line-height: 1.75; }
+  .hero-scale { position: relative; font-size: 12.5px; color: var(--ink-faint); margin: 0 0 34px; }
   .hero-scale b { color: var(--accent); font-weight: 700; }
-  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 44px; }
+  .hero-cta { position: relative; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 44px; }
   .btn {
     display: inline-flex; align-items: center; gap: 8px;
     font-family: var(--mono); font-size: 13px; font-weight: 700;
@@ -108,8 +128,10 @@
   .btn.ghost:hover { border-color: var(--accent); color: var(--accent); }
 
   .stat-row {
+    position: relative;
     display: grid; grid-template-columns: repeat(4, 1fr);
     border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
+    width: 100%; max-width: 640px;
   }
   .stat { padding: 20px 18px; border-right: 1px solid var(--line); }
   .stat:last-child { border-right: none; }
@@ -224,17 +246,17 @@
 
   <!-- ============ HERO ============ -->
   <section class="hero">
-    <div class="hero-status" data-i18n="hero.status" class="lang-active">Десятки внедрений с 2024 года · примеры кейсов ниже</div>
-    <div class="hero-status" data-i18n="hero.status.en">Dozens of deployments since 2024 · examples below</div>
+    <div class="hero-status" data-i18n="hero.status" class="lang-active">Десятки внедрений с 2024 года</div>
+    <div class="hero-status" data-i18n="hero.status.en">Dozens of deployments since 2024</div>
 
     <h1 class="hero-title" data-i18n="hero.title" class="lang-active">ИИ-агенты, которые работают, а не демонстрируются</h1>
     <h1 class="hero-title" data-i18n="hero.title.en">AI agents that work, not demo</h1>
 
-    <p class="hero-lede" data-i18n="hero.lede" class="lang-active">Мы строим ИИ-агентов, автоматизируем процессы и делаем сайты для бизнеса. Каждое решение ниже — работающий продукт: стоит на сервере, выполняет свою функцию, а не концепт для питча.</p>
-    <p class="hero-lede" data-i18n="hero.lede.en">We build AI agents, automate business processes, and ship websites. Every solution below is a live product — running on a server, doing its job, not a pitch-deck concept.</p>
+    <p class="hero-lede" data-i18n="hero.lede" class="lang-active">Каждое решение выезжает готовым — стоит на сервере клиента.</p>
+    <p class="hero-lede" data-i18n="hero.lede.en">Every solution ships ready — running on the client's own server.</p>
 
-    <p class="hero-scale" data-i18n="hero.scale" class="lang-active">Команда сделала <b>десятки внедрений</b> с 2024 года. Ниже — <b>16 показательных примеров</b>.</p>
-    <p class="hero-scale" data-i18n="hero.scale.en">The team has built <b>dozens of deployments</b> since 2024. Below are <b>16 representative examples</b>.</p>
+    <p class="hero-scale" data-i18n="hero.scale" class="lang-active">Ниже — <b>16 показательных примеров</b> из десятков внедрений.</p>
+    <p class="hero-scale" data-i18n="hero.scale.en">Below are <b>16 representative examples</b> out of dozens of deployments.</p>
 
     <div class="hero-cta">
       <a class="btn primary" href="#contact" data-i18n="hero.cta.primary" class="lang-active">Обсудить проект →</a>
