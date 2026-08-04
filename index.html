@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ИИ-ВИЗАЦИЯ — AI-агенты и автоматизация для бизнеса</title>
+<meta name="description" content="ИИ-ВИЗАЦИЯ — ИИ-агенты, автоматизация процессов и сайты для бизнеса. Примеры кейсов из десятков внедрений с 2024 года.">
+<style>
+  @font-face {
+    font-family: 'JetBrains Mono';
+    src: local('JetBrains Mono');
+    font-weight: 400 800;
+  }
+  @font-face {
+    font-family: 'Source Serif 4';
+    src: local('Source Serif 4');
+    font-weight: 400 700;
+  }
+
+  :root {
+    --bg: #0a0a0a;
+    --surface: #121212;
+    --surface-2: #1a1a1a;
+    --ink: #ededed;
+    --ink-soft: #9e9e9e;
+    --ink-faint: #6a6a6a;
+    --line: #262626;
+    --accent: #3ed17f;
+    --accent-dim: #1f6b41;
+    --accent-soft: #0f2a1b;
+    --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+    --serif: 'Source Serif 4', Georgia, serif;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: rgba(62,209,127,.28); }
+
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 28px; }
+
+  a { color: inherit; }
+
+  /* ---- header ---- */
+  header.site {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(10,10,10,.88);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .site-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 0;
+  }
+  .logo { font-weight: 700; font-size: 14px; letter-spacing: 0.02em; }
+  .logo .dot { color: var(--accent); }
+  nav.main { display: flex; align-items: center; gap: 26px; }
+  nav.main a {
+    font-size: 12.5px; color: var(--ink-soft); text-decoration: none;
+  }
+  nav.main a:hover { color: var(--ink); }
+  .lang-switch {
+    display: flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden;
+    font-size: 11px; font-weight: 700;
+  }
+  .lang-switch button {
+    background: transparent; border: none; color: var(--ink-faint);
+    padding: 5px 11px; font-family: var(--mono); font-size: 11px; font-weight: 700; cursor: pointer;
+  }
+  .lang-switch button.active { background: var(--accent); color: #04140a; }
+  .nav-toggle { display: none; }
+
+  @media (max-width: 760px) {
+    nav.main { display: none; }
+    .nav-toggle { display: block; background: none; border: 1px solid var(--line); color: var(--ink); border-radius: 6px; padding: 6px 10px; font-family: var(--mono); }
+  }
+
+  /* ---- hero ---- */
+  .hero { padding: 76px 0 60px; border-bottom: 1px solid var(--line); }
+  .hero-status { font-size: 12px; color: var(--accent); margin-bottom: 22px; }
+  .hero-status::before { content: '// '; opacity: .6; }
+  h1.hero-title {
+    font-weight: 700; font-size: clamp(30px, 5vw, 46px); line-height: 1.2;
+    margin: 0 0 20px; max-width: 15ch; text-wrap: balance;
+  }
+  .hero-lede { font-size: 15px; color: var(--ink-soft); max-width: 62ch; margin: 0 0 12px; line-height: 1.75; }
+  .hero-scale { font-size: 12.5px; color: var(--ink-faint); margin: 0 0 34px; }
+  .hero-scale b { color: var(--accent); font-weight: 700; }
+  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 44px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-size: 13px; font-weight: 700;
+    padding: 12px 22px; border-radius: 8px; text-decoration: none;
+    border: 1px solid var(--line);
+  }
+  .btn.primary { background: var(--accent); color: #04140a; border-color: var(--accent); }
+  .btn.primary:hover { background: #34b96e; }
+  .btn.ghost { color: var(--ink); }
+  .btn.ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+  .stat-row {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--line); border-radius: 10px; overflow: hidden;
+  }
+  .stat { padding: 20px 18px; border-right: 1px solid var(--line); }
+  .stat:last-child { border-right: none; }
+  .stat .n { font-weight: 700; font-size: 24px; color: var(--accent); font-variant-numeric: tabular-nums; }
+  .stat .l { font-size: 11px; color: var(--ink-faint); margin-top: 6px; }
+
+  @media (max-width: 640px) {
+    .stat-row { grid-template-columns: repeat(2, 1fr); }
+    .stat:nth-child(2) { border-right: none; }
+  }
+
+  /* ---- section shell ---- */
+  section.block { padding: 64px 0; border-bottom: 1px solid var(--line); }
+  .block-head { margin-bottom: 34px; }
+  .block-tag { font-size: 12px; color: var(--accent); margin-bottom: 10px; }
+  .block-tag::before { content: '// '; opacity: .6; }
+  h2.block-title { font-family: var(--serif); font-weight: 600; font-size: 28px; margin: 0 0 12px; }
+  .block-sub { color: var(--ink-soft); font-size: 14px; max-width: 66ch; line-height: 1.7; }
+
+  /* ---- case filter ---- */
+  .case-filter { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+  .case-filter button {
+    font-family: var(--mono); font-size: 11.5px; color: var(--ink-soft);
+    background: var(--surface); border: 1px solid var(--line); border-radius: 100px;
+    padding: 6px 14px; cursor: pointer;
+  }
+  .case-filter button.active { color: #04140a; background: var(--accent); border-color: var(--accent); }
+
+  /* ---- case cards ---- */
+  .case-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 16px; }
+  .case-card {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .case-cover {
+    background: var(--surface-2); color: var(--ink); display: block; width: 100%; height: auto;
+    border-bottom: 1px solid var(--line);
+  }
+  .case-body { padding: 20px 22px 22px; display: flex; flex-direction: column; gap: 10px; flex-grow: 1; }
+  .case-num { font-size: 11px; color: var(--ink-faint); }
+  .case-title { font-weight: 700; font-size: 15.5px; line-height: 1.35; }
+  .case-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.6; flex-grow: 1; }
+  .case-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
+  .case-tag { font-size: 10.5px; color: var(--accent); background: var(--accent-soft); padding: 2px 8px; border-radius: 100px; }
+
+  /* ---- services ---- */
+  .svc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+  .svc-card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 24px; }
+  .svc-icon { color: var(--accent); font-size: 13px; margin-bottom: 14px; }
+  .svc-title { font-weight: 700; font-size: 15px; margin-bottom: 8px; }
+  .svc-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.65; margin-bottom: 16px; }
+  .svc-price { font-size: 12px; color: var(--ink-faint); border-top: 1px solid var(--line); padding-top: 12px; }
+  .svc-price b { color: var(--accent); }
+
+  /* ---- team ---- */
+  .team-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 16px; }
+  .team-card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 24px; }
+  .team-avatar {
+    width: 44px; height: 44px; border-radius: 8px; background: var(--surface-2);
+    border: 1px solid var(--line); display: flex; align-items: center; justify-content: center;
+    color: var(--ink-faint); font-size: 11px; margin-bottom: 16px;
+  }
+  .team-role { font-size: 11px; color: var(--accent); margin-bottom: 6px; }
+  .team-name { font-weight: 700; font-size: 15px; margin-bottom: 8px; }
+  .team-desc { font-size: 12.5px; color: var(--ink-soft); line-height: 1.6; }
+
+  /* ---- principle callout ---- */
+  .callout {
+    border-left: 2px solid var(--accent); background: var(--surface); border-radius: 0 10px 10px 0;
+    padding: 20px 24px; font-size: 13.5px; color: var(--ink-soft); line-height: 1.75;
+  }
+  .callout b { color: var(--accent); }
+
+  /* ---- contact ---- */
+  .contact-block { padding: 72px 0 90px; text-align: center; border-bottom: none; }
+  .contact-title { font-family: var(--serif); font-weight: 600; font-size: 30px; margin: 0 0 16px; }
+  .contact-sub { color: var(--ink-soft); font-size: 14.5px; max-width: 50ch; margin: 0 auto 32px; line-height: 1.7; }
+  .contact-cta { display: inline-flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 700; padding: 16px 32px; }
+
+  footer.site {
+    padding: 28px 0; text-align: center; font-size: 12px; color: var(--ink-faint);
+  }
+
+  [data-i18n] { display: none; }
+  [data-i18n].lang-active { display: revert; }
+  span[data-i18n].lang-active,
+  b[data-i18n].lang-active { display: inline; }
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap site-inner">
+    <div class="logo">ии-визация<span class="dot">_</span></div>
+    <nav class="main">
+      <a href="#cases" data-i18n="nav.cases" class="lang-active">кейсы</a>
+      <a href="#cases" data-i18n="nav.cases.en">cases</a>
+      <a href="#services" data-i18n="nav.services" class="lang-active">услуги</a>
+      <a href="#services" data-i18n="nav.services.en">services</a>
+      <a href="#team" data-i18n="nav.team" class="lang-active">команда</a>
+      <a href="#team" data-i18n="nav.team.en">team</a>
+      <a href="#contact" data-i18n="nav.contact" class="lang-active">контакты</a>
+      <a href="#contact" data-i18n="nav.contact.en">contact</a>
+    </nav>
+    <div class="lang-switch">
+      <button id="lang-ru" class="active" onclick="setLang('ru')">RU</button>
+      <button id="lang-en" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero">
+    <div class="hero-status" data-i18n="hero.status" class="lang-active">Десятки внедрений с 2024 года · примеры кейсов ниже</div>
+    <div class="hero-status" data-i18n="hero.status.en">Dozens of deployments since 2024 · examples below</div>
+
+    <h1 class="hero-title" data-i18n="hero.title" class="lang-active">ИИ-агенты, которые работают, а не демонстрируются</h1>
+    <h1 class="hero-title" data-i18n="hero.title.en">AI agents that work, not demo</h1>
+
+    <p class="hero-lede" data-i18n="hero.lede" class="lang-active">Мы строим ИИ-агентов, автоматизируем процессы и делаем сайты для бизнеса. Каждое решение ниже — работающий продукт: стоит на сервере, выполняет свою функцию, а не концепт для питча.</p>
+    <p class="hero-lede" data-i18n="hero.lede.en">We build AI agents, automate business processes, and ship websites. Every solution below is a live product — running on a server, doing its job, not a pitch-deck concept.</p>
+
+    <p class="hero-scale" data-i18n="hero.scale" class="lang-active">Команда сделала <b>десятки внедрений</b> с 2024 года. Ниже — <b>16 показательных примеров</b>.</p>
+    <p class="hero-scale" data-i18n="hero.scale.en">The team has built <b>dozens of deployments</b> since 2024. Below are <b>16 representative examples</b>.</p>
+
+    <div class="hero-cta">
+      <a class="btn primary" href="#contact" data-i18n="hero.cta.primary" class="lang-active">Обсудить проект →</a>
+      <a class="btn primary" href="#contact" data-i18n="hero.cta.primary.en">Discuss a project →</a>
+      <a class="btn ghost" href="#cases" data-i18n="hero.cta.ghost" class="lang-active">Смотреть все кейсы</a>
+      <a class="btn ghost" href="#cases" data-i18n="hero.cta.ghost.en">View all cases</a>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat"><div class="n">10+</div><div class="l" data-i18n="stat.cases" class="lang-active">десятки внедрений с 2024</div><div class="l" data-i18n="stat.cases.en">dozens of deployments since 2024</div></div>
+      <div class="stat"><div class="n">6</div><div class="l" data-i18n="stat.areas" class="lang-active">направлений</div><div class="l" data-i18n="stat.areas.en">focus areas</div></div>
+      <div class="stat"><div class="n">700+</div><div class="l" data-i18n="stat.tests" class="lang-active">автотестов</div><div class="l" data-i18n="stat.tests.en">automated tests</div></div>
+      <div class="stat"><div class="n">8</div><div class="l" data-i18n="stat.llms" class="lang-active">LLM в одной системе</div><div class="l" data-i18n="stat.llms.en">LLMs orchestrated</div></div>
+    </div>
+  </section>
+
+  <!-- ============ CASES ============ -->
+  <section class="block" id="cases">
+    <div class="block-head">
+      <div class="block-tag" data-i18n="cases.tag" class="lang-active">кейсы</div>
+      <div class="block-tag" data-i18n="cases.tag.en">cases</div>
+      <h2 class="block-title" data-i18n="cases.title" class="lang-active">Примеры кейсов</h2>
+      <h2 class="block-title" data-i18n="cases.title.en">Example cases</h2>
+      <p class="block-sub" data-i18n="cases.sub" class="lang-active">Ниже — 16 показательных примеров из десятков внедрений, которые команда сделала с 2024 года. Каждая карточка — реальный продукт: агент, автоматизация или сайт, уже выполняющий свою функцию. Имена клиентов частично обезличены по договорённости.</p>
+      <p class="block-sub" data-i18n="cases.sub.en">Below are 16 representative examples out of dozens of deployments the team has built since 2024. Every card is a real product — an agent, automation, or website already doing its job. Client names are partially anonymized by agreement.</p>
+    </div>
+
+    <div class="case-filter">
+      <button class="active" data-filter="all" onclick="filterCases('all', this)">
+        <span data-i18n="filter.all" class="lang-active">Все</span><span data-i18n="filter.all.en">All</span>
+      </button>
+      <button data-filter="ops" onclick="filterCases('ops', this)">
+        <span data-i18n="filter.ops" class="lang-active">Операционные</span><span data-i18n="filter.ops.en">Operational</span>
+      </button>
+      <button data-filter="finance" onclick="filterCases('finance', this)">
+        <span data-i18n="filter.finance" class="lang-active">Финансы и знания</span><span data-i18n="filter.finance.en">Finance &amp; Knowledge</span>
+      </button>
+      <button data-filter="growth" onclick="filterCases('growth', this)">
+        <span data-i18n="filter.growth" class="lang-active">Рост</span><span data-i18n="filter.growth.en">Growth</span>
+      </button>
+      <button data-filter="advanced" onclick="filterCases('advanced', this)">
+        <span data-i18n="filter.advanced" class="lang-active">Продвинутые</span><span data-i18n="filter.advanced.en">Advanced</span>
+      </button>
+      <button data-filter="sites" onclick="filterCases('sites', this)">
+        <span data-i18n="filter.sites" class="lang-active">Сайты</span><span data-i18n="filter.sites.en">Sites</span>
+      </button>
+    </div>
+
+    <div class="case-grid" id="case-grid">
+
+      <!-- 01 SECRETARY -->
+      <article class="case-card" data-cat="ops">
+        <svg class="case-cover" viewBox="0 0 620 240" role="img" aria-label="ИИ-секретарь — циферблат с узлами календарных событий">
+          <rect width="620" height="240" fill="#1a1a1a"/>
+          <circle cx="200" cy="120" r="70" fill="none" stroke="#3a3a3a" stroke-width="1.3"/>
+          <circle cx="200" cy="120" r="2.4" fill="#3ed17f"/>
+          <g stroke="#9e9e9e" stroke-width="1.6" stroke-linecap="round">
+            <line x1="200" y1="120" x2="200" y2="72"/>
+            <line x1="200" y1="120" x2="234" y2="140"/>
+          </g>
+          <g fill="#3ed17f" opacity="0.8">
+            <circle cx="200" cy="56" r="2.2"/><circle cx="252" cy="72" r="2.2"/><circle cx="270" cy="120" r="2.2"/>
+          </g>
+          <rect x="350" y="70" width="220" height="24" rx="4" fill="none" stroke="#3a3a3a" stroke-width="1"/>
+          <text x="360" y="86" font-family="monospace" font-size="10" fill="#9e9e9e">09:30 · client call</text>
+          <rect x="350" y="104" width="220" height="24" rx="4" fill="none" stroke="#3a3a3a" stroke-width="1"/>
+          <text x="360" y="120" font-family="monospace" font-size="10" fill="#9e9e9e">14:00 · Google Meet</text>
+          <rect x="350" y="138" width="220" height="24" rx="4" fill="#0f2a1b" stroke="#3ed17f" stroke-width="1"/>
+          <text x="360" y="154" font-family="monospace" font-size="10" fill="#3ed17f">free slot found</text>
+        </svg>
+        <div class="case-body">
+          <div class="case-num">case_01/</div>
+          <div class="case-title" data-i18n="c1.title" class="lang-active">ИИ-секретарь — Google Calendar</div>
+          <div class="case-title" data-i18n="c1.title.en">AI Voice Secretary — Google Calendar</div>
+          <div class="case-desc" data-i18n="c1.desc" class="lang-active">Ведёт календарь голосом и текстом: встречи, серии событий, Meet-ссылки, поиск окон по таймзонам, ежедневный брифинг. Даты считает код, не модель. 207 автотестов.</div>
+          <div class="case-desc" data-i18n="c1.desc.en">Runs a calendar by voice or text: events, recurring series, Meet links, cross-timezone slot finding, daily briefing. Dates computed in code, not the model. 207 automated tests.</div>
+          <div class="case-tags">
+            <span class="case-tag">Telegram</span><span class="case-tag">Google API</span><span class="case-tag">Voice</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 02 OWNER ASSISTANT -->
+      <article class="case-card" data-cat="ops">
+        <svg class="case-cover" viewBox="0 0 620 240" role="img" aria-label="Личный ассистент — узел, соединяющий почту, календарь, таблицы">
+          <rect width="620" height="240" fill="#1a1a1a"/>
+          <circle cx="310" cy="120" r="22" fill="#0f2a1b" stroke="#3ed17f" stroke-width="1.4"/>
+          <circle cx="310" cy="120" r="4" fill="#3ed17f"/>
+          <g stroke="#3a3a3a" stroke-width="1">
+            <line x1="310" y1="98" x2="310" y2="56"/>
+            <line x1="330" y1="134" x2="410" y2="176"/>
+            <line x1="290" y1="134" x2="210" y2="176"/>
+            <line x1="330" y1="108" x2="420" y2="76"/>
+            <line x1="290" y1="108" x2="200" y2="76"/>
+          </g>
+          <g fill="none" stroke="#4a4a4a" stroke-width="1">
+            <rect x="272" y="26" width="76" height="30" rx="4"/>
+            <rect x="392" y="164" width="80" height="30" rx="4"/>
+            <rect x="140" y="164" width="80" height="30" rx="4"/>
+            <rect x="400" y="52" width="80" height="34" rx="4"/>
+            <rect x="140" y="52" width="80" height="34" rx="4"/>
+          </g>
+          <g font-family="monospace" font-size="9" fill="#7a7a7a" text-anchor="middle">
+            <text x="310" y="44">CAL</text><text x="432" y="182">MAIL</text><text x="180" y="182">SHEETS</text>
+            <text x="440" y="72">GITHUB</text><text x="180" y="72">DEPLOY</text>
+          </g>
+        </svg>
+        <div class="case-body">
+          <div class="case-num">case_02/</div>
+          <div class="case-title" data-i18n="c2.title" class="lang-active">Личный ассистент собственника</div>
+          <div class="case-title" data-i18n="c2.title.en">Personal AI Assistant for Owners</div>
+          <div class="case-desc" data-i18n="c2.desc" class="lang-active">Один Telegram-агент вместо пяти приложений: почта, календарь, таблицы, деплой сайтов и КП через GitHub. В проде, ТЗ принято клиентом.</div>
+          <div class="case-desc" data-i18n="c2.desc.en">One Telegram assistant replacing five tools: email, calendar, spreadsheets, and site/document deploys via GitHub. Live, requirements accepted by the client.</div>
+          <div class="case-tags"><span class="case-tag">Telegram</span><span class="case-tag">Gmail</span><span class="case-tag">Sheets</span></div>
+        </div>
+      </article>
+
+      <!-- 03 TASK MANAGER -->
+      <article class="case-card" data-cat="ops">
+        <svg class="case-cover" viewBox="0 0 620 240" role="img" aria-label="Менеджер задач — три колонки доски">
+          <rect width="620" height="240" fill="#1a1a1a"/>
+          <line x1="220" y1="50" x2="220" y2="200" stroke="#2e2e2e" stroke-width="1"/>
+          <line x1="410" y1="50" x2="410" y2="200" stroke="#2e2e2e" stroke-width="1"/>
+          <text x="100" y="70" font-family="monospace" font-size="10" fill="#7a7a7a">TO DO</text>
+          <text x="300" y="70" font-family="monospace" font-size="10" fill="#7a7a7a">IN PROGRESS</text>
+          <text x="480" y="70" font-family="monospace" font-size="10" fill="#7a7a7a">DONE</text>
+          <rect x="80" y="90" width="100" height="26" rx="4" fill="none" stroke="#3a3a3a"/>
+          <rect x="80" y="126" width="100" height="26" rx="4" fill="none" stroke="#3a3a3a"/>
+          <rect x="260" y="90" width="100" height="26" rx="4" fill="none" stroke="#3a3a3a"/>
+          <rect x="450" y="90" width="110" height="26" rx="4" fill="#0f2a1b" stroke="#3ed17f"/>
+          <text x="500" y="107" text-anchor="middle" font-family="monospace" font-size="9" fill="#3ed17f">✓ done</text>
+        </svg>
+        <div class="case-body">
+          <div class="case-num">case_03/</div>
+          <div class="case-title" data-i18n="c3.title" class="lang-active">Менеджер задач + синхронизация с Trello</div>
+          <div class="case-title" data-i18n="c3.title.en">Voice Task Manager + Trello Sync</div>
+          <div class="case-desc" data-i18n="c3.desc" class="lang-active">Руководитель ставит задачи голосом, бот сам определяет исполнителя и срок, синхронизирует с Trello в обе стороны. Онбординг сотрудников, сторож с автовосстановлением.</div>
+          <div class="case-desc" data-i18n="c3.desc.en">Manager assigns tasks by voice; the bot detects assignee and deadline, syncs with Trello both ways. Includes onboarding flow and a self-healing watchdog.</div>
+          <div class="case-tags"><span class="case-tag">Telegram</span><span class="case-tag">Trello API</span></div>
+        </div>
+      </article>
+
+      <!-- 04 STATUS TRACKER -->
+      <article class="case-card" data-cat="ops">
+        <svg class="case-cover" viewBox="0 0 620 240" role="img" aria-label="Трекер статусов — прогресс-бары проектов">
+          <rect width="620" height="240" fill="#1a1a1a"/>
+          <rect x="80" y="70" width="130" height="50" rx="5" fill="none" stroke="#3a3a3a"/>
+          <rect x="240" y="70" width="130" height="50" rx="5" fill="none" stroke="#3a3a3a"/>
+          <rect x="400" y="70" width="130" height="50" rx="5" fill="none" stroke="#3a3a3a"/>
+          <rect x="92" y="100" width="70" height="6" rx="3" fill="#5a5a5a"/>
+          <rect x="252" y="100" width="40" height="6" rx="3" fill="#5a5a5a"/>
+          <rect x="412" y="100" width="106" height="6" rx="3" fill="none" stroke="#2e2e2e"/>
+          <rect x="412" y="100" width="22" height="6" rx="3" fill="#3ed17f"/>
+          <text x="145" y="90" text-anchor="middle" font-family="monospace" font-size="9" fill="#7a7a7a">68%</text>
+          <text x="305" y="90" text-anchor="middle" font-family="monospace" font-size="9" fill="#7a7a7a">41%</text>
+          <text x="465" y="90" text-anchor="middle" font-family="monospace" font-size="9" fill="#3ed17f">19% ⚠</text>
+        </svg>
+        <div class="case-body">
+          <div class="case-num">case_04/</div>
+          <div class="case-title" data-i18n="c4.title" class="lang-active">Трекер статусов проектов из чата</div>
+          <div class="case-title" data-i18n="c4.title.en">AI Project Status Tracker (Photo)</div>
+          <div class="case-desc" data-i18n="c4.desc" class="lang-active">Читает групповой чат — текст, голос, фото — и превращает в статус проекта с автопроцентами готовности. При отставании — эскалация владельцу. Работает с командой 15+ человек.</div>
+          <div class="case-desc" data-i18n="c4.desc.en">Reads a team chat — text, voice, photos — into structured project status with auto-calculated completion. Escalates delays to the owner. Live with a 15+ person team.</div>
+          <div class="case-tags"><span class="case-tag">Vision</span><span class="case-tag">Sheets</span></div>
+        </div>
+      </article>
+
+      <!-- 05 TRAINING BOT -->
+      <article class="case-card" data-cat="ops">
+        <svg class="case-cover" viewBox="0 0 620 240" role="img" aria-label="Тренировочный бот — план от таблицы к часам">
+          <rect width="620" height="240" fill="#1a1a1a"/>
+          <rect x="80" y="90" width="100" height="60" rx="5" fill="none" stroke="#3a3a3a"/>
+          <text x="130" y="82" text-anchor="middle" font-family="monospace" font-size="9" fill="#7a7a7a">SHEET</text>
+          <circle cx="310" cy="120" r="30" fill="#0f2a1b" stroke="#3ed17f" stroke-width="1.4"/>
+          <path d="M298 120 l8 8 16 -18" fill="none" stroke="#3ed17f" stroke-width="2" stroke-linecap="round"/>
+          <rect x="440" y="90" width="70" height="60" rx="12" fill="none" stroke="#3a3a3a"/>
+          <circle cx="475" cy="120" r="18" fill="none" stroke="#3a3a3a"/>
+          <text x="475" y="168" text-anchor="middle" font-family="monospace" font-size="9" fill="#7a7a7a">WATCH</text>
+        </svg>
+        <div class="case-body">
+          <div class="case-num">case_05/</div>
+          <div class="case-title" data-i18n="c5.title" class="lang-active">Автоматизация тренировочных планов</div>
+          <div class="case-title" data-i18n="c5.title.en">Training Plan Automation Bot</div>
+          <div class="case-desc" data-i18n="c5.desc" class="lang-active">Заменила ручной перенос планов тренером: план из таблицы синхронизируется на часы спортсмена. Бот собирает отметки выполнения и самочувствие. В проде с июня 2026, 0 ошибок.</div>
+          <div class="case-desc" data-i18n="c5.desc.en">Replaced a coach's manual copy-paste: a plan syncs from a sheet straight to the athlete's watch. Bot collects completion and wellness check-ins. Live since June 2026, zero errors.</div>
+          <div class="case-tags"><span class="case-tag">Apps Script</span><span class="case-tag">API</span></div>
+        </div>
+      </article>
+
+      <!-- 06 EXPENSE BOT -->
+      <article class="case-card" data-cat="finance">
+        <svg class="case-cover" viewBox="0 0 620 240" role="img" aria-label="Финансист — чек и голос сходятся в строку PNL">
+          <rect width="620" height="240" fill="#1a1a1a"/>
+          <path d="M100 70 h60 v70 l-8 -7 -8 7 -8 -7 -8 7 -8 -7 -8 7 -8 -7 z" fill="none" stroke="#3a3a3a"/>
+          <path d="M220 120 l7 -12 7 20 7 -30 7 40 7 -18 7 14 h14" fill="none" stroke="#3ed17f" stroke-width="1.6" stroke-linecap="round"/>
+          <rect x="380" y="80" width="160" height="80" rx="5" fill="none" stroke="#3a3a3a"/>
+          <line x1="380" y1="105" x2="540" y2="105" stroke="#2e2e2e"/>
+          <line x1="380" y1="130" x2="540" y2="130" stroke="#2e2e2e"/>
+          <rect x="380" y="130" width="160" height="20" fill="#0f2a1b"/>
+          <text x="390" y="144" font-family="monospace" font-size="9" fill="#3ed17f">+ $480</text>
+        </svg>
+        <div class="case-body">
+          <div class="case-num">case_06/</div>
+          <div class="case-title" data-i18n="c6.title" class="lang-active">Учёт расходов → автоматический P&amp;L</div>
+          <div class="case-title" data-i18n="c6.title.en">AI Expense Tracker to P&amp;L Sheets</div>
+          <div class="case-desc" data-i18n="c6.desc" class="lang-active">Сотрудники присылают траты текстом, голосом или фото чека — бот пишет строку в общий PNL. Все расчёты — в коде, не в модели. 120 автотестов, ролевой доступ.</div>
+          <div class="case-desc" data-i18n="c6.desc.en">Staff log expenses by text, voice, or receipt photo — the bot writes a row to a shared P&amp;L. All math runs in code, never the model. 120 automated tests, role-based access.</div>
+          <div class="case-tags"><span class="case-tag">OCR</span><span class="case-tag">Sheets</span></div>
+        </div>
+      </article>
+
+      <!-- 07 RAG -->
+      <article class="case-card" data-cat="finance">
+        <svg class="case-cover" viewBox="0 0 620 240" role="img" aria-label="RAG-консультант — документы дают ответ со ссылкой">
+          <rect width="620" height="240" fill="#1a1a1a"/>
+          <rect x="90" y="70" width="46" height="60" rx="3" fill="none" stroke="#3a3a3a" transform="rotate(-5 113 100)"/>
+          <rect x="100" y="90" width="46" height="60" rx="3" fill="none" stroke="#3a3a3a"/>
+          <circle cx="300" cy="120" r="32" fill="#0f2a1b" stroke="#3ed17f" stroke-width="1.4"/>
+          <circle cx="300" cy="120" r="3" fill="#3ed17f"/>
+          <rect x="420" y="90" width="130" height="60" rx="5" fill="none" stroke="#3a3a3a"/>
+          <line x1="432" y1="112" x2="538" y2="112" stroke="#2e2e2e"/>
+          <text x="432" y="140" font-family="monospace" font-size="8" fill="#3ed17f">→ policy.pdf, p.4</text>
+        </svg>
+        <div class="case-body">
+          <div class="case-num">case_07/</div>
+          <div class="case-title" data-i18n="c7.title" class="lang-active">RAG-консультант по базе знаний</div>
+          <div class="case-title" data-i18n="c7.title.en">RAG Knowledge Assistant (Telegram)</div>
+          <div class="case-desc" data-i18n="c7.desc" class="lang-active">Загружаете регламенты и прайсы — бот отвечает строго по документам со ссылкой на источник. Гибридный поиск, защита от выдуманных ответов. 322 автотеста.</div>
+          <div class="case-desc" data-i18n="c7.desc.en">Upload policies and price lists — the bot answers strictly from documents, always citing the source. Hybrid search, blocks fabricated answers. 322 automated tests.</div>
+          <div class="case-tags"><span class="case-tag">RAG</span><span class="case-tag">Vector Search</span></div>
+        </div>
+      </article>
+
+      <!-- 08 LEAD BOT -->
+      <article class="case-card" data-cat="growth">
+        <svg class="case-cover" viewBox="0 0 620 240" role="img" aria-label="Лид-бот — голос превращается в карточку лида">
+          <rect width="620" height="240" fill="#1a1a1a"/>
+          <path d="M90 120 q10 -20 20 0 q10 -32 20 0 q10 -42 20 0 q10 -20 20 0" fill="none" stroke="#9e9e9e" stroke-width="1.4"/>
+          <rect x="320" y="80" width="140" height="80" rx="6" fill="none" stroke="#3ed17f" stroke-width="1.3"/>
+          <circle cx="345" cy="105" r="8" fill="none" stroke="#3ed17f"/>
+          <text x="360" y="109" font-family="monospace" font-size="9" fill="#3ed17f">New lead</text>
+          <line x1="335" y1="122" x2="445" y2="122" stroke="#2e2e2e"/>
+          <line x1="335" y1="136" x2="420" y2="136" stroke="#2e2e2e"/>
+          <circle cx="550" cy="100" r="14" fill="none" stroke="#3a3a3a"/>
+        </svg>
+        <div class="case-body">
+          <div class="case-num">case_08/</div>
+          <div class="case-title" data-i18n="c8.title" class="lang-active">Голосовой лид-бот</div>
+          <div class="case-title" data-i18n="c8.title.en">Voice Lead Capture Bot</div>
+          <div class="case-desc" data-i18n="c8.desc" class="lang-active">Принимает заявки голосом на живых мероприятиях, распознаёт контакт и запрос, пишет в таблицу без дублей, мгновенно уведомляет владельца. Проверен на офлайн ИИ-конференции.</div>
+          <div class="case-desc" data-i18n="c8.desc.en">Captures leads by voice at live events, extracts contact and intent, logs without duplicates, instantly alerts the owner. Field-tested at an in-person AI conference.</div>
+          <div class="case-tags"><span class="case-tag">Whisper</span><span class="case-tag">Sheets</span></div>
+        </div>
+      </article>
+
+      <!-- 09 REVIEW BOT -->
+      <article class="case-card" data-cat="growth">
+        <svg class="case-cover" viewBox="0 0 620 240" role="img" aria-label="Бот отзывов — варианты ответа на выбор менеджера">
+          <rect width="620" height="240" fill="#1a1a1a"/>
+          <rect x="80" y="80" width="140" height="60" rx="5" fill="none" stroke="#3a3a3a"/>
+          <text x="95" y="105" font-family="monospace" font-size="12" fill="#9e9e9e">★★★</text>
+          <line x1="95" y1="118" x2="205" y2="118" stroke="#2e2e2e"/>
+          <rect x="330" y="80" width="120" height="20" rx="10" fill="none" stroke="#3a3a3a"/>
+          <rect x="330" y="108" width="120" height="20" rx="10" fill="#0f2a1b" stroke="#3ed17f"/>
+          <text x="345" y="122" font-family="monospace" font-size="8" fill="#3ed17f">выбрано</text>
+          <rect x="330" y="136" width="120" height="20" rx="10" fill="none" stroke="#3a3a3a"/>
+        </svg>
+        <div class="case-body">
+          <div class="case-num">case_09/</div>
+          <div class="case-title" data-i18n="c9.title" class="lang-active">Ответы на отзывы маркетплейса</div>
+          <div class="case-title" data-i18n="c9.title.en">Marketplace Review Response Bot</div>
+          <div class="case-desc" data-i18n="c9.desc" class="lang-active">Опрашивает площадку на новые отзывы, генерирует варианты ответа, менеджер выбирает в Telegram перед публикацией — с учётом жёстких лимитов площадки на правки.</div>
+          <div class="case-desc" data-i18n="c9.desc.en">Polls the marketplace for new reviews, drafts reply options, a manager picks one in Telegram before publishing — respecting the platform's strict edit limits.</div>
+          <div class="case-tags"><span class="case-tag">Sentiment</span><span class="case-tag">API</span></div>
+        </div>
+      </article>
+
+      <!-- 10 HEALTH AGENT -->
+      <article class="case-card" data-cat="advanced">
+        <svg class="case-cover" viewBox="0 0 620 240" role="img" aria-label="Health-агент — сон, тренировки, питание в карточке дня">
+          <rect width="620" height="240" fill="#1a1a1a"/>
+          <path d="M90 90 q8 -14 16 0 t16 0 t16 0" fill="none" stroke="#9e9e9e" stroke-width="1.3"/>
+          <path d="M90 130 l10 -14 10 20 10 -26 10 26 10 -14 10 8" fill="none" stroke="#9e9e9e" stroke-width="1.3"/>
+          <circle cx="100" cy="170" r="9" fill="none" stroke="#9e9e9e"/><circle cx="122" cy="170" r="9" fill="none" stroke="#9e9e9e"/>
+          <rect x="320" y="75" width="150" height="90" rx="6" fill="#0f2a1b" stroke="#3ed17f" stroke-width="1.3"/>
+          <text x="336" y="98" font-family="monospace" font-size="10" fill="#3ed17f">Daily card</text>
+          <line x1="336" y1="112" x2="456" y2="112" stroke="#2e2e2e"/>
+          <line x1="336" y1="126" x2="440" y2="126" stroke="#2e2e2e"/>
+        </svg>
+        <div class="case-body">
+          <div class="case-num">case_10/</div>
+          <div class="case-title" data-i18n="c10.title" class="lang-active">Health/longevity-агент</div>
+          <div class="case-title" data-i18n="c10.title.en">Personal Health &amp; Longevity Agent</div>
+          <div class="case-desc" data-i18n="c10.desc" class="lang-active">Три под-агента: разбор еды по фото, анализ тренировок, карточки-отчёты. Данные носимого устройства — автоматически. Safety-контур: не диагностирует, маркирует уверенность.</div>
+          <div class="case-desc" data-i18n="c10.desc.en">Three sub-agents: meal photo analysis, training review, daily/weekly report cards. Wearable data pulled automatically. Safety layer blocks diagnoses, flags confidence.</div>
+          <div class="case-tags"><span class="case-tag">Vision</span><span class="case-tag">Health Tech</span></div>
+        </div>
+      </article>
+
+      <!-- 11 MENTOR BOT -->
+      <article class="case-card" data-cat="advanced">
+        <svg class="case-cover" viewBox="0 0 620 240" role="img" aria-label="Ментор-бот — песочница с единственным разрешённым действием">
+          <rect width="620" height="240" fill="#1a1a1a"/>
+          <rect x="300" y="60" width="180" height="140" rx="8" fill="none" stroke="#3ed17f" stroke-width="1.3" stroke-dasharray="5 4"/>
+          <text x="390" y="80" text-anchor="middle" font-family="monospace" font-size="9" fill="#3ed17f">SANDBOX</text>
+          <circle cx="390" cy="132" r="26" fill="#0f2a1b" stroke="#3ed17f" stroke-width="1.3"/>
+          <text x="390" y="137" text-anchor="middle" font-family="monospace" font-size="9" fill="#3ed17f">message</text>
+          <rect x="80" y="90" width="120" height="34" rx="5" fill="none" stroke="#3a3a3a"/>
+          <text x="90" y="111" font-family="monospace" font-size="9" fill="#9e9e9e">student question</text>
+        </svg>
+        <div class="case-body">
+          <div class="case-num">case_11/</div>
+          <div class="case-title" data-i18n="c11.title" class="lang-active">Ментор-бот в песочнице</div>
+          <div class="case-title" data-i18n="c11.title.en">Sandboxed AI Mentor Bot</div>
+          <div class="case-desc" data-i18n="c11.desc" class="lang-active">Отвечает участникам программы по материалам и техвопросам, эскалирует чувствительное владельцу. Работает в изолированной песочнице с единственным разрешённым действием.</div>
+          <div class="case-desc" data-i18n="c11.desc.en">Answers program participants' setup and course questions, escalates sensitive topics to the owner. Runs fully sandboxed with exactly one permitted action.</div>
+          <div class="case-tags"><span class="case-tag">AI Safety</span><span class="case-tag">Sandbox</span></div>
+        </div>
+      </article>
+
+      <!-- 12 INVEST COMMITTEE -->
+      <article class="case-card" data-cat="advanced">
+        <svg class="case-cover" viewBox="0 0 620 240" role="img" aria-label="Инвест-комитет — восемь ролей сходятся в вердикт">
+          <rect width="620" height="240" fill="#1a1a1a"/>
+          <circle cx="240" cy="120" r="14" fill="#0f2a1b" stroke="#3ed17f" stroke-width="1.2"/>
+          <g stroke="#3a3a3a" stroke-width="0.8">
+            <line x1="240" y1="106" x2="240" y2="66"/><line x1="252" y1="112" x2="290" y2="86"/>
+            <line x1="254" y1="120" x2="300" y2="120"/><line x1="252" y1="128" x2="290" y2="154"/>
+            <line x1="240" y1="134" x2="240" y2="174"/><line x1="228" y1="128" x2="190" y2="154"/>
+            <line x1="226" y1="120" x2="180" y2="120"/><line x1="228" y1="112" x2="190" y2="86"/>
+          </g>
+          <g fill="#9e9e9e" opacity="0.7">
+            <circle cx="240" cy="60" r="4"/><circle cx="296" cy="82" r="4"/><circle cx="306" cy="120" r="4"/>
+            <circle cx="296" cy="158" r="4"/><circle cx="240" cy="180" r="4"/><circle cx="184" cy="158" r="4"/>
+            <circle cx="174" cy="120" r="4"/><circle cx="184" cy="82" r="4"/>
+          </g>
+          <rect x="420" y="90" width="110" height="60" rx="6" fill="none" stroke="#3ed17f" stroke-width="1.2"/>
+          <text x="432" y="112" font-family="monospace" font-size="9" fill="#3ed17f">verdict</text>
+        </svg>
+        <div class="case-body">
+          <div class="case-num">case_12/</div>
+          <div class="case-title" data-i18n="c12.title" class="lang-active">Инвестиционный комитет из 8 агентов</div>
+          <div class="case-title" data-i18n="c12.title.en">8-Agent AI Investment Committee</div>
+          <div class="case-desc" data-i18n="c12.desc" class="lang-active">8 агентов на разных моделях: исследователь, аналитик, финмоделист, прокурор и адвокат спорят три раунда, судья выносит структурированный вердикт, секретарь оформляет мемо.</div>
+          <div class="case-desc" data-i18n="c12.desc.en">8 agents on different LLMs: researcher, analyst, modeler, then prosecutor and advocate argue three rounds before a judge issues a verdict. A secretary drafts the memo.</div>
+          <div class="case-tags"><span class="case-tag">Multi-Agent</span><span class="case-tag">8 LLMs</span></div>
+        </div>
+      </article>
+
+      <!-- 13 WELLNESS SITE -->
+      <article class="case-card" data-cat="sites">
+        <svg class="case-cover" viewBox="0 0 620 240" role="img" aria-label="Управление сайтом — консолидация плагинов и апгрейд ядра">
+          <rect width="620" height="240" fill="#1a1a1a"/>
+          <rect x="90" y="70" width="180" height="110" rx="6" fill="none" stroke="#3a3a3a"/>
+          <line x1="90" y1="92" x2="270" y2="92" stroke="#2e2e2e"/>
+          <path d="M180 120 v26 M168 133 h24" stroke="#3ed17f" stroke-width="1.8"/>
+          <rect x="110" y="150" width="40" height="10" rx="2" fill="none" stroke="#3a3a3a"/>
+          <rect x="160" y="150" width="40" height="10" rx="2" fill="none" stroke="#3a3a3a"/>
+          <rect x="210" y="150" width="40" height="10" rx="2" fill="none" stroke="#3a3a3a"/>
+          <text x="180" y="200" text-anchor="middle" font-family="monospace" font-size="9" fill="#9e9e9e">21 plugins → 7</text>
+          <text x="470" y="90" text-anchor="middle" font-family="monospace" font-size="9" fill="#9e9e9e">WP 6.9.5</text>
+          <text x="470" y="106" text-anchor="middle" font-family="monospace" font-size="9" fill="#3ed17f">→ WP 7.0.2</text>
+        </svg>
+        <div class="case-body">
+          <div class="case-num">case_13/</div>
+          <div class="case-title" data-i18n="c13.title" class="lang-active">Полное ведение WordPress-сайта</div>
+          <div class="case-title" data-i18n="c13.title.en">AI-Managed WordPress Site: Health &amp; Wellness</div>
+          <div class="case-desc" data-i18n="c13.desc" class="lang-active">Техменеджмент сайта здоровья: апгрейд ядра из-за уязвимостей, консолидация 21→7 плагинов, восстановление формы заказа и навигации, SEO-инфраструктура, юр. страницы.</div>
+          <div class="case-desc" data-i18n="c13.desc.en">Full technical management of a health site: core security upgrade, 21→7 plugin consolidation, restored order form and navigation, rebuilt SEO infrastructure, legal pages.</div>
+          <div class="case-tags"><span class="case-tag">WordPress</span><span class="case-tag">SEO</span></div>
+        </div>
+      </article>
+
+      <!-- 14 TRAVEL SITE -->
+      <article class="case-card" data-cat="sites">
+        <svg class="case-cover" viewBox="0 0 620 240" role="img" aria-label="Сборка сайта и контент-конвейер — видео в статью">
+          <rect width="620" height="240" fill="#1a1a1a"/>
+          <rect x="90" y="70" width="140" height="100" rx="6" fill="none" stroke="#3a3a3a"/>
+          <circle cx="160" cy="120" r="24" fill="none" stroke="#3ed17f" stroke-width="1.3"/>
+          <path d="M154 108 l14 12 -14 12 z" fill="#3ed17f" opacity="0.7"/>
+          <rect x="320" y="90" width="80" height="60" rx="5" fill="none" stroke="#3a3a3a"/>
+          <text x="360" y="168" text-anchor="middle" font-family="monospace" font-size="9" fill="#9e9e9e">YouTube</text>
+          <rect x="460" y="80" width="120" height="20" rx="4" fill="none" stroke="#3a3a3a"/>
+          <rect x="460" y="106" width="120" height="20" rx="4" fill="#0f2a1b" stroke="#3ed17f"/>
+          <text x="470" y="120" font-family="monospace" font-size="8" fill="#3ed17f">approval</text>
+        </svg>
+        <div class="case-body">
+          <div class="case-num">case_14/</div>
+          <div class="case-title" data-i18n="c14.title" class="lang-active">Сборка сайта + ИИ-конвейер контента</div>
+          <div class="case-title" data-i18n="c14.title.en">WordPress Site Build + AI Content Pipeline</div>
+          <div class="case-desc" data-i18n="c14.desc" class="lang-active">Настройка нового travel-сайта на Hostinger с нуля: домен, SSL, FTP, REST API. Строится конвейер YouTube→статья→публикация с этапом ручного утверждения.</div>
+          <div class="case-desc" data-i18n="c14.desc.en">Set up a new travel site on Hostinger end to end: domain, SSL, FTP, REST API. Building an automated YouTube-to-article pipeline with a human approval step.</div>
+          <div class="case-tags"><span class="case-tag">WordPress</span><span class="case-tag">Content AI</span></div>
+        </div>
+      </article>
+
+      <!-- 15 SALES LANDING -->
+      <article class="case-card" data-cat="sites">
+        <svg class="case-cover" viewBox="0 0 620 240" role="img" aria-label="Продающий лендинг — трафик и кнопка покупки">
+          <rect width="620" height="240" fill="#1a1a1a"/>
+          <g stroke="#9e9e9e" stroke-width="1" opacity="0.6">
+            <path d="M100 90 L100 150" marker-end="url(#a15)"/>
+            <path d="M100 110 L100 170" marker-end="url(#a15)" opacity="0.6"/>
+          </g>
+          <defs><marker id="a15" markerWidth="7" markerHeight="7" refX="3.5" refY="6" orient="auto"><polygon points="0,0 7,0 3.5,7" fill="#9e9e9e"/></marker></defs>
+          <rect x="180" y="70" width="230" height="110" rx="6" fill="none" stroke="#3ed17f" stroke-width="1.3"/>
+          <rect x="200" y="140" width="70" height="18" rx="9" fill="none" stroke="#3a3a3a"/>
+          <rect x="280" y="140" width="70" height="18" rx="9" fill="#0f2a1b" stroke="#3ed17f"/>
+          <rect x="200" y="164" width="130" height="20" rx="10" fill="#3ed17f"/>
+          <text x="265" y="178" text-anchor="middle" font-family="monospace" font-size="8" fill="#04140a">Купить →</text>
+        </svg>
+        <div class="case-body">
+          <div class="case-num">case_15/</div>
+          <div class="case-title" data-i18n="c15.title" class="lang-active">Продающий лендинг платного курса</div>
+          <div class="case-title" data-i18n="c15.title.en">Sales Landing Page for a Paid Course</div>
+          <div class="case-desc" data-i18n="c15.desc" class="lang-active">Публичный продающий лендинг собственного курса: оффер, портрет аудитории, программа, цена. Готов принимать рекламный трафик, реально работает уже сегодня.</div>
+          <div class="case-desc" data-i18n="c15.desc.en">Public sales landing page for my own course: pitch, audience fit, curriculum, pricing. Built to convert cold traffic from ads — live and running today.</div>
+          <div class="case-tags"><span class="case-tag">Landing Page</span><span class="case-tag">Copywriting</span></div>
+        </div>
+      </article>
+
+      <!-- 16 COURSE PLATFORM -->
+      <article class="case-card" data-cat="sites">
+        <svg class="case-cover" viewBox="0 0 620 240" role="img" aria-label="Приватная платформа курса — автоматическая выдача доступа">
+          <rect width="620" height="240" fill="#1a1a1a"/>
+          <rect x="90" y="100" width="60" height="40" rx="5" fill="none" stroke="#3a3a3a"/>
+          <path d="M102 100 v-14 a18 18 0 0 1 36 0 v14" fill="none" stroke="#3a3a3a"/>
+          <g stroke="#3ed17f" stroke-width="1.4" stroke-dasharray="4 3"><path d="M180 120 L230 120" marker-end="url(#a16)"/></g>
+          <defs><marker id="a16" markerWidth="7" markerHeight="7" refX="5" refY="3.5" orient="auto"><polygon points="0,0 7,3.5 0,7" fill="#3ed17f"/></marker></defs>
+          <rect x="250" y="80" width="50" height="34" rx="4" fill="none" stroke="#3a3a3a"/>
+          <rect x="308" y="80" width="50" height="34" rx="4" fill="none" stroke="#3a3a3a"/>
+          <rect x="250" y="122" width="50" height="34" rx="4" fill="none" stroke="#3a3a3a"/>
+          <rect x="308" y="122" width="50" height="34" rx="4" fill="none" stroke="#3a3a3a"/>
+          <rect x="250" y="168" width="108" height="16" rx="8" fill="#0f2a1b" stroke="#3ed17f"/>
+          <text x="304" y="180" text-anchor="middle" font-family="monospace" font-size="7" fill="#3ed17f">noindex</text>
+        </svg>
+        <div class="case-body">
+          <div class="case-num">case_16/</div>
+          <div class="case-title" data-i18n="c16.title" class="lang-active">Приватная платформа курса</div>
+          <div class="case-title" data-i18n="c16.title.en">Private Course Platform (Auto-Delivered)</div>
+          <div class="case-desc" data-i18n="c16.desc" class="lang-active">Закрытая, noindex-платформа: покупатель попадает туда автоматически сразу после оплаты. Шесть модулей с уроками и шаблонами, доступ только у купивших.</div>
+          <div class="case-desc" data-i18n="c16.desc.en">Private, noindexed platform: buyers land there automatically right after checkout. Six modules with lessons and templates, access gated to paying students only.</div>
+          <div class="case-tags"><span class="case-tag">Access Control</span><span class="case-tag">E-learning</span></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ============ PRINCIPLE ============ -->
+  <section class="block">
+    <div class="callout">
+      <b data-i18n="principle.b" class="lang-active">Как это построено.</b>
+      <b data-i18n="principle.b.en">How this is built.</b>
+      <span data-i18n="principle.text" class="lang-active"> Каждое решение работает на инфраструктуре, которую контролирует клиент — не подписка на очередной SaaS. Голосовой ввод, реальные интеграции, и одно жёсткое правило: деньги и даты всегда считает код, а не языковая модель.</span>
+      <span data-i18n="principle.text.en"> Every system runs on infrastructure the client controls — not a subscription to another SaaS. Voice input, real integrations, and one hard rule: money and dates are always calculated in code, never estimated by a model.</span>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="block" id="services">
+    <div class="block-head">
+      <div class="block-tag" data-i18n="services.tag" class="lang-active">услуги</div>
+      <div class="block-tag" data-i18n="services.tag.en">services</div>
+      <h2 class="block-title" data-i18n="services.title" class="lang-active">Что мы делаем</h2>
+      <h2 class="block-title" data-i18n="services.title.en">What we do</h2>
+      <p class="block-sub" data-i18n="services.sub" class="lang-active">Цены — по запросу, зависят от объёма и сложности задачи. Ниже — направления, в которых мы работаем.</p>
+      <p class="block-sub" data-i18n="services.sub.en">Pricing is quoted per project, depending on scope and complexity. Below are the areas we work in.</p>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card">
+        <div class="svc-icon">01</div>
+        <div class="svc-title" data-i18n="svc1.title" class="lang-active">ИИ-агенты под ключ</div>
+        <div class="svc-title" data-i18n="svc1.title.en">Custom AI Agents</div>
+        <div class="svc-desc" data-i18n="svc1.desc" class="lang-active">Telegram-боты, голосовые ассистенты, агенты для конкретной бизнес-задачи — от идеи до продакшена.</div>
+        <div class="svc-desc" data-i18n="svc1.desc.en">Telegram bots, voice assistants, agents built for a specific business task — from concept to production.</div>
+        <div class="svc-price" data-i18n="svc.price" class="lang-active">цена по запросу</div>
+        <div class="svc-price" data-i18n="svc.price.en">price on request</div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">02</div>
+        <div class="svc-title" data-i18n="svc2.title" class="lang-active">Автоматизация процессов</div>
+        <div class="svc-title" data-i18n="svc2.title.en">Process Automation</div>
+        <div class="svc-desc" data-i18n="svc2.desc" class="lang-active">Финансовый учёт, отчётность, обработка заявок, интеграции с CRM и Google-таблицами.</div>
+        <div class="svc-desc" data-i18n="svc2.desc.en">Financial tracking, reporting, lead processing, CRM and spreadsheet integrations.</div>
+        <div class="svc-price" data-i18n="svc.price" class="lang-active">цена по запросу</div>
+        <div class="svc-price" data-i18n="svc.price.en">price on request</div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">03</div>
+        <div class="svc-title" data-i18n="svc3.title" class="lang-active">Мультиагентные системы</div>
+        <div class="svc-title" data-i18n="svc3.title.en">Multi-Agent Systems</div>
+        <div class="svc-desc" data-i18n="svc3.desc" class="lang-active">Несколько ИИ-агентов на разных моделях, работающих вместе над сложной задачей — как инвест-комитет.</div>
+        <div class="svc-desc" data-i18n="svc3.desc.en">Multiple AI agents on different models working together on a complex task — like the investment committee.</div>
+        <div class="svc-price" data-i18n="svc.price" class="lang-active">цена по запросу</div>
+        <div class="svc-price" data-i18n="svc.price.en">price on request</div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">04</div>
+        <div class="svc-title" data-i18n="svc4.title" class="lang-active">Сайты и лендинги</div>
+        <div class="svc-title" data-i18n="svc4.title.en">Websites &amp; Landing Pages</div>
+        <div class="svc-desc" data-i18n="svc4.desc" class="lang-active">Продающие лендинги, сайты-каталоги, приватные платформы для курсов и продуктов.</div>
+        <div class="svc-desc" data-i18n="svc4.desc.en">Sales landing pages, catalog sites, private platforms for courses and products.</div>
+        <div class="svc-price" data-i18n="svc.price" class="lang-active">цена по запросу</div>
+        <div class="svc-price" data-i18n="svc.price.en">price on request</div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">05</div>
+        <div class="svc-title" data-i18n="svc5.title" class="lang-active">Ведение и поддержка сайтов</div>
+        <div class="svc-title" data-i18n="svc5.title.en">Site Management &amp; Support</div>
+        <div class="svc-desc" data-i18n="svc5.desc" class="lang-active">Техническое обслуживание WordPress: безопасность, SEO, плагины, контент.</div>
+        <div class="svc-desc" data-i18n="svc5.desc.en">WordPress technical maintenance: security, SEO, plugins, content.</div>
+        <div class="svc-price" data-i18n="svc.price" class="lang-active">цена по запросу</div>
+        <div class="svc-price" data-i18n="svc.price.en">price on request</div>
+      </div>
+      <div class="svc-card">
+        <div class="svc-icon">06</div>
+        <div class="svc-title" data-i18n="svc6.title" class="lang-active">Обучение команды</div>
+        <div class="svc-title" data-i18n="svc6.title.en">Team Training</div>
+        <div class="svc-desc" data-i18n="svc6.desc" class="lang-active">Корпоративные программы: как работать с ИИ-инструментами на реальных задачах компании.</div>
+        <div class="svc-desc" data-i18n="svc6.desc.en">Corporate programs: how to work with AI tools on the company's real tasks.</div>
+        <div class="svc-price" data-i18n="svc.price" class="lang-active">цена по запросу</div>
+        <div class="svc-price" data-i18n="svc.price.en">price on request</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TEAM ============ -->
+  <section class="block" id="team">
+    <div class="block-head">
+      <div class="block-tag" data-i18n="team.tag" class="lang-active">команда</div>
+      <div class="block-tag" data-i18n="team.tag.en">team</div>
+      <h2 class="block-title" data-i18n="team.title" class="lang-active">Кто делает</h2>
+      <h2 class="block-title" data-i18n="team.title.en">Who's behind this</h2>
+      <p class="block-sub" data-i18n="team.sub" class="lang-active">Полное описание команды — скоро.</p>
+      <p class="block-sub" data-i18n="team.sub.en">Full team bios coming soon.</p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-avatar">01</div>
+        <div class="team-role" data-i18n="team1.role" class="lang-active">Место для роли</div>
+        <div class="team-role" data-i18n="team1.role.en">Role placeholder</div>
+        <div class="team-name" data-i18n="team1.name" class="lang-active">Имя появится здесь</div>
+        <div class="team-name" data-i18n="team1.name.en">Name coming soon</div>
+        <div class="team-desc" data-i18n="team1.desc" class="lang-active">Краткое описание опыта и роли в команде.</div>
+        <div class="team-desc" data-i18n="team1.desc.en">Short bio and role in the team.</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">02</div>
+        <div class="team-role" data-i18n="team2.role" class="lang-active">Место для роли</div>
+        <div class="team-role" data-i18n="team2.role.en">Role placeholder</div>
+        <div class="team-name" data-i18n="team2.name" class="lang-active">Имя появится здесь</div>
+        <div class="team-name" data-i18n="team2.name.en">Name coming soon</div>
+        <div class="team-desc" data-i18n="team2.desc" class="lang-active">Краткое описание опыта и роли в команде.</div>
+        <div class="team-desc" data-i18n="team2.desc.en">Short bio and role in the team.</div>
+      </div>
+      <div class="team-card">
+        <div class="team-avatar">03</div>
+        <div class="team-role" data-i18n="team3.role" class="lang-active">Место для роли</div>
+        <div class="team-role" data-i18n="team3.role.en">Role placeholder</div>
+        <div class="team-name" data-i18n="team3.name" class="lang-active">Имя появится здесь</div>
+        <div class="team-name" data-i18n="team3.name.en">Name coming soon</div>
+        <div class="team-desc" data-i18n="team3.desc" class="lang-active">Краткое описание опыта и роли в команде.</div>
+        <div class="team-desc" data-i18n="team3.desc.en">Short bio and role in the team.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="contact-block" id="contact">
+    <div class="contact-title" data-i18n="contact.title" class="lang-active">Обсудим ваш проект?</div>
+    <div class="contact-title" data-i18n="contact.title.en">Let's talk about your project</div>
+    <p class="contact-sub" data-i18n="contact.sub" class="lang-active">Расскажите, какую задачу нужно автоматизировать — агента, процесс или сайт. Ответим в Telegram.</p>
+    <p class="contact-sub" data-i18n="contact.sub.en">Tell us what you need automated — an agent, a process, or a website. We'll reply on Telegram.</p>
+    <a class="btn primary contact-cta" href="https://t.me/ii_vizaciya" target="_blank" rel="noopener">
+      <span data-i18n="contact.cta" class="lang-active">Оставить заявку в Telegram →</span>
+      <span data-i18n="contact.cta.en">Message us on Telegram →</span>
+    </a>
+  </section>
+
+</main>
+
+<footer class="site">
+  <span data-i18n="footer.text" class="lang-active">ИИ-ВИЗАЦИЯ · ИИ-агенты, автоматизация и сайты для бизнеса</span>
+  <span data-i18n="footer.text.en">ИИ-ВИЗАЦИЯ · AI agents, automation, and websites for business</span>
+</footer>
+
+<script>
+function setLang(lang) {
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    var isEn = el.getAttribute('data-i18n').endsWith('.en');
+    var show = (lang === 'en') ? isEn : !isEn;
+    el.classList.toggle('lang-active', show);
+  });
+  document.getElementById('lang-ru').classList.toggle('active', lang === 'ru');
+  document.getElementById('lang-en').classList.toggle('active', lang === 'en');
+  document.documentElement.lang = lang;
+  try { localStorage.setItem('iiviz_lang', lang); } catch (e) {}
+}
+
+function filterCases(cat, btn) {
+  document.querySelectorAll('.case-filter button').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  document.querySelectorAll('.case-card').forEach(function(card) {
+    var match = (cat === 'all') || (card.getAttribute('data-cat') === cat);
+    card.style.display = match ? '' : 'none';
+  });
+}
+
+(function() {
+  var saved = null;
+  try { saved = localStorage.getItem('iiviz_lang'); } catch (e) {}
+  setLang(saved === 'en' ? 'en' : 'ru');
+})();
+</script>
+</body>
+</html>
