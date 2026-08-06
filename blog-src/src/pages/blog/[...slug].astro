@@ -55,7 +55,7 @@ const dateLabel = post.data.date.toLocaleDateString('ru-RU', { day: 'numeric', m
   .post-body {
     font-size: 15px; line-height: 1.8; color: var(--ink);
   }
-  .post-body :global(p) { margin: 0 0 20px; }
+  .post-body :global(p) { margin: 0 0 20px; overflow-wrap: break-word; }
   .post-body :global(h2) {
     font-family: var(--serif); font-weight: 600; font-size: 22px;
     margin: 40px 0 16px;
