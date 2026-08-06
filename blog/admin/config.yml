@@ -1,0 +1,29 @@
+backend:
+  name: github
+  repo: pixepop1-delray/ai-vizaciya-portfolio
+  branch: main
+  base_url: https://REPLACE_WITH_YOUR_CLOUDFLARE_WORKER_URL
+  auth_endpoint: auth
+
+site_url: https://pixepop1-delray.github.io/ai-vizaciya-portfolio/
+display_url: https://pixepop1-delray.github.io/ai-vizaciya-portfolio/blog/
+logo_url: https://pixepop1-delray.github.io/ai-vizaciya-portfolio/office.png
+
+media_folder: "blog-src/public/images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "posts"
+    label: "Статьи"
+    label_singular: "Статья"
+    folder: "blog-src/src/content/posts"
+    create: true
+    slug: "{{slug}}"
+    identifier_field: title
+    fields:
+      - { label: "Заголовок", name: "title", widget: "string" }
+      - { label: "Дата публикации", name: "date", widget: "datetime", format: "YYYY-MM-DD", date_format: "YYYY-MM-DD", time_format: false }
+      - { label: "Обложка", name: "cover", widget: "image", required: false }
+      - { label: "Короткое описание (для списка и Google)", name: "excerpt", widget: "text" }
+      - { label: "Теги", name: "tags", widget: "list", required: false }
+      - { label: "Текст статьи", name: "body", widget: "markdown" }

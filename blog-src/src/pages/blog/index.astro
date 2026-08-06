@@ -1,0 +1,68 @@
+---
+import { getCollection } from 'astro:content';
+import BlogLayout from '../../layouts/BlogLayout.astro';
+
+const allPosts = await getCollection('posts');
+const posts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+<BlogLayout
+  title="Блог — ИИ-Гараж"
+  description="Статьи об ИИ-агентах, автоматизации и практическом применении LLM в бизнесе."
+  canonicalPath="/blog/"
+>
+  <div class="eyebrow">блог</div>
+  <h1>Статьи об ИИ</h1>
+  <p class="lede">Разбираем, как строить агентов и автоматизацию, которые реально работают в проде — без теории ради теории.</p>
+
+  {posts.length === 0 && <p class="empty">Скоро здесь появятся первые статьи.</p>}
+
+  <div class="post-list">
+    {posts.map((post) => (
+      <a class="post-card" href={`/ai-vizaciya-portfolio/blog/${post.id}/`}>
+        {post.data.cover && <img class="post-cover" src={post.data.cover} alt="" loading="lazy" />}
+        <div class="post-card-body">
+          <div class="post-date">{post.data.date.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })}</div>
+          <h2 class="post-title">{post.data.title}</h2>
+          <p class="post-excerpt">{post.data.excerpt}</p>
+          {post.data.tags.length > 0 && (
+            <div class="post-tags">
+              {post.data.tags.map((tag) => <span class="post-tag">{tag}</span>)}
+            </div>
+          )}
+        </div>
+      </a>
+    ))}
+  </div>
+</BlogLayout>
+
+<style>
+  h1 {
+    font-family: var(--serif); font-weight: 600; font-size: clamp(26px, 4vw, 34px);
+    margin: 0 0 14px; text-wrap: balance;
+  }
+  .lede { color: var(--ink-soft); font-size: 14.5px; line-height: 1.75; max-width: 60ch; margin: 0 0 44px; }
+  .empty { color: var(--ink-faint); font-size: 13px; }
+
+  .post-list { display: flex; flex-direction: column; gap: 18px; }
+  .post-card {
+    display: flex; gap: 20px; text-decoration: none; color: inherit;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 12px;
+    padding: 20px; transition: border-color .15s;
+  }
+  .post-card:hover { border-color: var(--accent-dim); }
+  .post-cover {
+    width: 120px; height: 90px; object-fit: cover; border-radius: 8px; flex-shrink: 0;
+    background: var(--surface-2);
+  }
+  .post-card-body { min-width: 0; }
+  .post-date { font-size: 11px; color: var(--ink-faint); margin-bottom: 8px; }
+  .post-title { font-weight: 700; font-size: 16px; margin: 0 0 8px; line-height: 1.35; }
+  .post-excerpt { font-size: 13px; color: var(--ink-soft); line-height: 1.6; margin: 0 0 10px; }
+  .post-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .post-tag { font-size: 10.5px; color: var(--accent); background: var(--accent-soft); padding: 2px 8px; border-radius: 100px; }
+
+  @media (max-width: 560px) {
+    .post-card { flex-direction: column; }
+    .post-cover { width: 100%; height: 160px; }
+  }
+</style>
