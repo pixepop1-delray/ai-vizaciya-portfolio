@@ -10,7 +10,7 @@ display_url: https://pixepop1-delray.github.io/ai-vizaciya-portfolio/blog/
 logo_url: https://pixepop1-delray.github.io/ai-vizaciya-portfolio/office.png
 
 media_folder: "blog-src/public/images/uploads"
-public_folder: "/images/uploads"
+public_folder: "/ai-vizaciya-portfolio/images/uploads"
 
 collections:
   - name: "posts"
