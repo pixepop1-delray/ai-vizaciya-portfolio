@@ -2,7 +2,7 @@ backend:
   name: github
   repo: pixepop1-delray/ai-vizaciya-portfolio
   branch: main
-  base_url: https://REPLACE_WITH_YOUR_CLOUDFLARE_WORKER_URL
+  base_url: https://ii-garage-cms-auth.pixepop1.workers.dev
   auth_endpoint: auth
 
 site_url: https://pixepop1-delray.github.io/ai-vizaciya-portfolio/
