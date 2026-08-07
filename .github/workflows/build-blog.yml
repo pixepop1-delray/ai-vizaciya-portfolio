@@ -42,11 +42,12 @@ jobs:
           cp -r blog-src/dist/blog/. blog/
           cp -r blog-src/dist/admin/. blog/admin/
           if [ -d blog-src/dist/images ]; then cp -r blog-src/dist/images/. images/; fi
+          cp blog-src/dist/sitemap*.xml . 2>/dev/null || true
 
       - name: Commit built blog
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add blog images
+          git add blog images sitemap*.xml
           git diff --staged --quiet && echo "No changes" || git commit -m "Build blog [skip ci]"
           git push
