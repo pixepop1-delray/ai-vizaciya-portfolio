@@ -77,11 +77,16 @@
     padding: 5px 11px; font-family: var(--mono); font-size: 11px; font-weight: 700; cursor: pointer;
   }
   .lang-switch button.active { background: var(--accent); color: #04140a; }
-  .nav-toggle { display: none; }
 
   @media (max-width: 760px) {
-    nav.main { display: none; }
-    .nav-toggle { display: block; background: none; border: 1px solid var(--line); color: var(--ink); border-radius: 6px; padding: 6px 10px; font-family: var(--mono); }
+    .site-inner { flex-wrap: wrap; gap: 8px 14px; padding: 12px 0; }
+    nav.main {
+      order: 3; width: 100%; gap: 18px;
+      overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    nav.main::-webkit-scrollbar { display: none; }
+    nav.main a { white-space: nowrap; font-size: 12px; }
   }
 
   /* ---- hero: Blueprint Seam (gates + fading grid), centered ---- */
@@ -251,11 +256,36 @@
   }
   .case-filter button.active { color: #04140a; background: var(--accent); border-color: var(--accent); }
 
-  /* ---- case cards ---- */
-  .case-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(310px, 1fr)); gap: 16px; }
+  /* ---- carousel nav: arrows below, centered, with progress dots ---- */
+  .case-nav { display: flex; align-items: center; justify-content: center; gap: 18px; margin-top: 26px; }
+  .case-arrow {
+    width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--accent-dim);
+    background: var(--accent-soft); color: var(--accent); font-size: 16px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--mono); transition: background .15s;
+  }
+  .case-arrow:hover { background: var(--accent-dim); color: var(--ink); }
+  .case-dots { display: flex; gap: 7px; }
+  .case-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--line); transition: background .2s; }
+  .case-dot.active { background: var(--accent); }
+
+  /* ---- case cards: one-row carousel ---- */
+  .case-grid {
+    display: flex; gap: 16px; overflow-x: auto;
+    scroll-snap-type: x mandatory; scroll-behavior: smooth;
+    scrollbar-width: none; -ms-overflow-style: none;
+  }
+  .case-grid::-webkit-scrollbar { display: none; }
   .case-card {
     background: var(--surface); border: 1px solid var(--line); border-radius: 12px; overflow: hidden;
     display: flex; flex-direction: column;
+    flex: 0 0 calc((100% - 32px) / 3); scroll-snap-align: start;
+  }
+  @media (max-width: 900px) {
+    .case-card { flex-basis: calc((100% - 16px) / 2); }
+  }
+  @media (max-width: 600px) {
+    .case-card { flex-basis: 86%; }
   }
   .case-cover {
     background: var(--surface-2); color: var(--ink); display: block; width: 100%; height: auto;
@@ -917,6 +947,12 @@
       </article>
 
     </div>
+
+    <div class="case-nav">
+      <button class="case-arrow" onclick="slideCases(-1)" aria-label="Предыдущие кейсы">←</button>
+      <div class="case-dots" id="case-dots"></div>
+      <button class="case-arrow" onclick="slideCases(1)" aria-label="Следующие кейсы">→</button>
+    </div>
   </section>
 
   <!-- ============ PRINCIPLE ============ -->
@@ -1074,7 +1110,45 @@ function filterCases(cat, btn) {
     var match = (cat === 'all') || (card.getAttribute('data-cat') === cat);
     card.style.display = match ? '' : 'none';
   });
+  var grid = document.getElementById('case-grid');
+  grid.scrollTo({ left: 0 });
+  rebuildCaseDots();
 }
+
+function slideCases(dir) {
+  var grid = document.getElementById('case-grid');
+  grid.scrollBy({ left: dir * grid.clientWidth, behavior: 'smooth' });
+}
+
+function rebuildCaseDots() {
+  var grid = document.getElementById('case-grid');
+  var dots = document.getElementById('case-dots');
+  var pages = Math.max(1, Math.ceil(grid.scrollWidth / grid.clientWidth));
+  var html = '';
+  for (var i = 0; i < pages; i++) html += '<div class="case-dot"></div>';
+  dots.innerHTML = html;
+  updateCaseDots();
+}
+
+function updateCaseDots() {
+  var grid = document.getElementById('case-grid');
+  var dots = document.getElementById('case-dots').children;
+  if (!dots.length) return;
+  var idx = Math.min(dots.length - 1, Math.round(grid.scrollLeft / grid.clientWidth));
+  for (var i = 0; i < dots.length; i++) dots[i].classList.toggle('active', i === idx);
+}
+
+(function() {
+  var grid = document.getElementById('case-grid');
+  var ticking = false;
+  grid.addEventListener('scroll', function() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function() { updateCaseDots(); ticking = false; });
+  });
+  window.addEventListener('resize', rebuildCaseDots);
+  rebuildCaseDots();
+})();
 
 (function() {
   var saved = null;
