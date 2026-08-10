@@ -16,6 +16,13 @@ const siteRoot = '/ai-vizaciya-portfolio';
 <title>{title}</title>
 <meta name="description" content={description}>
 <link rel="canonical" href={siteOrigin + siteRoot + canonicalPath}>
+<link rel="icon" type="image/png" href={siteOrigin + siteRoot + '/favicon.png'}>
+<meta property="og:type" content="article">
+<meta property="og:title" content={title}>
+<meta property="og:description" content={description}>
+<meta property="og:url" content={siteOrigin + siteRoot + canonicalPath}>
+<meta property="og:image" content={siteOrigin + siteRoot + '/og-image.png'}>
+<meta name="twitter:card" content="summary_large_image">
 <style>
   @font-face {
     font-family: 'JetBrains Mono';
