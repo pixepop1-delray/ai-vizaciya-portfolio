@@ -152,9 +152,17 @@
   }
   h1.hero-title s { color: var(--ink-faint); text-decoration-thickness: 2px; text-decoration-color: var(--accent-dim); white-space: nowrap; }
   .hero-chips { position: relative; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 0 0 22px; }
-  .hero-lede-list { font-size: 18.5px; line-height: 1.85; max-width: 600px; }
+  .hero-lede-list { font-size: 18.5px; line-height: 1.8; max-width: 600px; }
   .hero-lede-list em { font-style: normal; color: var(--accent); }
-  .hero-lede-list strong { color: var(--ink); font-weight: 700; }
+  .hero-takeaway {
+    position: relative; display: flex; align-items: center; gap: 14px;
+    width: 100%; max-width: 640px; margin: 20px auto 10px;
+    font-family: var(--mono); font-weight: 700; font-size: 15px; color: var(--ink);
+    text-shadow: 0 0 1px var(--bg), 0 0 8px var(--bg);
+  }
+  .hero-takeaway::before, .hero-takeaway::after {
+    content: ''; flex: 1; height: 1px; min-width: 24px; background: var(--accent-dim);
+  }
   .hero-cta { position: relative; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 44px; }
 
   /* ---- hero assembly scene: mechanic assembles the bot once on load ---- */
@@ -467,6 +475,7 @@
 
   [data-i18n] { display: none; }
   [data-i18n].lang-active { display: revert; }
+  p.hero-takeaway.lang-active { display: flex; }
   span[data-i18n].lang-active,
   b[data-i18n].lang-active { display: inline; }
 </style>
@@ -563,8 +572,11 @@
         <span class="manifest-chip"><span data-i18n="hero.chip4" class="lang-active">больше клиентов</span><span data-i18n="hero.chip4.en">more clients</span></span>
       </div>
 
-      <p class="hero-lede hero-lede-list" data-i18n="hero.lede" class="lang-active">Заявки отвечают <em>сами</em>.<br>Календарь ведётся <em>сам</em>.<br>Отчёты собираются <em>сами</em>.<br><strong>Люди занимаются клиентами — не копированием данных.</strong></p>
-      <p class="hero-lede hero-lede-list" data-i18n="hero.lede.en">Leads answer <em>themselves</em>.<br>The calendar runs <em>itself</em>.<br>Reports build <em>themselves</em>.<br><strong>Your people handle clients — not copy-paste.</strong></p>
+      <p class="hero-lede hero-lede-list" data-i18n="hero.lede" class="lang-active">Заявки отвечают <em>сами</em>.<br>Календарь ведётся <em>сам</em>.<br>Отчёты собираются <em>сами</em>.</p>
+      <p class="hero-lede hero-lede-list" data-i18n="hero.lede.en">Leads answer <em>themselves</em>.<br>The calendar runs <em>itself</em>.<br>Reports build <em>themselves</em>.</p>
+
+      <p class="hero-takeaway" data-i18n="hero.takeaway" class="lang-active">Люди занимаются клиентами — не копированием данных</p>
+      <p class="hero-takeaway" data-i18n="hero.takeaway.en">Your people handle clients — not copy-paste</p>
     </div>
 
     <div class="hero-cta">
