@@ -18,7 +18,7 @@ const posts = allPosts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueO
 
   <div class="post-list">
     {posts.map((post) => (
-      <a class="post-card" href={`/ai-vizaciya-portfolio/blog/${post.id}/`}>
+      <a class="post-card" href={`/blog/${post.id}/`}>
         {post.data.cover && <img class="post-cover" src={post.data.cover} alt="" loading="lazy" />}
         <div class="post-card-body">
           <div class="post-date">{post.data.date.toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })}</div>

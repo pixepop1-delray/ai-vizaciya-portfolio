@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /blog/admin/
 
-Sitemap: https://pixepop1-delray.github.io/ai-vizaciya-portfolio/sitemap-index.xml
+Sitemap: https://ai-garage.tech/sitemap-index.xml

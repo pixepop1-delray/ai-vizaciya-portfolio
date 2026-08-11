@@ -5,12 +5,12 @@ backend:
   base_url: https://ii-garage-cms-auth.pixepop1.workers.dev
   auth_endpoint: auth
 
-site_url: https://pixepop1-delray.github.io/ai-vizaciya-portfolio/
-display_url: https://pixepop1-delray.github.io/ai-vizaciya-portfolio/blog/
-logo_url: https://pixepop1-delray.github.io/ai-vizaciya-portfolio/office.png
+site_url: https://ai-garage.tech/
+display_url: https://ai-garage.tech/blog/
+logo_url: https://ai-garage.tech/office.png
 
 media_folder: "blog-src/public/images/uploads"
-public_folder: "/ai-vizaciya-portfolio/images/uploads"
+public_folder: "/images/uploads"
 
 collections:
   - name: "posts"
