@@ -148,6 +148,9 @@
   }
   h1.hero-title s { color: var(--ink-faint); text-decoration-thickness: 2px; text-decoration-color: var(--accent-dim); white-space: nowrap; }
   .hero-chips { position: relative; display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 0 0 22px; }
+  .hero-lede-list { font-size: 18.5px; line-height: 1.85; max-width: 600px; }
+  .hero-lede-list em { font-style: normal; color: var(--accent); }
+  .hero-lede-list strong { color: var(--ink); font-weight: 700; }
   .hero-cta { position: relative; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; margin-bottom: 44px; }
 
   /* ---- hero assembly scene: mechanic assembles the bot once on load ---- */
@@ -550,14 +553,14 @@
       <h1 class="hero-title" data-i18n="hero.title.en">We don't sell <s>AI agents</s>. We sell:</h1>
 
       <div class="hero-chips">
-        <span class="manifest-chip"><span data-i18n="hero.chip1" class="lang-active">деньги</span><span data-i18n="hero.chip1.en">money</span></span>
-        <span class="manifest-chip"><span data-i18n="hero.chip2" class="lang-active">время</span><span data-i18n="hero.chip2.en">time</span></span>
-        <span class="manifest-chip"><span data-i18n="hero.chip3" class="lang-active">меньше рутины</span><span data-i18n="hero.chip3.en">less busywork</span></span>
+        <span class="manifest-chip"><span data-i18n="hero.chip1" class="lang-active">меньше расходов</span><span data-i18n="hero.chip1.en">lower costs</span></span>
+        <span class="manifest-chip"><span data-i18n="hero.chip2" class="lang-active">меньше рутины</span><span data-i18n="hero.chip2.en">less busywork</span></span>
+        <span class="manifest-chip"><span data-i18n="hero.chip3" class="lang-active">больше времени</span><span data-i18n="hero.chip3.en">more time</span></span>
         <span class="manifest-chip"><span data-i18n="hero.chip4" class="lang-active">больше клиентов</span><span data-i18n="hero.chip4.en">more clients</span></span>
       </div>
 
-      <p class="hero-lede" data-i18n="hero.lede" class="lang-active">Заявки, письма, отчёты, календарь — работают сами, на вашем сервере. Вы получаете время и клиентов.</p>
-      <p class="hero-lede" data-i18n="hero.lede.en">Leads, emails, reports, calendars — running on their own, on your server. You get back time and clients.</p>
+      <p class="hero-lede hero-lede-list" data-i18n="hero.lede" class="lang-active">Заявки отвечают <em>сами</em>.<br>Календарь ведётся <em>сам</em>.<br>Отчёты собираются <em>сами</em>.<br><strong>Люди занимаются клиентами — не копированием данных.</strong></p>
+      <p class="hero-lede hero-lede-list" data-i18n="hero.lede.en">Leads answer <em>themselves</em>.<br>The calendar runs <em>itself</em>.<br>Reports build <em>themselves</em>.<br><strong>Your people handle clients — not copy-paste.</strong></p>
     </div>
 
     <div class="hero-cta">
