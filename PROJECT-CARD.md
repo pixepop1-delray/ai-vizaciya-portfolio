@@ -2,11 +2,12 @@
 
 ## Ссылки
 
-- **Живой сайт:** https://pixepop1-delray.github.io/ai-vizaciya-portfolio/
-- **Блог:** https://pixepop1-delray.github.io/ai-vizaciya-portfolio/blog/
-- **Панель редактора статей:** https://pixepop1-delray.github.io/ai-vizaciya-portfolio/blog/admin/
+- **Живой сайт:** https://ai-garage.tech/
+- **Блог:** https://ai-garage.tech/blog/
+- **Панель редактора статей:** https://ai-garage.tech/blog/admin/
 - **Репозиторий (GitHub):** https://github.com/pixepop1-delray/ai-vizaciya-portfolio
 - **Локальный бэкап:** `/Users/uliana/Desktop/VIBE CODING/ai-vizaciya-portfolio`
+- Старый адрес pixepop1-delray.github.io/ai-vizaciya-portfolio 301-редиректит на домен
 
 ## Карточка для портфолио
 
