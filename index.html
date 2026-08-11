@@ -139,7 +139,7 @@
     position: relative;
     font-family: var(--serif); font-weight: 600;
     font-size: clamp(30px, 5vw, 44px); line-height: 1.2;
-    margin: 0 0 20px; max-width: 16ch; text-wrap: balance;
+    margin: 0 0 20px; max-width: 21ch; text-wrap: balance;
     text-shadow: 0 0 2px var(--bg), 0 0 10px var(--bg), 0 0 22px var(--bg), 0 0 22px var(--bg);
   }
   .hero-lede {
@@ -334,6 +334,38 @@
   .case-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.6; flex-grow: 1; }
   .case-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
   .case-tag { font-size: 10.5px; color: var(--accent); background: var(--accent-soft); padding: 2px 8px; border-radius: 100px; }
+  .case-result { font-family: var(--mono); font-size: 11.5px; color: var(--accent); line-height: 1.5; }
+  .case-result::before { content: '▸ '; opacity: .7; }
+
+  /* ---- pains: боль → решение ---- */
+  .pain-rows { position: relative; display: grid; gap: 10px; }
+  .pain-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 18px; align-items: center;
+    background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+    padding: 16px 20px; text-decoration: none; transition: border-color .15s;
+  }
+  .pain-row:hover { border-color: var(--accent-dim); }
+  .pain-row:hover .pain-gain { color: var(--accent); }
+  .pain-q { font-size: 13.5px; color: var(--ink-soft); line-height: 1.55; }
+  .pain-q::before { content: '✗ '; color: var(--ink-faint); font-family: var(--mono); }
+  .pain-gain { font-size: 13.5px; color: var(--ink); line-height: 1.55; transition: color .15s; }
+  .pain-gain::before { content: '✓ '; color: var(--accent); font-family: var(--mono); }
+  @media (max-width: 640px) {
+    .pain-row { grid-template-columns: 1fr; gap: 6px; }
+  }
+
+  /* ---- manifest stamp ---- */
+  .manifest { position: relative; text-align: center; padding: 8px 0 4px; }
+  .manifest-bot { width: 40px; height: 40px; margin: 0 auto 16px; image-rendering: pixelated; display: block; }
+  .manifest-lead { font-family: var(--mono); font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 14px; }
+  .manifest-line { font-family: var(--serif); font-size: clamp(22px, 3.6vw, 30px); font-weight: 600; margin: 0 0 22px; }
+  .manifest-line s { color: var(--ink-faint); text-decoration-thickness: 2px; text-decoration-color: var(--accent-dim); }
+  .manifest-chips { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+  .manifest-chip {
+    font-family: var(--mono); font-size: 13px; font-weight: 700; color: var(--accent);
+    background: var(--accent-soft); border: 1px solid var(--accent-dim); border-radius: 8px;
+    padding: 10px 18px;
+  }
 
   /* ---- services ---- */
   .svc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
@@ -512,16 +544,16 @@
       <div class="hero-status" data-i18n="hero.status" class="lang-active">Десятки внедрений с 2024 года</div>
       <div class="hero-status" data-i18n="hero.status.en">Dozens of deployments since 2024</div>
 
-      <h1 class="hero-title" data-i18n="hero.title" class="lang-active">ИИ-решения под ключ: от идеи до продакшена</h1>
-      <h1 class="hero-title" data-i18n="hero.title.en">Custom AI solutions: from idea to production</h1>
+      <h1 class="hero-title" data-i18n="hero.title" class="lang-active">Ваша команда тратит полдня на рутину. Мы забираем её роботам.</h1>
+      <h1 class="hero-title" data-i18n="hero.title.en">Your team loses half the day to busywork. We hand it to robots.</h1>
 
-      <p class="hero-lede" data-i18n="hero.lede" class="lang-active">Каждое решение выезжает готовым — стоит на сервере клиента.</p>
-      <p class="hero-lede" data-i18n="hero.lede.en">Every solution ships ready — running on the client's own server.</p>
+      <p class="hero-lede" data-i18n="hero.lede" class="lang-active">Заявки, письма, отчёты, календарь — работают сами, на вашем сервере. Вы получаете время и клиентов.</p>
+      <p class="hero-lede" data-i18n="hero.lede.en">Leads, emails, reports, calendars — running on their own, on your server. You get back time and clients.</p>
     </div>
 
     <div class="hero-cta">
-      <a class="btn primary" href="https://t.me/stavzzz" target="_blank" rel="noopener" data-i18n="hero.cta.primary" class="lang-active">Обсудить проект →</a>
-      <a class="btn primary" href="https://t.me/stavzzz" target="_blank" rel="noopener" data-i18n="hero.cta.primary.en">Discuss a project →</a>
+      <a class="btn primary" href="https://t.me/stavzzz" target="_blank" rel="noopener" data-i18n="hero.cta.primary" class="lang-active">Показать, что можно автоматизировать →</a>
+      <a class="btn primary" href="https://t.me/stavzzz" target="_blank" rel="noopener" data-i18n="hero.cta.primary.en">Show me what can be automated →</a>
       <a class="btn ghost" href="#cases" data-i18n="hero.cta.ghost" class="lang-active">Смотреть все кейсы</a>
       <a class="btn ghost" href="#cases" data-i18n="hero.cta.ghost.en">View all cases</a>
     </div>
@@ -531,6 +563,36 @@
       <div class="stat"><div class="n">6</div><div class="l" data-i18n="stat.areas" class="lang-active">направлений</div><div class="l" data-i18n="stat.areas.en">focus areas</div></div>
       <div class="stat"><div class="n">1400+</div><div class="l" data-i18n="stat.tests" class="lang-active">автотестов</div><div class="l" data-i18n="stat.tests.en">automated tests</div></div>
       <div class="stat"><div class="n">8</div><div class="l" data-i18n="stat.llms" class="lang-active">LLM в одной системе</div><div class="l" data-i18n="stat.llms.en">LLMs orchestrated</div></div>
+    </div>
+  </section>
+
+  <!-- ============ PAINS ============ -->
+  <section class="block" id="pains">
+    <div class="block-head">
+      <div class="block-tag" data-i18n="pains.tag" class="lang-active">боль → решение</div>
+      <div class="block-tag" data-i18n="pains.tag.en">pain → solution</div>
+      <h2 class="block-title" data-i18n="pains.title" class="lang-active">Знакомо?</h2>
+      <h2 class="block-title" data-i18n="pains.title.en">Sound familiar?</h2>
+      <p class="block-sub" data-i18n="pains.sub" class="lang-active">Каждая строка — реальная задача, которую мы уже закрыли. Нажмите — покажем кейс.</p>
+      <p class="block-sub" data-i18n="pains.sub.en">Each line is a real problem we've already solved. Click one to see the case.</p>
+    </div>
+    <div class="pain-rows">
+      <a class="pain-row" href="#cases" onclick="goToPain('finance')">
+        <span class="pain-q"><span data-i18n="pain1.q" class="lang-active">Отвечаете на одни и те же вопросы по десять раз в день</span><span data-i18n="pain1.q.en">Answering the same questions ten times a day</span></span>
+        <span class="pain-gain"><span data-i18n="pain1.g" class="lang-active">Бот отвечает по вашим регламентам — сам, 24/7</span><span data-i18n="pain1.g.en">A bot answers from your own docs — 24/7, on its own</span></span>
+      </a>
+      <a class="pain-row" href="#cases" onclick="goToPain('growth')">
+        <span class="pain-q"><span data-i18n="pain2.q" class="lang-active">Заявки приходят ночью и теряются до утра</span><span data-i18n="pain2.q.en">Leads come in overnight and are gone by morning</span></span>
+        <span class="pain-gain"><span data-i18n="pain2.g" class="lang-active">Каждый лид пойман и записан в ту же секунду</span><span data-i18n="pain2.g.en">Every lead is caught and logged the same second</span></span>
+      </a>
+      <a class="pain-row" href="#cases" onclick="goToPain('finance')">
+        <span class="pain-q"><span data-i18n="pain3.q" class="lang-active">Отчёты и учёт собираются руками в конце месяца</span><span data-i18n="pain3.q.en">Reports and bookkeeping done by hand at month-end</span></span>
+        <span class="pain-gain"><span data-i18n="pain3.g" class="lang-active">P&amp;L строится сам — из чеков, голосовых и фото</span><span data-i18n="pain3.g.en">The P&amp;L builds itself — from receipts, voice notes, photos</span></span>
+      </a>
+      <a class="pain-row" href="#cases" onclick="goToPain('ops')">
+        <span class="pain-q"><span data-i18n="pain4.q" class="lang-active">«Где статус проекта?» — и полчаса переписки</span><span data-i18n="pain4.q.en">"Where's the project at?" — and half an hour of pinging</span></span>
+        <span class="pain-gain"><span data-i18n="pain4.g" class="lang-active">Статусы собираются из рабочего чата сами</span><span data-i18n="pain4.g.en">Statuses assemble themselves from the work chat</span></span>
+      </a>
     </div>
   </section>
 
@@ -623,6 +685,8 @@
           <div class="case-title" data-i18n="c1.title.en">AI Voice Secretary — Google Calendar</div>
           <div class="case-desc" data-i18n="c1.desc" class="lang-active">Ведёт календарь голосом и текстом: встречи, серии событий, Meet-ссылки, поиск окон по таймзонам, ежедневный брифинг. Даты считает код, не модель. 207 автотестов.</div>
           <div class="case-desc" data-i18n="c1.desc.en">Runs a calendar by voice or text: events, recurring series, Meet links, cross-timezone slot finding, daily briefing. Dates computed in code, not the model. 207 automated tests.</div>
+          <div class="case-result" data-i18n="c1.result" class="lang-active">календарь ведётся голосом — ноль ручного ввода</div>
+          <div class="case-result" data-i18n="c1.result.en">the calendar runs on voice — zero manual entry</div>
           <div class="case-tags">
             <span class="case-tag">Telegram</span><span class="case-tag">Google API</span><span class="case-tag">Voice</span>
           </div>
@@ -660,6 +724,8 @@
           <div class="case-title" data-i18n="c2.title.en">Personal AI Assistant for Owners</div>
           <div class="case-desc" data-i18n="c2.desc" class="lang-active">Один Telegram-агент вместо пяти приложений: почта, календарь, таблицы, деплой сайтов и КП через GitHub. В проде, ТЗ принято клиентом.</div>
           <div class="case-desc" data-i18n="c2.desc.en">One Telegram assistant replacing five tools: email, calendar, spreadsheets, and site/document deploys via GitHub. Live, requirements accepted by the client.</div>
+          <div class="case-result" data-i18n="c2.result" class="lang-active">пять приложений — один чат: часы владельца обратно</div>
+          <div class="case-result" data-i18n="c2.result.en">five apps become one chat — the owner's hours back</div>
           <div class="case-tags"><span class="case-tag">Telegram</span><span class="case-tag">Gmail</span><span class="case-tag">Sheets</span></div>
         </div>
       </article>
@@ -685,6 +751,8 @@
           <div class="case-title" data-i18n="c3.title.en">Voice Task Manager + Trello Sync</div>
           <div class="case-desc" data-i18n="c3.desc" class="lang-active">Руководитель ставит задачи голосом, бот сам определяет исполнителя и срок, синхронизирует с Trello в обе стороны. Онбординг сотрудников, сторож с автовосстановлением.</div>
           <div class="case-desc" data-i18n="c3.desc.en">Manager assigns tasks by voice; the bot detects assignee and deadline, syncs with Trello both ways. Includes onboarding flow and a self-healing watchdog.</div>
+          <div class="case-result" data-i18n="c3.result" class="lang-active">ни одна задача из чата не теряется — всё на доске</div>
+          <div class="case-result" data-i18n="c3.result.en">no task from the chat gets lost — all on the board</div>
           <div class="case-tags"><span class="case-tag">Telegram</span><span class="case-tag">Trello API</span></div>
         </div>
       </article>
@@ -710,6 +778,8 @@
           <div class="case-title" data-i18n="c4.title.en">AI Project Status Tracker (Photo)</div>
           <div class="case-desc" data-i18n="c4.desc" class="lang-active">Читает групповой чат — текст, голос, фото — и превращает в статус проекта с автопроцентами готовности. При отставании — эскалация владельцу. Работает с командой 15+ человек.</div>
           <div class="case-desc" data-i18n="c4.desc.en">Reads a team chat — text, voice, photos — into structured project status with auto-calculated completion. Escalates delays to the owner. Live with a 15+ person team.</div>
+          <div class="case-result" data-i18n="c4.result" class="lang-active">статус любого проекта — без планёрок и обзвона</div>
+          <div class="case-result" data-i18n="c4.result.en">any project's status — no meetings, no call-arounds</div>
           <div class="case-tags"><span class="case-tag">Vision</span><span class="case-tag">Sheets</span></div>
         </div>
       </article>
@@ -732,6 +802,8 @@
           <div class="case-title" data-i18n="c5.title.en">Training Plan Automation Bot</div>
           <div class="case-desc" data-i18n="c5.desc" class="lang-active">Заменила ручной перенос планов тренером: план из таблицы синхронизируется на часы спортсмена. Бот собирает отметки выполнения и самочувствие. В проде с июня 2026, 0 ошибок.</div>
           <div class="case-desc" data-i18n="c5.desc.en">Replaced a coach's manual copy-paste: a plan syncs from a sheet straight to the athlete's watch. Bot collects completion and wellness check-ins. Live since June 2026, zero errors.</div>
+          <div class="case-result" data-i18n="c5.result" class="lang-active">тренер не переносит планы руками — 0 ошибок в проде</div>
+          <div class="case-result" data-i18n="c5.result.en">the coach no longer copies plans by hand — 0 errors in prod</div>
           <div class="case-tags"><span class="case-tag">Apps Script</span><span class="case-tag">API</span></div>
         </div>
       </article>
@@ -754,6 +826,8 @@
           <div class="case-title" data-i18n="c6.title.en">AI Expense Tracker to P&amp;L Sheets</div>
           <div class="case-desc" data-i18n="c6.desc" class="lang-active">Сотрудники присылают траты текстом, голосом или фото чека — бот пишет строку в общий PNL. Все расчёты — в коде, не в модели. 120 автотестов, ролевой доступ.</div>
           <div class="case-desc" data-i18n="c6.desc.en">Staff log expenses by text, voice, or receipt photo — the bot writes a row to a shared P&amp;L. All math runs in code, never the model. 120 automated tests, role-based access.</div>
+          <div class="case-result" data-i18n="c6.result" class="lang-active">P&amp;L собирается сам — бухгалтерская рутина исчезла</div>
+          <div class="case-result" data-i18n="c6.result.en">the P&amp;L builds itself — bookkeeping busywork gone</div>
           <div class="case-tags"><span class="case-tag">OCR</span><span class="case-tag">Sheets</span></div>
         </div>
       </article>
@@ -776,6 +850,8 @@
           <div class="case-title" data-i18n="c7.title.en">RAG Knowledge Assistant (Telegram)</div>
           <div class="case-desc" data-i18n="c7.desc" class="lang-active">Загружаете регламенты и прайсы — бот отвечает строго по документам со ссылкой на источник. Гибридный поиск, защита от выдуманных ответов. 322 автотеста.</div>
           <div class="case-desc" data-i18n="c7.desc.en">Upload policies and price lists — the bot answers strictly from documents, always citing the source. Hybrid search, blocks fabricated answers. 322 automated tests.</div>
+          <div class="case-result" data-i18n="c7.result" class="lang-active">ответ по регламентам за секунды — коллег не дёргают</div>
+          <div class="case-result" data-i18n="c7.result.en">policy answers in seconds — no more pinging colleagues</div>
           <div class="case-tags"><span class="case-tag">RAG</span><span class="case-tag">Vector Search</span></div>
         </div>
       </article>
@@ -798,6 +874,8 @@
           <div class="case-title" data-i18n="c8.title.en">Voice Lead Capture Bot</div>
           <div class="case-desc" data-i18n="c8.desc" class="lang-active">Принимает заявки голосом на живых мероприятиях, распознаёт контакт и запрос, пишет в таблицу без дублей, мгновенно уведомляет владельца. Проверен на офлайн ИИ-конференции.</div>
           <div class="case-desc" data-i18n="c8.desc.en">Captures leads by voice at live events, extracts contact and intent, logs without duplicates, instantly alerts the owner. Field-tested at an in-person AI conference.</div>
+          <div class="case-result" data-i18n="c8.result" class="lang-active">ни одна заявка не потеряна — владелец узнаёт мгновенно</div>
+          <div class="case-result" data-i18n="c8.result.en">not a single lead lost — the owner knows instantly</div>
           <div class="case-tags"><span class="case-tag">Whisper</span><span class="case-tag">Sheets</span></div>
         </div>
       </article>
@@ -820,6 +898,8 @@
           <div class="case-title" data-i18n="c9.title.en">Marketplace Review Response Bot</div>
           <div class="case-desc" data-i18n="c9.desc" class="lang-active">Опрашивает площадку на новые отзывы, генерирует варианты ответа, менеджер выбирает в Telegram перед публикацией — с учётом жёстких лимитов площадки на правки.</div>
           <div class="case-desc" data-i18n="c9.desc.en">Polls the marketplace for new reviews, drafts reply options, a manager picks one in Telegram before publishing — respecting the platform's strict edit limits.</div>
+          <div class="case-result" data-i18n="c9.result" class="lang-active">отзывы отработаны за минуты в день — не часы</div>
+          <div class="case-result" data-i18n="c9.result.en">reviews handled in minutes a day, not hours</div>
           <div class="case-tags"><span class="case-tag">Sentiment</span><span class="case-tag">API</span></div>
         </div>
       </article>
@@ -842,6 +922,8 @@
           <div class="case-title" data-i18n="c10.title.en">Personal Health &amp; Longevity Agent</div>
           <div class="case-desc" data-i18n="c10.desc" class="lang-active">Три под-агента: разбор еды по фото, анализ тренировок, карточки-отчёты. Данные носимого устройства — автоматически. Safety-контур: не диагностирует, маркирует уверенность.</div>
           <div class="case-desc" data-i18n="c10.desc.en">Three sub-agents: meal photo analysis, training review, daily/weekly report cards. Wearable data pulled automatically. Safety layer blocks diagnoses, flags confidence.</div>
+          <div class="case-result" data-i18n="c10.result" class="lang-active">дневники здоровья ведутся сами — по фото и данным часов</div>
+          <div class="case-result" data-i18n="c10.result.en">health logs write themselves — from photos and wearables</div>
           <div class="case-tags"><span class="case-tag">Vision</span><span class="case-tag">Health Tech</span></div>
         </div>
       </article>
@@ -863,6 +945,8 @@
           <div class="case-title" data-i18n="c11.title.en">Sandboxed AI Mentor Bot</div>
           <div class="case-desc" data-i18n="c11.desc" class="lang-active">Отвечает участникам программы по материалам и техвопросам, эскалирует чувствительное владельцу. Работает в изолированной песочнице с единственным разрешённым действием.</div>
           <div class="case-desc" data-i18n="c11.desc.en">Answers program participants' setup and course questions, escalates sensitive topics to the owner. Runs fully sandboxed with exactly one permitted action.</div>
+          <div class="case-result" data-i18n="c11.result" class="lang-active">участники получают ответы сразу — владелец не дежурит в чате</div>
+          <div class="case-result" data-i18n="c11.result.en">participants get answers instantly — the owner is off duty</div>
           <div class="case-tags"><span class="case-tag">AI Safety</span><span class="case-tag">Sandbox</span></div>
         </div>
       </article>
@@ -892,6 +976,8 @@
           <div class="case-title" data-i18n="c12.title.en">8-Agent AI Investment Committee</div>
           <div class="case-desc" data-i18n="c12.desc" class="lang-active">8 агентов на разных моделях: исследователь, аналитик, финмоделист, прокурор и адвокат спорят три раунда, судья выносит структурированный вердикт, секретарь оформляет мемо.</div>
           <div class="case-desc" data-i18n="c12.desc.en">8 agents on different LLMs: researcher, analyst, modeler, then prosecutor and advocate argue three rounds before a judge issues a verdict. A secretary drafts the memo.</div>
+          <div class="case-result" data-i18n="c12.result" class="lang-active">8 мнений по сделке за минуты — вместо дней согласований</div>
+          <div class="case-result" data-i18n="c12.result.en">eight takes on a deal in minutes — not days of meetings</div>
           <div class="case-tags"><span class="case-tag">Multi-Agent</span><span class="case-tag">8 LLMs</span></div>
         </div>
       </article>
@@ -916,6 +1002,8 @@
           <div class="case-title" data-i18n="c13.title.en">AI-Managed WordPress Site: Health &amp; Wellness</div>
           <div class="case-desc" data-i18n="c13.desc" class="lang-active">Техменеджмент сайта здоровья: апгрейд ядра из-за уязвимостей, консолидация 21→7 плагинов, восстановление формы заказа и навигации, SEO-инфраструктура, юр. страницы.</div>
           <div class="case-desc" data-i18n="c13.desc.en">Full technical management of a health site: core security upgrade, 21→7 plugin consolidation, restored order form and navigation, rebuilt SEO infrastructure, legal pages.</div>
+          <div class="case-result" data-i18n="c13.result" class="lang-active">сайт живёт и продаёт — без штатного техспециалиста</div>
+          <div class="case-result" data-i18n="c13.result.en">the site runs and sells — no in-house tech person</div>
           <div class="case-tags"><span class="case-tag">WordPress</span><span class="case-tag">SEO</span></div>
         </div>
       </article>
@@ -939,6 +1027,8 @@
           <div class="case-title" data-i18n="c14.title.en">WordPress Site Build + AI Content Pipeline</div>
           <div class="case-desc" data-i18n="c14.desc" class="lang-active">Настройка нового travel-сайта на Hostinger с нуля: домен, SSL, FTP, REST API. Строится конвейер YouTube→статья→публикация с этапом ручного утверждения.</div>
           <div class="case-desc" data-i18n="c14.desc.en">Set up a new travel site on Hostinger end to end: domain, SSL, FTP, REST API. Building an automated YouTube-to-article pipeline with a human approval step.</div>
+          <div class="case-result" data-i18n="c14.result" class="lang-active">контент выходит потоком — без ручной вёрстки</div>
+          <div class="case-result" data-i18n="c14.result.en">content ships in a steady stream — no hand-formatting</div>
           <div class="case-tags"><span class="case-tag">WordPress</span><span class="case-tag">Content AI</span></div>
         </div>
       </article>
@@ -964,6 +1054,8 @@
           <div class="case-title" data-i18n="c15.title.en">Sales Landing Page for a Paid Course</div>
           <div class="case-desc" data-i18n="c15.desc" class="lang-active">Публичный продающий лендинг собственного курса: оффер, портрет аудитории, программа, цена. Готов принимать рекламный трафик, реально работает уже сегодня.</div>
           <div class="case-desc" data-i18n="c15.desc.en">Public sales landing page for my own course: pitch, audience fit, curriculum, pricing. Built to convert cold traffic from ads — live and running today.</div>
+          <div class="case-result" data-i18n="c15.result" class="lang-active">лендинг принимает трафик и продаёт уже сегодня</div>
+          <div class="case-result" data-i18n="c15.result.en">the landing page takes traffic and sells today</div>
           <div class="case-tags"><span class="case-tag">Landing Page</span><span class="case-tag">Copywriting</span></div>
         </div>
       </article>
@@ -989,6 +1081,8 @@
           <div class="case-title" data-i18n="c16.title.en">Private Course Platform (Auto-Delivered)</div>
           <div class="case-desc" data-i18n="c16.desc" class="lang-active">Закрытая, noindex-платформа: покупатель попадает туда автоматически сразу после оплаты. Шесть модулей с уроками и шаблонами, доступ только у купивших.</div>
           <div class="case-desc" data-i18n="c16.desc.en">Private, noindexed platform: buyers land there automatically right after checkout. Six modules with lessons and templates, access gated to paying students only.</div>
+          <div class="case-result" data-i18n="c16.result" class="lang-active">доступ открывается сам сразу после оплаты — без менеджера</div>
+          <div class="case-result" data-i18n="c16.result.en">access opens itself right after payment — no manager</div>
           <div class="case-tags"><span class="case-tag">Access Control</span><span class="case-tag">E-learning</span></div>
         </div>
       </article>
@@ -1111,12 +1205,40 @@
     <p class="frame-caption" data-i18n="team.caption.en">ii-garage / ai-office · live working snapshot</p>
   </section>
 
+  <!-- ============ MANIFEST ============ -->
+  <section class="block">
+    <div class="manifest">
+      <svg class="manifest-bot" viewBox="0 0 32 32" aria-hidden="true">
+        <rect x="10" y="4" width="12" height="2" fill="#ededed"/><rect x="8" y="6" width="16" height="10" fill="#ededed"/>
+        <rect x="10" y="9" width="12" height="4" fill="#0a0a0a"/><rect x="12" y="10" width="2" height="2" fill="#3ed17f"/>
+        <rect x="16" y="10" width="2" height="2" fill="#3ed17f"/><rect x="14" y="16" width="4" height="2" fill="#1f6b41"/>
+        <rect x="9" y="18" width="14" height="9" fill="#1a1a1a" stroke="#3ed17f"/>
+        <rect x="23" y="17" width="3" height="6" fill="#ededed"/><rect x="24" y="23" width="6" height="3" fill="#3ed17f"/>
+        <rect x="25" y="26" width="4" height="1" fill="#1f6b41"/>
+      </svg>
+      <div class="manifest-lead">
+        <span data-i18n="manifest.lead" class="lang-active">люди покупают не ИИ</span>
+        <span data-i18n="manifest.lead.en">people don't buy AI</span>
+      </div>
+      <p class="manifest-line">
+        <span data-i18n="manifest.line" class="lang-active">Мы не продаём <s>ИИ-агентов</s>. Мы продаём:</span>
+        <span data-i18n="manifest.line.en">We don't sell <s>AI agents</s>. We sell:</span>
+      </p>
+      <div class="manifest-chips">
+        <span class="manifest-chip"><span data-i18n="manifest.c1" class="lang-active">деньги</span><span data-i18n="manifest.c1.en">money</span></span>
+        <span class="manifest-chip"><span data-i18n="manifest.c2" class="lang-active">время</span><span data-i18n="manifest.c2.en">time</span></span>
+        <span class="manifest-chip"><span data-i18n="manifest.c3" class="lang-active">меньше рутины</span><span data-i18n="manifest.c3.en">less busywork</span></span>
+        <span class="manifest-chip"><span data-i18n="manifest.c4" class="lang-active">больше клиентов</span><span data-i18n="manifest.c4.en">more clients</span></span>
+      </div>
+    </div>
+  </section>
+
   <!-- ============ CONTACT ============ -->
   <section class="contact-block" id="contact">
-    <div class="contact-title" data-i18n="contact.title" class="lang-active">Обсудим ваш проект?</div>
-    <div class="contact-title" data-i18n="contact.title.en">Let's talk about your project</div>
-    <p class="contact-sub" data-i18n="contact.sub" class="lang-active">Расскажите, какую задачу нужно автоматизировать — агента, процесс или сайт. Ответим в Telegram.</p>
-    <p class="contact-sub" data-i18n="contact.sub.en">Tell us what you need automated — an agent, a process, or a website. We'll reply on Telegram.</p>
+    <div class="contact-title" data-i18n="contact.title" class="lang-active">Где у вас больше всего рутины?</div>
+    <div class="contact-title" data-i18n="contact.title.en">Where does your team lose the most time?</div>
+    <p class="contact-sub" data-i18n="contact.sub" class="lang-active">Расскажите — покажем, что можно отдать роботам, и честно скажем, что автоматизировать не стоит.</p>
+    <p class="contact-sub" data-i18n="contact.sub.en">Tell us — we'll show what robots can take over, and we'll say honestly what isn't worth automating.</p>
     <a class="btn primary contact-cta" href="https://t.me/stavzzz" target="_blank" rel="noopener">
       <span data-i18n="contact.cta" class="lang-active">Оставить заявку в Telegram →</span>
       <span data-i18n="contact.cta.en">Message us on Telegram →</span>
@@ -1138,6 +1260,11 @@
 </footer>
 
 <script>
+function goToPain(cat) {
+  var btn = document.querySelector('.case-filter button[data-filter="' + cat + '"]');
+  if (btn) filterCases(cat, btn);
+}
+
 function setLang(lang) {
   document.querySelectorAll('[data-i18n]').forEach(function(el) {
     var isEn = el.getAttribute('data-i18n').endsWith('.en');
