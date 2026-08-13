@@ -289,24 +289,23 @@
 
   .stat-row {
     position: relative;
-    display: grid; grid-template-columns: repeat(4, 1fr);
+    display: grid; grid-template-columns: repeat(5, 1fr);
     border: 1px solid rgba(255,255,255,.08); border-radius: 10px; overflow: hidden;
-    width: 100%; max-width: 760px;
+    width: 100%; max-width: 900px;
     background: linear-gradient(160deg, rgba(255,255,255,.045), transparent 40%), color-mix(in srgb, var(--surface-2) 92%, transparent);
     -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
     box-shadow: 0 1px 0 rgba(255,255,255,.06) inset, 0 20px 48px rgba(0,0,0,.4);
   }
   .stat { padding: 20px 18px; border-right: 1px solid var(--line); }
-  .stat:last-child, .stat:nth-child(4) { border-right: none; }
-  .stat:nth-child(-n+4) { border-bottom: 1px solid var(--line); }
+  .stat:last-child { border-right: none; }
   .stat .n { font-weight: 700; font-size: 22px; color: var(--ink); font-variant-numeric: tabular-nums; }
   .stat .l { font-size: 11px; color: var(--ink-faint); margin-top: 6px; line-height: 1.5; }
 
   @media (max-width: 640px) {
     .stat-row { grid-template-columns: repeat(2, 1fr); }
-    .stat:nth-child(4) { border-right: 1px solid var(--line); }
-    .stat:nth-child(even) { border-right: none; }
-    .stat:nth-child(-n+6) { border-bottom: 1px solid var(--line); }
+    .stat:nth-child(2n) { border-right: none; }
+    .stat:nth-child(-n+4) { border-bottom: 1px solid var(--line); }
+    .stat:nth-child(5) { grid-column: 1 / -1; border-top: 1px solid var(--line); }
   }
 
   /* ---- section shell ---- */
@@ -681,11 +680,8 @@
     <div class="stat-row">
       <div class="stat"><div class="n">100+</div><div class="l" data-i18n="stat.cases" class="lang-active">десятки внедрений с 2024</div><div class="l" data-i18n="stat.cases.en">dozens of deployments since 2024</div></div>
       <div class="stat"><div class="n">6</div><div class="l" data-i18n="stat.areas" class="lang-active">направлений</div><div class="l" data-i18n="stat.areas.en">focus areas</div></div>
-      <div class="stat"><div class="n">1400+</div><div class="l" data-i18n="stat.tests" class="lang-active">автотестов</div><div class="l" data-i18n="stat.tests.en">automated tests</div></div>
       <div class="stat"><div class="n">8</div><div class="l" data-i18n="stat.llms" class="lang-active">LLM в одной системе</div><div class="l" data-i18n="stat.llms.en">LLMs orchestrated</div></div>
       <div class="stat"><div class="n">24/7</div><div class="l" data-i18n="stat.uptime" class="lang-active">агенты на связи</div><div class="l" data-i18n="stat.uptime.en">agents online</div></div>
-      <div class="stat"><div class="n">207</div><div class="l" data-i18n="stat.sec" class="lang-active">автотестов у ИИ-секретаря</div><div class="l" data-i18n="stat.sec.en">tests in AI Secretary</div></div>
-      <div class="stat"><div class="n">322</div><div class="l" data-i18n="stat.rag" class="lang-active">автотеста у RAG-бота</div><div class="l" data-i18n="stat.rag.en">tests in RAG Assistant</div></div>
       <div class="stat"><div class="n">130+</div><div class="l" data-i18n="stat.tz" class="lang-active">городов и таймзон</div><div class="l" data-i18n="stat.tz.en">cities &amp; timezones</div></div>
     </div>
   </section>
