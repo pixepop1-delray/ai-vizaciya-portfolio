@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Политика конфиденциальности — ИИ-Гараж</title>
+<meta name="description" content="Как ИИ-Гараж использует Microsoft Clarity для веб-аналитики и какие данные при этом собираются.">
+<link rel="icon" type="image/png" href="../favicon.png?v=3">
+<link rel="icon" href="../favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<link rel="canonical" href="https://ai-garage.tech/privacy/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Политика конфиденциальности — ИИ-Гараж">
+<meta property="og:description" content="Как ИИ-Гараж использует Microsoft Clarity для веб-аналитики и какие данные при этом собираются.">
+<meta property="og:url" content="https://ai-garage.tech/privacy/">
+<meta property="og:image" content="https://ai-garage.tech/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "y0aui9ba3z");
+    document.addEventListener('click', function(e){
+      var a = e.target.closest && e.target.closest('a[href*="t.me/"]');
+      if (a && window.clarity) clarity('event', 'telegram_click');
+    });
+</script>
+<style>
+  @font-face { font-family: 'JetBrains Mono'; src: local('JetBrains Mono'); font-weight: 400 800; }
+  @font-face { font-family: 'Source Serif 4'; src: local('Source Serif 4'); font-weight: 400 700; }
+  :root {
+    --bg: #17181A; --surface: #1E1F22; --surface-2: #26272B;
+    --ink: #F5F5F5; --ink-soft: #9EA3A8; --ink-faint: #6d7278;
+    --line: #2c2e31; --accent: #4CAE86; --accent-dim: #2c4438; --accent-soft: #20302a;
+    --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+    --serif: 'Source Serif 4', Georgia, serif;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--mono); font-size: 15px; line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 28px; }
+  a { color: inherit; }
+  header.site {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(10,10,10,.88); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .site-inner { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
+  .logo { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; letter-spacing: 0.02em; text-decoration: none; }
+  .logo img { height: 22px; width: auto; display: block; }
+  .logo .dot { color: var(--accent); }
+  nav.main { display: flex; align-items: center; gap: 26px; }
+  nav.main a { font-size: 12.5px; color: var(--ink-soft); text-decoration: none; }
+  nav.main a:hover { color: var(--ink); }
+  @media (max-width: 760px) {
+    .site-inner { flex-wrap: wrap; gap: 8px 14px; padding: 12px 0; }
+    nav.main { order: 3; width: 100%; gap: 18px; overflow-x: auto; }
+    nav.main a { white-space: nowrap; font-size: 12px; }
+  }
+  main.wrap { padding: 56px 0 80px; max-width: 720px; }
+  .eyebrow { font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 12px; }
+  .eyebrow::before { content: '// '; opacity: .6; }
+  h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(26px, 4vw, 36px); margin: 0 0 28px; }
+  p { margin: 0 0 20px; color: var(--ink-soft); }
+  h2 { font-family: var(--serif); font-weight: 600; font-size: 20px; color: var(--ink); margin: 32px 0 14px; }
+  a.link { color: var(--accent); }
+  footer.site { padding: 28px 0; text-align: center; font-size: 12px; color: var(--ink-faint); border-top: 1px solid var(--line); }
+  footer.site a { color: var(--ink-faint); text-decoration: underline; }
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap site-inner">
+    <a class="logo" href="../"><img src="../logo-mark-transparent.png" alt="" width="22" height="22">гараж<span class="dot">_</span></a>
+    <nav class="main">
+      <a href="../#cases">кейсы</a>
+      <a href="../#services">услуги</a>
+      <a href="../blog/">блог</a>
+      <a href="../#contact">контакты</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="eyebrow">документ</div>
+  <h1>Политика конфиденциальности</h1>
+
+  <p>Обновлено: 13 августа 2026 г.</p>
+
+  <h2>Что мы собираем</h2>
+  <p>Сайт использует Microsoft Clarity — сервис веб-аналитики, который записывает поведение посетителей: движения курсора, клики, скролл, тепловые карты страниц. Это помогает нам понимать, что на сайте работает, а что нет.</p>
+  <p>Clarity не собирает имена, email или другие данные, которые вводит посетитель, — на сайте нет форм. Отслеживается только факт клика по кнопке связи в Telegram (без содержимого переписки).</p>
+
+  <h2>Что мы не делаем</h2>
+  <p>Мы не продаём и не передаём данные посетителей третьим лицам. Все данные обрабатывает Microsoft Clarity согласно <a class="link" href="https://learn.microsoft.com/en-us/clarity/core-features/privacy-and-compliance" target="_blank" rel="noopener">своей политике конфиденциальности</a>.</p>
+
+  <h2>Cookies</h2>
+  <p>Clarity использует cookies для различения посетителей между визитами. Их можно отключить в настройках браузера — это не повлияет на работу сайта.</p>
+
+  <h2>Вопросы</h2>
+  <p>По любым вопросам о данных пишите в Telegram: <a class="link" href="https://t.me/stavzzz" target="_blank" rel="noopener">t.me/stavzzz</a>.</p>
+</main>
+
+<footer class="site">
+  ИИ-Гараж · <a href="../about/">О нас</a>
+</footer>
+</body>
+</html>

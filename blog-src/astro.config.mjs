@@ -16,8 +16,12 @@ export default defineConfig({
   },
   integrations: [
     sitemap({
-      // the main landing page lives outside Astro, so add it by hand
-      customPages: ['https://ai-garage.tech/'],
+      // these pages live outside Astro (main landing, static About/Privacy), so add by hand
+      customPages: [
+        'https://ai-garage.tech/',
+        'https://ai-garage.tech/about/',
+        'https://ai-garage.tech/privacy/',
+      ],
     }),
   ],
 });

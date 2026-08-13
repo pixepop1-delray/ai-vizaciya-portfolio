@@ -18,6 +18,7 @@ const dateLabel = post.data.date.toLocaleDateString('ru-RU', { day: 'numeric', m
   title={`${post.data.title} — ИИ-Гараж`}
   description={post.data.excerpt}
   canonicalPath={`/blog/${post.id}/`}
+  datePublished={post.data.date.toISOString().slice(0, 10)}
 >
   <a class="back-link" href="/blog/">← все статьи</a>
 

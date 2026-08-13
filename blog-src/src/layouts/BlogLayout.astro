@@ -3,10 +3,13 @@ interface Props {
   title: string;
   description: string;
   canonicalPath: string;
+  datePublished?: string;
 }
-const { title, description, canonicalPath } = Astro.props;
+const { title, description, canonicalPath, datePublished } = Astro.props;
 const siteOrigin = 'https://ai-garage.tech';
 const siteRoot = '';
+const pageUrl = siteOrigin + siteRoot + canonicalPath;
+const articleTitle = title.replace(/ — ИИ-Гараж$/, '');
 ---
 <!DOCTYPE html>
 <html lang="ru">
@@ -25,6 +28,25 @@ const siteRoot = '';
 <meta property="og:url" content={siteOrigin + siteRoot + canonicalPath}>
 <meta property="og:image" content={siteOrigin + siteRoot + '/og-image.png'}>
 <meta name="twitter:card" content="summary_large_image">
+{datePublished && (
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: articleTitle,
+    description: description,
+    datePublished: datePublished,
+    dateModified: datePublished,
+    url: pageUrl,
+    mainEntityOfPage: { '@type': 'WebPage', '@id': pageUrl },
+    image: siteOrigin + '/og-image.png',
+    author: { '@type': 'Organization', name: 'ИИ-Гараж', url: siteOrigin },
+    publisher: {
+      '@type': 'Organization',
+      name: 'ИИ-Гараж',
+      logo: { '@type': 'ImageObject', url: siteOrigin + '/favicon.png' },
+    },
+  })} />
+)}
 <script type="text/javascript" is:inline>
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -90,7 +112,8 @@ const siteRoot = '';
     display: flex; align-items: center; justify-content: space-between;
     padding: 18px 0; max-width: 1100px; margin: 0 auto; padding-left: 28px; padding-right: 28px;
   }
-  .logo { font-weight: 700; font-size: 14px; letter-spacing: 0.02em; }
+  .logo { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; letter-spacing: 0.02em; }
+  .logo img { height: 22px; width: auto; display: block; }
   .logo .dot { color: var(--accent); }
   nav.main { display: flex; align-items: center; gap: 26px; }
   nav.main a { font-size: 12.5px; color: var(--ink-soft); text-decoration: none; }
@@ -106,12 +129,15 @@ const siteRoot = '';
     padding: 28px 0; text-align: center; font-size: 12px; color: var(--ink-faint);
     border-top: 1px solid var(--line);
   }
+  .footer-links { display: flex; gap: 16px; justify-content: center; margin-top: 12px; }
+  .footer-links a { color: var(--ink-faint); text-decoration: none; }
+  .footer-links a:hover { color: var(--ink-soft); text-decoration: underline; }
 </style>
 </head>
 <body>
 <header class="site">
   <div class="site-inner">
-    <a class="logo" href={siteRoot + '/'} style="text-decoration:none;">ии-гараж<span class="dot">_</span></a>
+    <a class="logo" href={siteRoot + '/'} style="text-decoration:none;"><img src={siteOrigin + siteRoot + '/logo-mark-transparent.png'} alt="" width="22" height="22">гараж<span class="dot">_</span></a>
     <nav class="main">
       <a href={siteRoot + '/#cases'}>кейсы</a>
       <a href={siteRoot + '/#services'}>услуги</a>
@@ -127,7 +153,11 @@ const siteRoot = '';
 </main>
 
 <footer class="site">
-  ИИ-Гараж · ИИ-агенты, автоматизация и сайты для бизнеса
+  <div>ИИ-Гараж · ИИ-агенты, автоматизация и сайты для бизнеса</div>
+  <div class="footer-links">
+    <a href={siteRoot + '/about/'}>о нас</a>
+    <a href={siteRoot + '/privacy/'}>конфиденциальность</a>
+  </div>
 </footer>
 </body>
 </html>

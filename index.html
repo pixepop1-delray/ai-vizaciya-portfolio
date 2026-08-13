@@ -17,6 +17,26 @@
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "ИИ-Гараж",
+  "alternateName": "AI Garage",
+  "url": "https://ai-garage.tech/",
+  "logo": "https://ai-garage.tech/favicon.png",
+  "description": "ИИ-агенты, автоматизация процессов и сайты для бизнеса."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "ИИ-Гараж",
+  "url": "https://ai-garage.tech/",
+  "inLanguage": "ru"
+}
+</script>
 <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -541,6 +561,9 @@
   }
   footer.site span { position: relative; }
   .footer-bot { position: relative; width: 36px; height: 36px; display: block; margin: 0 auto 8px; image-rendering: pixelated; overflow: visible; }
+  .footer-links { position: relative; display: flex; gap: 16px; justify-content: center; margin-top: 12px; }
+  .footer-links a { color: var(--ink-faint); text-decoration: none; }
+  .footer-links a:hover { color: var(--ink-soft); text-decoration: underline; }
 
   [data-i18n] { display: none; }
   [data-i18n].lang-active { display: revert; }
@@ -1339,6 +1362,12 @@
   </svg>
   <span data-i18n="footer.text" class="lang-active">ИИ-Гараж · ИИ-агенты, автоматизация и сайты для бизнеса</span>
   <span data-i18n="footer.text.en">AI Garage · AI agents, automation, and websites for business</span>
+  <div class="footer-links">
+    <a href="about/" data-i18n="footer.about" class="lang-active">о нас</a>
+    <a href="about/" data-i18n="footer.about.en">about</a>
+    <a href="privacy/" data-i18n="footer.privacy" class="lang-active">конфиденциальность</a>
+    <a href="privacy/" data-i18n="footer.privacy.en">privacy</a>
+  </div>
 </footer>
 
 <script>
