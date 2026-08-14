@@ -433,6 +433,42 @@
   .case-more { font-size: 11.5px; margin-top: 4px; color: var(--accent); text-decoration: none; }
   .case-more:hover { text-decoration: underline; }
 
+  /* ---- razbor cards: deep-dive case studies carousel ---- */
+  .rz-grid {
+    display: flex; gap: 16px; overflow-x: auto;
+    scroll-snap-type: x mandatory; scroll-behavior: smooth;
+    scrollbar-width: none; -ms-overflow-style: none;
+  }
+  .rz-grid::-webkit-scrollbar { display: none; }
+  .rz-card {
+    background: linear-gradient(160deg, rgba(255,255,255,.045), transparent 40%), color-mix(in srgb, var(--surface-2) 92%, transparent);
+    -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,.08); border-radius: 12px;
+    display: flex; flex-direction: column; gap: 10px;
+    flex: 0 0 calc((100% - 32px) / 3); scroll-snap-align: start;
+    padding: 22px 22px 20px; text-decoration: none;
+    box-shadow: 0 1px 0 rgba(255,255,255,.06) inset, 0 20px 48px rgba(0,0,0,.4);
+    transition: border-color .2s, box-shadow .2s;
+  }
+  .rz-card:hover {
+    border-color: var(--accent-dim);
+    box-shadow: 0 1px 0 rgba(255,255,255,.08) inset, 0 26px 60px rgba(0,0,0,.5);
+  }
+  @media (max-width: 900px) {
+    .rz-card { flex-basis: calc((100% - 16px) / 2); }
+  }
+  @media (max-width: 600px) {
+    .rz-card { flex-basis: 86%; }
+  }
+  .rz-cat { font-size: 11px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: .05em; }
+  .rz-cat::before { content: '// '; opacity: .6; }
+  .rz-title { font-weight: 700; font-size: 15.5px; line-height: 1.35; color: var(--ink); }
+  .rz-teaser { font-size: 13px; color: var(--ink-soft); line-height: 1.6; flex-grow: 1; }
+  .rz-chips { display: flex; flex-wrap: wrap; gap: 5px; }
+  .rz-chips span { font-size: 10.5px; color: var(--accent); background: var(--accent-soft); padding: 2px 8px; border-radius: 100px; }
+  .rz-more { font-size: 11.5px; color: var(--accent); margin-top: 2px; }
+  .rz-card:hover .rz-more { text-decoration: underline; }
+
   /* ---- pains: боль → решение ---- */
   .pain-rows { position: relative; display: grid; gap: 10px; }
   .pain-row {
@@ -1251,6 +1287,100 @@
     </div>
   </section>
 
+  <!-- ============ CASE STUDIES (DEEP DIVES) ============ -->
+  <section class="block" id="razbory">
+    <div class="block-head">
+      <div class="block-tag" data-i18n="rz.tag" class="lang-active">разборы</div>
+      <div class="block-tag" data-i18n="rz.tag.en">case studies</div>
+      <h2 class="block-title" data-i18n="rz.title" class="lang-active">Кейсы, раскрытые по шагам</h2>
+      <h2 class="block-title" data-i18n="rz.title.en">Case studies, step by step</h2>
+      <p class="block-sub" data-i18n="rz.sub" class="lang-active">Шесть внедрений подробно: какая была боль, как решение выглядит в работе и что оно дало. Нажмите на карточку — откроется полный разбор с примерами диалогов.</p>
+      <p class="block-sub" data-i18n="rz.sub.en">Six deployments unpacked: the pain, the solution at work, and the outcome. Click any card for the full study with dialogue examples.</p>
+    </div>
+
+    <div class="rz-grid" id="rz-grid">
+
+      <a class="rz-card" href="cases/ii-sekretar/">
+        <div class="rz-cat" data-i18n="rz1.cat" class="lang-active">операционка</div>
+        <div class="rz-cat" data-i18n="rz1.cat.en">operations</div>
+        <div class="rz-title" data-i18n="rz1.title" class="lang-active">ИИ-секретарь: календарь ведёт себя сам</div>
+        <div class="rz-title" data-i18n="rz1.title.en">AI secretary: a calendar that runs itself</div>
+        <div class="rz-teaser" data-i18n="rz1.teaser" class="lang-active">Руководитель, 15–20 встреч в неделю, три часовых пояса. Календарь перешёл на голосовое управление — конфликты перехватываются сами.</div>
+        <div class="rz-teaser" data-i18n="rz1.teaser.en">An executive with 15–20 weekly meetings across three time zones. The calendar now runs on voice — conflicts get caught automatically.</div>
+        <div class="rz-chips"><span data-i18n="rz1.ch1" class="lang-active">207 автотестов</span><span data-i18n="rz1.ch1.en">207 automated tests</span><span data-i18n="rz1.ch2" class="lang-active">0 ручного ввода</span><span data-i18n="rz1.ch2.en">zero manual entry</span></div>
+        <div class="rz-more" data-i18n="rz1.more" class="lang-active">читать разбор →</div>
+        <div class="rz-more" data-i18n="rz1.more.en">read the case study →</div>
+      </a>
+
+      <a class="rz-card" href="cases/menedzher-zadach/">
+        <div class="rz-cat" data-i18n="rz2.cat" class="lang-active">операционка</div>
+        <div class="rz-cat" data-i18n="rz2.cat.en">operations</div>
+        <div class="rz-title" data-i18n="rz2.title" class="lang-active">Менеджер задач: из голосового — в карточку</div>
+        <div class="rz-title" data-i18n="rz2.title.en">Task manager: voice note in, board card out</div>
+        <div class="rz-teaser" data-i18n="rz2.teaser" class="lang-active">Команда из десяти человек: задачи из чата тонули. Теперь каждая — на доске, с исполнителем и сроком, а отчёты — кнопками.</div>
+        <div class="rz-teaser" data-i18n="rz2.teaser.en">A ten-person crew where chat tasks kept sinking. Now every task lands on the board with an assignee and deadline; reports are buttons.</div>
+        <div class="rz-chips"><span data-i18n="rz2.ch1" class="lang-active">100% задач на доске</span><span data-i18n="rz2.ch1.en">100% of tasks on the board</span><span>24/7</span></div>
+        <div class="rz-more" data-i18n="rz2.more" class="lang-active">читать разбор →</div>
+        <div class="rz-more" data-i18n="rz2.more.en">read the case study →</div>
+      </a>
+
+      <a class="rz-card" href="cases/uchet-rashodov/">
+        <div class="rz-cat" data-i18n="rz3.cat" class="lang-active">финансы</div>
+        <div class="rz-cat" data-i18n="rz3.cat.en">finance</div>
+        <div class="rz-title" data-i18n="rz3.title" class="lang-active">Финансовый бот: P&amp;L собирается сам</div>
+        <div class="rz-title" data-i18n="rz3.title.en">Finance bot: a P&amp;L that builds itself</div>
+        <div class="rz-teaser" data-i18n="rz3.teaser" class="lang-active">Разъездная команда, три валюты, чеки в карманах. Теперь трата попадает в таблицу за пять секунд — текстом, голосом или фото чека.</div>
+        <div class="rz-teaser" data-i18n="rz3.teaser.en">A field team, three currencies, receipts in pockets. Now an expense hits the sheet in five seconds — by text, voice, or receipt photo.</div>
+        <div class="rz-chips"><span data-i18n="rz3.ch1" class="lang-active">120 автотестов</span><span data-i18n="rz3.ch1.en">120 automated tests</span><span data-i18n="rz3.ch2" class="lang-active">3 способа ввода</span><span data-i18n="rz3.ch2.en">3 input modes</span></div>
+        <div class="rz-more" data-i18n="rz3.more" class="lang-active">читать разбор →</div>
+        <div class="rz-more" data-i18n="rz3.more.en">read the case study →</div>
+      </a>
+
+      <a class="rz-card" href="cases/baza-znaniy/">
+        <div class="rz-cat" data-i18n="rz4.cat" class="lang-active">знания</div>
+        <div class="rz-cat" data-i18n="rz4.cat.en">knowledge</div>
+        <div class="rz-title" data-i18n="rz4.title" class="lang-active">База знаний: ответы по документам</div>
+        <div class="rz-title" data-i18n="rz4.title.en">Knowledge base: answers from documents</div>
+        <div class="rz-teaser" data-i18n="rz4.teaser" class="lang-active">Регламенты и прайсы жили в головах старожилов. Теперь бот отвечает за секунды — строго по документам, со ссылкой на источник.</div>
+        <div class="rz-teaser" data-i18n="rz4.teaser.en">Policies and price lists lived in veterans' heads. Now a bot answers in seconds — strictly from documents, always citing the source.</div>
+        <div class="rz-chips"><span data-i18n="rz4.ch1" class="lang-active">322 автотеста</span><span data-i18n="rz4.ch1.en">322 automated tests</span><span data-i18n="rz4.ch2" class="lang-active">4 контура защиты</span><span data-i18n="rz4.ch2.en">4 anti-fabrication guards</span></div>
+        <div class="rz-more" data-i18n="rz4.more" class="lang-active">читать разбор →</div>
+        <div class="rz-more" data-i18n="rz4.more.en">read the case study →</div>
+      </a>
+
+      <a class="rz-card" href="cases/transkribator/">
+        <div class="rz-cat" data-i18n="rz5.cat" class="lang-active">продуктивность</div>
+        <div class="rz-cat" data-i18n="rz5.cat.en">productivity</div>
+        <div class="rz-title" data-i18n="rz5.title" class="lang-active">Транскрибатор: протокол за минуту</div>
+        <div class="rz-title" data-i18n="rz5.title.en">Transcriber: meeting minutes in a minute</div>
+        <div class="rz-teaser" data-i18n="rz5.teaser" class="lang-active">Созвоны, голосовые, идеи на ходу — всё превращается в текст с резюме и задачами и складывается в архив, который ищется по одному слову.</div>
+        <div class="rz-teaser" data-i18n="rz5.teaser.en">Calls, voice notes, ideas on the go — all turned into text with summaries and tasks, filed into an archive searchable by a single word.</div>
+        <div class="rz-chips"><span data-i18n="rz5.ch1" class="lang-active">130 автотестов</span><span data-i18n="rz5.ch1.en">130 automated tests</span><span data-i18n="rz5.ch2" class="lang-active">~1 мин на расшифровку</span><span data-i18n="rz5.ch2.en">~1 min per transcript</span></div>
+        <div class="rz-more" data-i18n="rz5.more" class="lang-active">читать разбор →</div>
+        <div class="rz-more" data-i18n="rz5.more.en">read the case study →</div>
+      </a>
+
+      <a class="rz-card" href="cases/ii-prodazhi/">
+        <div class="rz-cat" data-i18n="rz6.cat" class="lang-active">продажи</div>
+        <div class="rz-cat" data-i18n="rz6.cat.en">sales</div>
+        <div class="rz-title" data-i18n="rz6.title" class="lang-active">ИИ-продажи: ответ лидам за секунды</div>
+        <div class="rz-title" data-i18n="rz6.title.en">AI sales: replies to leads in seconds</div>
+        <div class="rz-teaser" data-i18n="rz6.teaser" class="lang-active">Заявки ждали менеджера до утра — и остывали. Теперь первая линия отвечает мгновенно, квалифицирует и передаёт человеку тёплого клиента.</div>
+        <div class="rz-teaser" data-i18n="rz6.teaser.en">Leads used to wait until morning — and go cold. Now the first line replies instantly, qualifies, and hands a warm client to a human.</div>
+        <div class="rz-chips"><span data-i18n="rz6.ch1" class="lang-active">ответ &lt; 1 мин</span><span data-i18n="rz6.ch1.en">reply &lt; 1 min</span><span>24/7</span></div>
+        <div class="rz-more" data-i18n="rz6.more" class="lang-active">читать разбор →</div>
+        <div class="rz-more" data-i18n="rz6.more.en">read the case study →</div>
+      </a>
+
+    </div>
+
+    <div class="case-nav">
+      <button class="case-arrow" onclick="slideRz(-1)" aria-label="Предыдущие разборы">←</button>
+      <div class="case-dots" id="rz-dots"></div>
+      <button class="case-arrow" onclick="slideRz(1)" aria-label="Следующие разборы">→</button>
+    </div>
+  </section>
+
   <!-- ============ PRINCIPLE ============ -->
   <section class="block">
     <div class="callout">
@@ -1483,6 +1613,41 @@ function updateCaseDots() {
   });
   window.addEventListener('resize', rebuildCaseDots);
   rebuildCaseDots();
+})();
+
+function slideRz(dir) {
+  var grid = document.getElementById('rz-grid');
+  grid.scrollBy({ left: dir * grid.clientWidth, behavior: 'smooth' });
+}
+
+function rebuildRzDots() {
+  var grid = document.getElementById('rz-grid');
+  var dots = document.getElementById('rz-dots');
+  var pages = Math.max(1, Math.ceil(grid.scrollWidth / grid.clientWidth));
+  var html = '';
+  for (var i = 0; i < pages; i++) html += '<div class="case-dot"></div>';
+  dots.innerHTML = html;
+  updateRzDots();
+}
+
+function updateRzDots() {
+  var grid = document.getElementById('rz-grid');
+  var dots = document.getElementById('rz-dots').children;
+  if (!dots.length) return;
+  var idx = Math.min(dots.length - 1, Math.round(grid.scrollLeft / grid.clientWidth));
+  for (var i = 0; i < dots.length; i++) dots[i].classList.toggle('active', i === idx);
+}
+
+(function() {
+  var grid = document.getElementById('rz-grid');
+  var ticking = false;
+  grid.addEventListener('scroll', function() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function() { updateRzDots(); ticking = false; });
+  });
+  window.addEventListener('resize', rebuildRzDots);
+  rebuildRzDots();
 })();
 
 (function() {
