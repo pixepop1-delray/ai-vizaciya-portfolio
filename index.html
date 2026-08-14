@@ -625,6 +625,26 @@
   footer.site span { position: relative; }
   .footer-bot { position: relative; width: 36px; height: 36px; display: block; margin: 0 auto 8px; image-rendering: pixelated; overflow: visible; }
   .socials { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 40px; }
+
+  /* ---- floating CTA ---- */
+  .fab {
+    position: fixed; right: 20px; bottom: 20px; z-index: 60;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 11px 18px; border-radius: 100px;
+    background: color-mix(in srgb, var(--surface-2) 88%, transparent);
+    -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px);
+    border: 1px solid var(--accent-dim); color: var(--accent);
+    font-family: var(--mono); font-size: 12.5px; font-weight: 700; text-decoration: none;
+    box-shadow: 0 12px 32px rgba(0,0,0,.5);
+    opacity: 0; transform: translateY(12px); pointer-events: none;
+    transition: opacity .25s, transform .25s, background .15s, color .15s, border-color .15s;
+  }
+  .fab.on { opacity: 1; transform: none; pointer-events: auto; }
+  .fab:hover { background: var(--accent); color: #10120f; border-color: var(--accent); }
+  .fab svg { width: 15px; height: 15px; flex: none; }
+  @media (max-width: 640px) {
+    .fab { right: 12px; bottom: 12px; padding: 10px 15px; font-size: 12px; }
+  }
   .social-link {
     display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px;
     border: 1px solid rgba(255,255,255,.08); border-radius: 100px;
@@ -1373,6 +1393,32 @@
     <a href="mailto:ai-garage.tech@proton.me" aria-label="Написать на почту" title="Написать на почту"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M1.5 4.5h21c.55 0 1 .45 1 1v13c0 .55-.45 1-1 1h-21c-.55 0-1-.45-1-1v-13c0-.55.45-1 1-1zm10.5 7.6L3.2 6.5h17.6L12 12.1zm-9.5 6.4h19V8.2l-9.5 5.9-9.5-5.9v10.3z"/></svg></a>
   </div>
 </footer>
+
+<a class="fab" id="fab" href="https://t.me/stavzzz?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D0%B7%D0%B0%D0%BA%D0%B0%D0%B7%D0%B0%D1%82%D1%8C%20%D0%B0%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D1%8E.%20%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%3A%20" target="_blank" rel="noopener" aria-label="Заказать автоматизацию">
+  <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="15" y="1" width="2" height="3" fill="currentColor"/><rect x="14" y="0" width="4" height="1" fill="currentColor"/><rect x="8" y="5" width="16" height="13" fill="currentColor"/><rect x="11" y="8" width="10" height="7" fill="#17181A"/><rect x="13" y="10" width="2" height="2" fill="currentColor"/><rect x="17" y="10" width="2" height="2" fill="currentColor"/><rect x="10" y="19" width="12" height="9" fill="none" stroke="currentColor"/></svg>
+  <span class="lang-active" data-i18n="fab.text">Заказать автоматизацию</span>
+  <span data-i18n="fab.text.en">Order an automation</span>
+</a>
+<script>
+(function() {
+  var fab = document.getElementById('fab');
+  var contact = document.getElementById('contact');
+  var hero = document.querySelector('.hero');
+  var contactVisible = false;
+  function update() {
+    var passed = window.scrollY > (hero ? hero.offsetHeight * 0.7 : 500);
+    fab.classList.toggle('on', passed && !contactVisible);
+  }
+  if ('IntersectionObserver' in window && contact) {
+    new IntersectionObserver(function(entries) {
+      contactVisible = entries[0].isIntersecting;
+      update();
+    }, { threshold: 0.15 }).observe(contact);
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
 
 <script>
 function setLang(lang) {
