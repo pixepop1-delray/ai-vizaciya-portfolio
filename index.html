@@ -314,6 +314,8 @@
     mask-image: linear-gradient(180deg, black, transparent);
     pointer-events: none;
   }
+  /* у секции болей сетку гасим: сразу над ней уже сетка-шов hero */
+  #pains::before { display: none; }
   .block-head { position: relative; margin-bottom: 50px; }
 
   /* ---- seam bots: idle robots in the Cases section top seam ---- */
