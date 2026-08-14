@@ -371,6 +371,19 @@
   .block-sub { color: var(--ink-soft); font-size: 14px; max-width: 66ch; line-height: 1.7; }
 
   /* ---- case filter ---- */
+  /* ---- carousel nav: arrows at edges, dots centered ---- */
+  .case-nav { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin-top: 26px; }
+  .case-arrow {
+    width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--accent-dim);
+    background: var(--accent-soft); color: var(--accent); font-size: 16px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; flex: none;
+    font-family: var(--mono); transition: background .15s;
+  }
+  .case-arrow:hover { background: var(--accent-dim); color: var(--ink); }
+  .case-dots { display: flex; flex-wrap: wrap; justify-content: center; gap: 7px; }
+  .case-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--line); transition: background .2s; }
+  .case-dot.active { background: var(--accent); }
+
   /* ---- case cards: one-row carousel ---- */
   .case-grid {
     display: flex; gap: 16px; overflow-x: auto;
