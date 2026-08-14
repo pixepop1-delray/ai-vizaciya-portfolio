@@ -311,6 +311,36 @@
     pointer-events: none;
   }
   /* у секции болей сетку гасим: сразу над ней уже сетка-шов hero */
+  /* глаза-фары робота: медленно просыпаются, светят, моргают, гаснут */
+  .eye-beam {
+    flex: none; width: 34px; height: 22px; border-radius: 50%;
+    background: radial-gradient(ellipse at center,
+      rgba(190,255,225,.9) 0%,
+      rgba(76,174,134,.5) 28%,
+      rgba(76,174,134,.16) 58%,
+      transparent 75%);
+    box-shadow: 0 0 16px rgba(76,174,134,.4), 0 0 40px rgba(76,174,134,.25), 0 0 70px rgba(76,174,134,.12);
+    filter: blur(1px);
+    opacity: 0;
+    animation: eyeWake 16s ease-in-out infinite;
+  }
+  @keyframes eyeWake {
+    0% { opacity: 0; transform: scaleY(1); }
+    8% { opacity: .05; }
+    18% { opacity: .25; }
+    30% { opacity: 1; transform: scaleY(1); }
+    52% { transform: scaleY(1); }
+    54% { transform: scaleY(.15); }
+    56% { transform: scaleY(1); }
+    66% { transform: scaleY(1); }
+    68% { transform: scaleY(.15); }
+    70% { transform: scaleY(1); }
+    84% { opacity: 1; }
+    97%, 100% { opacity: 0; transform: scaleY(1); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .eye-beam { animation: none; opacity: .35; }
+  }
   #pains::before { display: none; }
   /* принцип: одна большая сетка-поле за плашкой, затухает к краям */
   section.principle::before {
@@ -770,8 +800,8 @@
       </div>
 
 
-      <p class="hero-takeaway lang-active" data-i18n="hero.takeaway">Люди занимаются делом — рутину забирают агенты</p>
-      <p class="hero-takeaway" data-i18n="hero.takeaway.en">People do the real work — agents take the busywork</p>
+      <p class="hero-takeaway lang-active" data-i18n="hero.takeaway"><span class="eye-beam" aria-hidden="true"></span>Люди занимаются делом — рутину забирают агенты<span class="eye-beam" aria-hidden="true"></span></p>
+      <p class="hero-takeaway" data-i18n="hero.takeaway.en"><span class="eye-beam" aria-hidden="true"></span>People do the real work — agents take the busywork<span class="eye-beam" aria-hidden="true"></span></p>
     </div>
 
     <div class="hero-cta">
