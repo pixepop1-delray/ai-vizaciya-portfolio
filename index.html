@@ -473,6 +473,33 @@
   @media (max-width: 600px) {
     .svc-grid .svc-card { flex-basis: 86%; }
   }
+  /* ---- launch steps ---- */
+  .steps-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+  .step-card {
+    position: relative; padding: 16px 14px;
+    background: linear-gradient(160deg, rgba(255,255,255,.045), transparent 40%), color-mix(in srgb, var(--surface-2) 92%, transparent);
+    -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,.08); border-radius: 12px;
+    box-shadow: 0 1px 0 rgba(255,255,255,.06) inset, 0 20px 48px rgba(0,0,0,.4);
+  }
+  .step-card:not(:last-child)::after {
+    content: '→'; position: absolute; right: -13px; top: 22px;
+    color: var(--accent-dim); font-size: 14px; z-index: 2;
+  }
+  .step-card .num { color: var(--accent); font-weight: 700; font-size: 11px; }
+  .step-card .badge {
+    font-size: 9.5px; color: var(--accent); background: var(--accent-soft);
+    border: 1px solid var(--accent-dim); border-radius: 100px; padding: 1px 8px; white-space: nowrap; margin-left: 4px;
+  }
+  .step-card .t { font-weight: 700; font-size: 12.5px; margin: 8px 0 6px; line-height: 1.35; }
+  .step-card .d { font-size: 10.5px; color: var(--ink-soft); line-height: 1.55; }
+  .steps-cta { margin-top: 26px; }
+  @media (max-width: 800px) {
+    .steps-row { grid-template-columns: 1fr 1fr; }
+    .step-card:not(:last-child)::after { display: none; }
+    .step-card:last-child { grid-column: 1 / -1; }
+  }
+
   /* ---- pricing ---- */
   .price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
   @media (max-width: 800px) { .price-grid { grid-template-columns: 1fr; } }
@@ -492,6 +519,7 @@
   .price-num small { font-family: var(--mono); font-size: 12px; color: var(--ink-soft); font-weight: 400; }
   .price-title { font-weight: 700; font-size: 15px; }
   .price-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.6; flex-grow: 1; }
+  .price-fine { font-size: 11px; color: var(--ink-faint); line-height: 1.55; border-top: 1px dashed var(--line); padding-top: 10px; margin-top: 2px; }
   .price-note {
     margin-top: 22px; padding: 18px 22px; border: 1px solid var(--accent-dim); border-radius: 12px;
     background: var(--accent-soft); display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap;
@@ -730,7 +758,7 @@
     <div class="stat-row">
       <div class="stat"><div class="n">100+</div><div class="l lang-active" data-i18n="stat.cases">десятки внедрений с 2024</div><div class="l" data-i18n="stat.cases.en">dozens of deployments since 2024</div></div>
       <div class="stat"><div class="n">8</div><div class="l lang-active" data-i18n="stat.areas">направлений</div><div class="l" data-i18n="stat.areas.en">focus areas</div></div>
-      <div class="stat"><div class="n">8</div><div class="l lang-active" data-i18n="stat.llms">LLM в одной системе</div><div class="l" data-i18n="stat.llms.en">LLMs orchestrated</div></div>
+      <div class="stat"><div class="n">8</div><div class="l lang-active" data-i18n="stat.llms">моделей ИИ в одной системе</div><div class="l" data-i18n="stat.llms.en">LLMs orchestrated</div></div>
       <div class="stat"><div class="n">24/7</div><div class="l lang-active" data-i18n="stat.uptime">агенты на связи</div><div class="l" data-i18n="stat.uptime.en">agents online</div></div>
       <div class="stat"><div class="n">130+</div><div class="l lang-active" data-i18n="stat.tz">городов и таймзон</div><div class="l" data-i18n="stat.tz.en">cities &amp; timezones</div></div>
     </div>
@@ -1146,6 +1174,61 @@
     </div>
   </section>
 
+  <!-- ============ LAUNCH STEPS ============ -->
+  <section class="block" id="launch">
+    <div class="block-head">
+      <div class="block-tag lang-active" data-i18n="launch.tag">запуск</div>
+      <div class="block-tag" data-i18n="launch.tag.en">launch</div>
+      <h2 class="block-title lang-active" data-i18n="launch.title">Как проходит запуск</h2>
+      <h2 class="block-title" data-i18n="launch.title.en">How launch works</h2>
+      <p class="block-sub lang-active" data-i18n="launch.sub">Не нужно перестраивать бизнес и выделять команду под внедрение — начинаем с одного процесса и двигаемся короткими шагами</p>
+      <p class="block-sub" data-i18n="launch.sub.en">No need to rebuild your business or staff an adoption project — we start with one process and move in short steps</p>
+    </div>
+
+    <div class="steps-row">
+      <div class="step-card">
+        <span class="num">01</span> <span class="badge lang-active" data-i18n="st1.b">20–30 мин</span><span class="badge" data-i18n="st1.b.en">20–30 min</span>
+        <div class="t lang-active" data-i18n="st1.t">Разбираем процесс</div>
+        <div class="t" data-i18n="st1.t.en">We map the process</div>
+        <div class="d lang-active" data-i18n="st1.d">Где теряется время, деньги или заявки</div>
+        <div class="d" data-i18n="st1.d.en">Where you lose time, money, or leads</div>
+      </div>
+      <div class="step-card">
+        <span class="num">02</span> <span class="badge lang-active" data-i18n="st2.b">в тот же день</span><span class="badge" data-i18n="st2.b.en">same day</span>
+        <div class="t lang-active" data-i18n="st2.t">Даём вилку цены</div>
+        <div class="t" data-i18n="st2.t.en">You get a price range</div>
+        <div class="d lang-active" data-i18n="st2.d">Что автоматизировать, сколько стоит, что не трогать</div>
+        <div class="d" data-i18n="st2.d.en">What to automate, what it costs, what to leave alone</div>
+      </div>
+      <div class="step-card">
+        <span class="num">03</span>
+        <div class="t lang-active" data-i18n="st3.t">Собираем пилот</div>
+        <div class="t" data-i18n="st3.t.en">We build a pilot</div>
+        <div class="d lang-active" data-i18n="st3.d">Рабочая версия на одном сценарии</div>
+        <div class="d" data-i18n="st3.d.en">A working version on one scenario</div>
+      </div>
+      <div class="step-card">
+        <span class="num">04</span>
+        <div class="t lang-active" data-i18n="st4.t">Тестируем</div>
+        <div class="t" data-i18n="st4.t.en">We test</div>
+        <div class="d lang-active" data-i18n="st4.d">На ваших данных, до боевого запуска</div>
+        <div class="d" data-i18n="st4.d.en">On your data, before going live</div>
+      </div>
+      <div class="step-card">
+        <span class="num">05</span>
+        <div class="t lang-active" data-i18n="st5.t">Обучаем и ведём</div>
+        <div class="t" data-i18n="st5.t.en">We train and support</div>
+        <div class="d lang-active" data-i18n="st5.d">Команда умеет пользоваться, мы на связи</div>
+        <div class="d" data-i18n="st5.d.en">Your team knows the ropes, we stay around</div>
+      </div>
+    </div>
+
+    <div class="steps-cta">
+      <a class="btn primary lang-active" href="https://t.me/stavzzz?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%80%D0%B0%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D1%82%D1%8C%20%D1%81%D0%B2%D0%BE%D0%B9%20%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%20%D0%B8%20%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D1%82%D1%8C%20%D0%B2%D0%B8%D0%BB%D0%BA%D1%83%20%D1%86%D0%B5%D0%BD%D1%8B.%20%D0%A1%D0%B5%D0%B9%D1%87%D0%B0%D1%81%20%D1%80%D1%83%D0%BA%D0%B0%D0%BC%D0%B8%20%D0%B4%D0%B5%D0%BB%D0%B0%D0%B5%D0%BC%3A%20" target="_blank" rel="noopener" data-i18n="launch.cta">Разобрать мой процесс →</a>
+      <a class="btn primary" href="https://t.me/stavzzz?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%80%D0%B0%D0%B7%D0%BE%D0%B1%D1%80%D0%B0%D1%82%D1%8C%20%D1%81%D0%B2%D0%BE%D0%B9%20%D0%BF%D1%80%D0%BE%D1%86%D0%B5%D1%81%D1%81%20%D0%B8%20%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D1%82%D1%8C%20%D0%B2%D0%B8%D0%BB%D0%BA%D1%83%20%D1%86%D0%B5%D0%BD%D1%8B.%20%D0%A1%D0%B5%D0%B9%D1%87%D0%B0%D1%81%20%D1%80%D1%83%D0%BA%D0%B0%D0%BC%D0%B8%20%D0%B4%D0%B5%D0%BB%D0%B0%D0%B5%D0%BC%3A%20" target="_blank" rel="noopener" data-i18n="launch.cta.en">Break down my process →</a>
+    </div>
+  </section>
+
   <!-- ============ PRICING ============ -->
   <section class="block" id="pricing">
     <div class="block-head">
@@ -1167,6 +1250,8 @@
         <div class="price-title" data-i18n="price1.t.en">Agent, turnkey</div>
         <div class="price-desc lang-active" data-i18n="price1.d">Настройка, запуск на вашем сервере, обучение команды. Цена растёт с объёмом и количеством интеграций</div>
         <div class="price-desc" data-i18n="price1.d.en">Setup, launch on your own server, team onboarding. Price scales with scope and the number of integrations</div>
+        <div class="price-fine lang-active" data-i18n="price1.fine">$200 — это простой пилот без сложной CRM и большого числа интеграций. Проекты со связкой сервисов, ролями и аналитикой считаем отдельно и заранее фиксируем вилку</div>
+        <div class="price-fine" data-i18n="price1.fine.en">$200 buys a simple pilot without a complex CRM or many integrations. Projects with linked services, roles, and analytics are quoted separately, with the range fixed upfront</div>
       </div>
       <div class="price-card">
         <div class="price-kicker lang-active" data-i18n="price2.k">расчёт</div>
@@ -1175,8 +1260,8 @@
         <div class="price-num" data-i18n="price2.n.en">$0 <small>— the estimate is free</small></div>
         <div class="price-title lang-active" data-i18n="price2.t">Точная цена — по задаче</div>
         <div class="price-title" data-i18n="price2.t.en">Exact price per task</div>
-        <div class="price-desc lang-active" data-i18n="price2.d">Короткий созвон или переписка — и в тот же день пришлём вилку цены под вашу задачу. Без «менеджер свяжется с вами»</div>
-        <div class="price-desc" data-i18n="price2.d.en">A short call or a chat — and you get a price range for your task the same day. No “a manager will contact you.”</div>
+        <div class="price-desc lang-active" data-i18n="price2.d">Короткий созвон или переписка — и в тот же день у вас: что автоматизировать, что не стоит, примерный бюджет и первый шаг. Без «менеджер свяжется с вами»</div>
+        <div class="price-desc" data-i18n="price2.d.en">A short call or a chat — and the same day you know: what to automate, what to skip, the rough budget, and the first step. No “a manager will contact you”</div>
       </div>
       <div class="price-card">
         <div class="price-kicker lang-active" data-i18n="price3.k">сопровождение</div>
