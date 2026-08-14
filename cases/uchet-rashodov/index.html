@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Кейс: финансовый бот и авто-P&amp;L — ИИ-Гараж</title>
+<meta name="description" content="Разбор кейса: сотрудники присылают траты текстом, голосом или фото чека — бот пишет их в P&amp;L-таблицу с конвертацией валют. 120 автотестов.">
+<link rel="icon" type="image/png" href="../../favicon.png?v=3">
+<link rel="icon" href="../../favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../../apple-touch-icon.png">
+<link rel="canonical" href="https://ai-garage.tech/cases/uchet-rashodov/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Кейс: финансовый бот и авто-P&amp;L — ИИ-Гараж">
+<meta property="og:description" content="Разбор кейса: сотрудники присылают траты текстом, голосом или фото чека — бот пишет их в P&amp;L-таблицу с конвертацией валют. 120 автотестов.">
+<meta property="og:url" content="https://ai-garage.tech/cases/uchet-rashodov/">
+<meta property="og:image" content="https://ai-garage.tech/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Финансовый бот: P&L собирается сам",
+  "description": "Разбор кейса: сотрудники присылают траты текстом, голосом или фото чека — бот пишет их в P&L-таблицу с конвертацией валют. 120 автотестов.",
+  "image": "https://ai-garage.tech/og-image.png",
+  "author": { "@type": "Organization", "name": "ИИ-Гараж", "url": "https://ai-garage.tech/" },
+  "publisher": { "@type": "Organization", "name": "ИИ-Гараж", "logo": { "@type": "ImageObject", "url": "https://ai-garage.tech/logo-mark-transparent.png" } },
+  "mainEntityOfPage": "https://ai-garage.tech/cases/uchet-rashodov/"
+}
+</script>
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "y0aui9ba3z");
+    document.addEventListener('click', function(e){
+      var a = e.target.closest && e.target.closest('a[href*="t.me/"]');
+      if (a && window.clarity) clarity('event', 'telegram_click');
+    });
+</script>
+<style>
+  @font-face { font-family: 'JetBrains Mono'; src: local('JetBrains Mono'); font-weight: 400 800; }
+  @font-face { font-family: 'Source Serif 4'; src: local('Source Serif 4'); font-weight: 400 700; }
+  :root {
+    --bg: #17181A; --surface: #1E1F22; --surface-2: #26272B;
+    --ink: #F5F5F5; --ink-soft: #9EA3A8; --ink-faint: #6d7278;
+    --line: #2c2e31; --accent: #4CAE86; --accent-dim: #2c4438; --accent-soft: #20302a;
+    --mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+    --serif: 'Source Serif 4', Georgia, serif;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font-family: var(--mono); font-size: 15px; line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 28px; }
+  a { color: inherit; }
+  header.site {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(10,10,10,.88); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .site-inner { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; }
+  .logo { display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 14px; letter-spacing: 0.02em; text-decoration: none; }
+  .logo img { height: 22px; width: auto; display: block; }
+  .logo .dot { color: var(--accent); }
+  nav.main { display: flex; align-items: center; gap: 26px; }
+  nav.main a { font-size: 12.5px; color: var(--ink-soft); text-decoration: none; }
+  nav.main a:hover { color: var(--ink); }
+  @media (max-width: 760px) {
+    .site-inner { flex-wrap: wrap; gap: 8px 14px; padding: 12px 0; }
+    nav.main { order: 3; width: 100%; gap: 18px; overflow-x: auto; }
+    nav.main a { white-space: nowrap; font-size: 12px; }
+  }
+  main.wrap { padding: 56px 0 80px; max-width: 760px; }
+  .eyebrow { font-size: 12px; color: var(--accent); text-transform: uppercase; letter-spacing: .06em; margin-bottom: 12px; }
+  .eyebrow::before { content: '// '; opacity: .6; }
+  h1 { font-family: var(--serif); font-weight: 600; font-size: clamp(26px, 4vw, 38px); line-height: 1.25; margin: 0 0 18px; }
+  .lead { font-size: 16px; color: var(--ink-soft); margin: 0 0 34px; }
+  p { margin: 0 0 20px; color: var(--ink-soft); }
+  h2 { font-family: var(--serif); font-weight: 600; font-size: 21px; color: var(--ink); margin: 40px 0 16px; }
+  a.link { color: var(--accent); }
+
+  .metrics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 0 0 8px; }
+  .metric {
+    background: linear-gradient(160deg, rgba(255,255,255,.045), transparent 40%), color-mix(in srgb, var(--surface-2) 92%, transparent);
+    border: 1px solid rgba(255,255,255,.08); border-radius: 10px; padding: 16px 18px;
+    box-shadow: 0 1px 0 rgba(255,255,255,.06) inset, 0 20px 48px rgba(0,0,0,.4);
+  }
+  .metric b { display: block; font-size: 22px; color: var(--accent); font-weight: 700; margin-bottom: 4px; }
+  .metric span { font-size: 11.5px; color: var(--ink-soft); line-height: 1.4; display: block; }
+  @media (max-width: 640px) { .metrics { grid-template-columns: 1fr; } }
+
+  .chat {
+    background: linear-gradient(160deg, rgba(255,255,255,.045), transparent 40%), color-mix(in srgb, var(--surface-2) 92%, transparent);
+    border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 20px 22px;
+    box-shadow: 0 1px 0 rgba(255,255,255,.06) inset, 0 20px 48px rgba(0,0,0,.4);
+    display: grid; gap: 12px; margin: 22px 0 8px;
+  }
+  .msg { max-width: 88%; font-size: 13px; line-height: 1.6; padding: 10px 14px; border-radius: 10px; }
+  .msg .who { display: block; font-size: 10.5px; color: var(--ink-faint); margin-bottom: 4px; text-transform: uppercase; letter-spacing: .05em; }
+  .msg.user { justify-self: end; background: var(--surface-2); border: 1px solid var(--line); color: var(--ink); }
+  .msg.bot { justify-self: start; background: var(--accent-soft); border: 1px solid var(--accent-dim); color: var(--ink); }
+  .msg.bot .who { color: var(--accent); }
+
+  ul.features { list-style: none; padding: 0; margin: 0 0 8px; display: grid; gap: 10px; }
+  ul.features li { padding-left: 24px; position: relative; color: var(--ink-soft); font-size: 14px; line-height: 1.6; }
+  ul.features li::before { content: '✓'; position: absolute; left: 0; color: var(--accent); font-family: var(--mono); }
+
+  .result-box {
+    background: var(--accent-soft); border: 1px solid var(--accent-dim); border-radius: 12px;
+    padding: 22px 24px; margin: 22px 0 8px; display: grid; gap: 10px;
+  }
+  .result-box div { font-size: 13.5px; line-height: 1.6; color: var(--ink); }
+  .result-box div::before { content: '▸ '; color: var(--accent); }
+
+  .stack { display: flex; flex-wrap: wrap; gap: 6px; margin: 4px 0 8px; }
+  .stack span { font-size: 11px; color: var(--accent); background: var(--accent-soft); padding: 3px 10px; border-radius: 100px; }
+
+  .cta-box {
+    text-align: center; margin: 48px 0 8px; padding: 34px 28px;
+    background: linear-gradient(160deg, rgba(255,255,255,.045), transparent 40%), color-mix(in srgb, var(--surface-2) 92%, transparent);
+    border: 1px solid rgba(255,255,255,.08); border-radius: 14px;
+    box-shadow: 0 1px 0 rgba(255,255,255,.06) inset, 0 20px 48px rgba(0,0,0,.4);
+  }
+  .cta-box h2 { margin: 0 0 10px; }
+  .cta-box p { margin: 0 auto 22px; max-width: 480px; font-size: 13.5px; }
+  .btn {
+    display: inline-block; background: var(--accent); color: #10120f; font-weight: 700;
+    font-size: 14px; padding: 13px 28px; border-radius: 10px; text-decoration: none;
+    box-shadow: 0 8px 24px rgba(76,174,134,.25); transition: transform .15s, box-shadow .15s;
+  }
+  .btn:hover { transform: translateY(-1px); box-shadow: 0 12px 30px rgba(76,174,134,.35); }
+
+  .others { display: grid; gap: 8px; margin: 0 0 8px; }
+  .others a {
+    display: block; padding: 13px 18px; border: 1px solid rgba(255,255,255,.08); border-radius: 10px;
+    background: color-mix(in srgb, var(--surface-2) 92%, transparent);
+    font-size: 13px; color: var(--ink-soft); text-decoration: none; transition: border-color .15s, color .15s;
+  }
+  .others a:hover { border-color: var(--accent-dim); color: var(--ink); }
+  .others a::after { content: ' →'; color: var(--accent); }
+
+  footer.site { padding: 28px 0; text-align: center; font-size: 12px; color: var(--ink-faint); border-top: 1px solid var(--line); margin-top: 60px; }
+  footer.site a { color: var(--ink-faint); text-decoration: underline; }
+</style>
+</head>
+<body>
+<header class="site">
+  <div class="wrap site-inner">
+    <a class="logo" href="../../"><img src="../../logo-mark-transparent.png" alt="" width="22" height="22">гараж<span class="dot">_</span></a>
+    <nav class="main">
+      <a href="../../#cases">кейсы</a>
+      <a href="../../#services">услуги</a>
+      <a href="../../blog/">блог</a>
+      <a href="../../#contact">контакты</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="eyebrow">разбор кейса · финансы</div>
+  <h1>Финансовый бот: P&amp;L собирается сам</h1>
+  <p class="lead">Деньги компании терялись в чеках и памяти сотрудников, а P&amp;L собирался раз в месяц — со слезами. Теперь трата попадает в таблицу за секунды после того, как случилась.</p>
+
+  <div class="metrics">
+    <div class="metric"><b>120</b><span>автотестов в системе</span></div>
+    <div class="metric"><b>3</b><span>способа ввода: текст · голос · чек</span></div>
+    <div class="metric"><b>live</b><span>P&amp;L в реальном времени</span></div>
+  </div>
+
+  <h2>Задача</h2>
+  <p>Клиент — компания с разъездной командой: закупки, транспорт, подрядчики, расходы в трёх валютах. Чеки копились в карманах и галереях телефонов, к концу месяца половину трат восстанавливали по памяти, а руководитель узнавал «где деньги» с опозданием на недели.</p>
+  <p>Задача: чтобы сотрудник фиксировал трату за пять секунд в привычном мессенджере, а таблица с P&amp;L обновлялась сама — без бухгалтера-переписчика.</p>
+
+  <h2>Как это выглядит</h2>
+  <div class="chat">
+    <div class="msg user"><span class="who">Сотрудник</span>🎤 Потратил 2400 бат на такси до склада</div>
+    <div class="msg bot"><span class="who">Бот</span>Записал: Транспорт · 2 400 THB ≈ 68,50 USD по курсу дня · сегодня. Руководителю отправлена копия операции.</div>
+    <div class="msg user"><span class="who">Сотрудник</span>[фото чека из строительного магазина]</div>
+    <div class="msg bot"><span class="who">Бот</span>Распознал чек: Материалы · 1 340 USD · 14 позиций. Подтвердить запись? [Да] [Исправить]</div>
+  </div>
+
+  <h2>Что делает система</h2>
+  <ul class="features">
+    <li>Трата — текстом, голосом или фото чека; бот сам разберёт сумму, категорию и дату</li>
+    <li>Валюты пересчитываются в базовую валюту компании по курсу дня — автоматически</li>
+    <li>Каждая операция мгновенно дублируется руководителю с именем автора</li>
+    <li>Свои записи можно править и удалять — с полным следом изменений</li>
+    <li>Аналитика по кнопкам: итоги месяца, план/факт, динамика, топ статей расходов</li>
+    <li>Роли и доступы: кто пишет, кто видит всё, кто только своё</li>
+  </ul>
+
+  <h2>Принципы, на которых это держится</h2>
+  <ul class="features">
+    <li>Суммы, проценты и курсы валют считает код — модель только разбирает фразу и читает чек. Финансы не доверяются генерации</li>
+    <li>120 автотестов; таблица остаётся обычной Google-таблицей клиента — данные всегда его</li>
+  </ul>
+
+  <h2>Результат</h2>
+  <div class="result-box">
+    <div>P&amp;L собирается сам, в реальном времени — бухгалтерская рутина исчезла</div>
+    <div>Руководитель видит каждую операцию в момент, когда она случилась</div>
+    <div>«Потерянные» траты кончились: фиксация занимает пять секунд</div>
+  </div>
+
+  <h2>Стек</h2>
+  <div class="stack">
+    <span>Telegram</span>
+    <span>Google Sheets API</span>
+    <span>OCR</span>
+    <span>Voice</span>
+    <span>Docker</span>
+  </div>
+
+
+  <div class="cta-box">
+    <h2>Хотите так же?</h2>
+    <p>Расскажите, где у вас больше всего рутины, — предложим решение и честно скажем, если автоматизация не нужна.</p>
+    <a class="btn" href="https://t.me/stavzzz?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%92%D0%B8%D0%B4%D0%B5%D0%BB%28%D0%B0%29%20%D1%80%D0%B0%D0%B7%D0%B1%D0%BE%D1%80%20%D0%BA%D0%B5%D0%B9%D1%81%D0%B0%20%C2%AB%D0%A4%D0%B8%D0%BD%D0%B0%D0%BD%D1%81%D0%BE%D0%B2%D1%8B%D0%B9%20%D0%B1%D0%BE%D1%82%C2%BB.%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B9%20%D0%B6%D0%B5%20%D1%83%D1%87%D1%91%D1%82%20%D1%80%D0%B0%D1%81%D1%85%D0%BE%D0%B4%D0%BE%D0%B2%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%B2%D0%BE%D0%B5%D0%B9%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8." target="_blank" rel="noopener">Обсудить в Telegram</a>
+  </div>
+
+  <h2>Другие разборы</h2>
+  <div class="others">
+    <a href="../ii-sekretar/">ИИ-секретарь: календарь, который ведёт себя сам</a>
+    <a href="../menedzher-zadach/">Менеджер задач: из голосового — в карточку на доске</a>
+    <a href="../baza-znaniy/">База знаний: ответы по документам за секунды</a>
+    <a href="../transkribator/">Транскрибатор: из часовой встречи — протокол за минуту</a>
+    <a href="../ii-prodazhi/">ИИ-менеджер продаж: отвечает лидам за секунды, 24/7</a>
+  </div>
+</main>
+
+<footer class="site">
+  ИИ-Гараж · <a href="../../about/">О нас</a> · <a href="../../privacy/">Политика конфиденциальности</a>
+</footer>
+</body>
+</html>
