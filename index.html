@@ -565,20 +565,10 @@
   @media (max-width: 560px) { .callout-bot { display: none; } }
 
   /* ---- contact ---- */
-  .contact-block { position: relative; padding: 72px 0 90px; text-align: center; border-bottom: none; overflow: hidden; }
-  .contact-block::before {
-    content: ''; position: absolute; top: 0; left: -5%; right: -5%; height: 130px;
-    background-image:
-      linear-gradient(color-mix(in srgb, var(--accent) 16%, transparent) 1px, transparent 1px),
-      linear-gradient(90deg, color-mix(in srgb, var(--accent) 16%, transparent) 1px, transparent 1px);
-    background-size: 22px 22px;
-    -webkit-mask-image: linear-gradient(180deg, black, transparent);
-    mask-image: linear-gradient(180deg, black, transparent);
-    pointer-events: none;
-  }
+  .contact-block { position: relative; padding: 28px 0 90px; text-align: center; border-bottom: none; overflow: hidden; }
   .contact-title, .contact-sub, .contact-cta { position: relative; }
-  .contact-title { font-family: var(--serif); font-weight: 600; font-size: 30px; margin: 0 0 24px; }
-  .contact-sub { color: var(--ink-soft); font-size: 14.5px; max-width: 54ch; margin: 0 auto 38px; line-height: 1.8; }
+  .contact-title { font-family: var(--serif); font-weight: 600; font-size: 30px; margin: 0 0 36px; }
+  .contact-sub { color: var(--ink-soft); font-size: 14.5px; max-width: 54ch; margin: 0 auto 48px; line-height: 1.8; }
   .contact-cta { display: inline-flex; align-items: center; gap: 10px; font-size: 15px; font-weight: 700; padding: 16px 32px; }
 
   footer.site {
@@ -598,7 +588,7 @@
   }
   footer.site span { position: relative; }
   .footer-bot { position: relative; width: 36px; height: 36px; display: block; margin: 0 auto 8px; image-rendering: pixelated; overflow: visible; }
-  .socials { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 26px; }
+  .socials { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 40px; }
   .social-link {
     display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px;
     border: 1px solid rgba(255,255,255,.08); border-radius: 100px;
