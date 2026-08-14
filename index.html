@@ -312,6 +312,16 @@
   }
   /* у секции болей сетку гасим: сразу над ней уже сетка-шов hero */
   #pains::before { display: none; }
+  /* принцип: одна большая сетка-поле за плашкой, затухает к краям */
+  section.principle::before {
+    top: 0; bottom: 0; height: auto;
+    background-image:
+      linear-gradient(color-mix(in srgb, var(--accent) 11%, transparent) 1px, transparent 1px),
+      linear-gradient(90deg, color-mix(in srgb, var(--accent) 11%, transparent) 1px, transparent 1px);
+    -webkit-mask-image: radial-gradient(70% 100% at 50% 50%, black 30%, transparent 100%);
+    mask-image: radial-gradient(70% 100% at 50% 50%, black 30%, transparent 100%);
+  }
+  #services::before { display: none; }
   .block-head { position: relative; margin-bottom: 50px; }
 
   /* ---- seam bots: idle robots in the Cases section top seam ---- */
@@ -787,7 +797,7 @@
       <div class="block-tag" data-i18n="pains.tag.en">pain → solution</div>
       <h2 class="block-title lang-active" data-i18n="pains.title">Знакомо?</h2>
       <h2 class="block-title" data-i18n="pains.title.en">Sound familiar?</h2>
-      <p class="block-sub lang-active" data-i18n="pains.sub">Каждая боль — реальная задача, которую мы уже закрыли. Кликните на свою — покажем, как мы её решили</p>
+      <p class="block-sub lang-active" data-i18n="pains.sub">Каждая боль — реальная задача, которую мы уже закрыли. Кликните на свою — покажем, как мы её решили</p>
       <p class="block-sub" data-i18n="pains.sub.en">Each pain here is a real problem we've already solved. Click yours — see how we fixed it</p>
     </div>
     <div class="pain-rows">
@@ -1087,7 +1097,7 @@
 
 
   <!-- ============ PRINCIPLE ============ -->
-  <section class="block">
+  <section class="block principle">
     <div class="callout">
       <svg class="callout-bot" viewBox="0 0 32 32" aria-hidden="true">
         <rect x="11" y="2" width="2" height="4" fill="#3ed17f"/><rect x="19" y="2" width="2" height="4" fill="#3ed17f"/>
