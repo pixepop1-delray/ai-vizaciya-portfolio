@@ -412,8 +412,16 @@
   .case-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.6; flex-grow: 1; }
   .case-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 4px; }
   .case-tag { font-size: 10.5px; color: var(--accent); background: var(--accent-soft); padding: 2px 8px; border-radius: 100px; }
-  .case-result { font-family: var(--mono); font-size: 11.5px; color: var(--accent); line-height: 1.5; }
-  .case-result::before { content: '▸ '; opacity: .7; }
+  .case-bw { display: grid; gap: 7px; margin-top: 2px; }
+  .bw-was, .bw-now { font-family: var(--mono); font-size: 11.5px; line-height: 1.5; }
+  .bw-was { color: var(--ink-faint); }
+  .bw-now { color: var(--accent); }
+  .bw-was span, .bw-now span {
+    display: inline-block; text-transform: uppercase; font-size: 9px; letter-spacing: .07em;
+    padding: 1px 7px; border-radius: 100px; margin-right: 7px; vertical-align: 1px;
+  }
+  .bw-was span { background: var(--surface-2); color: var(--ink-faint); border: 1px solid var(--line); }
+  .bw-now span { background: var(--accent-soft); color: var(--accent); border: 1px solid var(--accent-dim); }
   .case-more { font-size: 11.5px; margin-top: 4px; color: var(--accent); text-decoration: none; }
   .case-more:hover { text-decoration: underline; }
 
@@ -694,10 +702,10 @@
     </div>
 
     <div class="hero-copy">
-      <div class="hero-status" data-i18n="hero.status" class="lang-active">ИИ-агенты и автоматизация для бизнеса</div>
+      <div class="hero-status lang-active" data-i18n="hero.status">ИИ-агенты и автоматизация для бизнеса</div>
       <div class="hero-status" data-i18n="hero.status.en">AI agents and automation for business</div>
 
-      <h1 class="hero-title" data-i18n="hero.title" class="lang-active">Мы не продаём <s>ИИ-агентов</s><br>Мы даём бизнесу</h1>
+      <h1 class="hero-title lang-active" data-i18n="hero.title">Мы не продаём <s>ИИ-агентов</s><br>Мы даём бизнесу</h1>
       <h1 class="hero-title" data-i18n="hero.title.en">We don't sell <s>AI agents</s><br>We give your business</h1>
 
       <div class="hero-chips">
@@ -708,23 +716,23 @@
       </div>
 
 
-      <p class="hero-takeaway" data-i18n="hero.takeaway" class="lang-active">Люди занимаются клиентами — не копированием данных</p>
+      <p class="hero-takeaway lang-active" data-i18n="hero.takeaway">Люди занимаются клиентами — не копированием данных</p>
       <p class="hero-takeaway" data-i18n="hero.takeaway.en">Your people handle clients — not copy-paste</p>
     </div>
 
     <div class="hero-cta">
-      <a class="btn primary" href="https://t.me/ai_garage_crew" target="_blank" rel="noopener" data-i18n="hero.cta.primary" class="lang-active">Показать, что можно автоматизировать →</a>
+      <a class="btn primary lang-active" href="https://t.me/ai_garage_crew" target="_blank" rel="noopener" data-i18n="hero.cta.primary">Показать, что можно автоматизировать →</a>
       <a class="btn primary" href="https://t.me/ai_garage_crew" target="_blank" rel="noopener" data-i18n="hero.cta.primary.en">Show me what can be automated →</a>
-      <a class="btn ghost" href="#cases" data-i18n="hero.cta.ghost" class="lang-active">Смотреть все кейсы</a>
+      <a class="btn ghost lang-active" href="#cases" data-i18n="hero.cta.ghost">Смотреть все кейсы</a>
       <a class="btn ghost" href="#cases" data-i18n="hero.cta.ghost.en">View all cases</a>
     </div>
 
     <div class="stat-row">
-      <div class="stat"><div class="n">100+</div><div class="l" data-i18n="stat.cases" class="lang-active">десятки внедрений с 2024</div><div class="l" data-i18n="stat.cases.en">dozens of deployments since 2024</div></div>
-      <div class="stat"><div class="n">8</div><div class="l" data-i18n="stat.areas" class="lang-active">направлений</div><div class="l" data-i18n="stat.areas.en">focus areas</div></div>
-      <div class="stat"><div class="n">8</div><div class="l" data-i18n="stat.llms" class="lang-active">LLM в одной системе</div><div class="l" data-i18n="stat.llms.en">LLMs orchestrated</div></div>
-      <div class="stat"><div class="n">24/7</div><div class="l" data-i18n="stat.uptime" class="lang-active">агенты на связи</div><div class="l" data-i18n="stat.uptime.en">agents online</div></div>
-      <div class="stat"><div class="n">130+</div><div class="l" data-i18n="stat.tz" class="lang-active">городов и таймзон</div><div class="l" data-i18n="stat.tz.en">cities &amp; timezones</div></div>
+      <div class="stat"><div class="n">100+</div><div class="l lang-active" data-i18n="stat.cases">десятки внедрений с 2024</div><div class="l" data-i18n="stat.cases.en">dozens of deployments since 2024</div></div>
+      <div class="stat"><div class="n">8</div><div class="l lang-active" data-i18n="stat.areas">направлений</div><div class="l" data-i18n="stat.areas.en">focus areas</div></div>
+      <div class="stat"><div class="n">8</div><div class="l lang-active" data-i18n="stat.llms">LLM в одной системе</div><div class="l" data-i18n="stat.llms.en">LLMs orchestrated</div></div>
+      <div class="stat"><div class="n">24/7</div><div class="l lang-active" data-i18n="stat.uptime">агенты на связи</div><div class="l" data-i18n="stat.uptime.en">agents online</div></div>
+      <div class="stat"><div class="n">130+</div><div class="l lang-active" data-i18n="stat.tz">городов и таймзон</div><div class="l" data-i18n="stat.tz.en">cities &amp; timezones</div></div>
     </div>
   </section>
 
@@ -747,11 +755,11 @@
   <!-- ============ PAINS ============ -->
   <section class="block" id="pains">
     <div class="block-head">
-      <div class="block-tag" data-i18n="pains.tag" class="lang-active">боль → решение</div>
+      <div class="block-tag lang-active" data-i18n="pains.tag">боль → решение</div>
       <div class="block-tag" data-i18n="pains.tag.en">pain → solution</div>
-      <h2 class="block-title" data-i18n="pains.title" class="lang-active">Знакомо?</h2>
+      <h2 class="block-title lang-active" data-i18n="pains.title">Знакомо?</h2>
       <h2 class="block-title" data-i18n="pains.title.en">Sound familiar?</h2>
-      <p class="block-sub" data-i18n="pains.sub" class="lang-active">Каждая боль — реальная задача, которую мы уже закрыли. Кликните на свою — покажем, как мы её решили</p>
+      <p class="block-sub lang-active" data-i18n="pains.sub">Каждая боль — реальная задача, которую мы уже закрыли. Кликните на свою — покажем, как мы её решили</p>
       <p class="block-sub" data-i18n="pains.sub.en">Each pain here is a real problem we've already solved. Click yours — see how we fixed it</p>
     </div>
     <div class="pain-rows">
@@ -806,11 +814,11 @@
       </svg>
     </div>
     <div class="block-head">
-      <div class="block-tag" data-i18n="cases.tag" class="lang-active">кейсы</div>
+      <div class="block-tag lang-active" data-i18n="cases.tag">кейсы</div>
       <div class="block-tag" data-i18n="cases.tag.en">cases</div>
-      <h2 class="block-title" data-i18n="cases.title" class="lang-active">Кейсы с полным разбором</h2>
+      <h2 class="block-title lang-active" data-i18n="cases.title">Кейсы с полным разбором</h2>
       <h2 class="block-title" data-i18n="cases.title.en">Case studies, in full</h2>
-      <p class="block-sub" data-i18n="cases.sub" class="lang-active">Шесть внедрений из десятков, что мы собрали с 2024. Все работают у клиентов прямо сейчас — заходите в разбор и смотрите, как именно</p>
+      <p class="block-sub lang-active" data-i18n="cases.sub">Шесть внедрений из десятков, что мы собрали с 2024. Все работают у клиентов прямо сейчас — заходите в разбор и смотрите, как именно</p>
       <p class="block-sub" data-i18n="cases.sub.en">Six of the dozens of systems we have built since 2024. All of them run at client companies right now — open a case study and see how</p>
     </div>
 
@@ -839,12 +847,16 @@
         </svg>
         <div class="case-body">
           <div class="case-num">case_01/</div>
-          <div class="case-title" data-i18n="c1.title" class="lang-active">ИИ-секретарь — Google Calendar</div>
+          <div class="case-title lang-active" data-i18n="c1.title">ИИ-секретарь — Google Calendar</div>
           <div class="case-title" data-i18n="c1.title.en">AI Voice Secretary — Google Calendar</div>
-          <div class="case-desc" data-i18n="c1.desc" class="lang-active">Ведёт календарь голосом и текстом: встречи, серии событий, Meet-ссылки, поиск окон по таймзонам, ежедневный брифинг. Даты считает код, не модель. 207 автотестов</div>
+          <div class="case-desc lang-active" data-i18n="c1.desc">Ведёт календарь голосом и текстом: встречи, серии событий, Meet-ссылки, поиск окон по таймзонам, ежедневный брифинг. Даты считает код, не модель. 207 автотестов</div>
           <div class="case-desc" data-i18n="c1.desc.en">Runs a calendar by voice or text: events, recurring series, Meet links, cross-timezone slot finding, daily briefing. Dates computed in code, not the model. 207 automated tests</div>
-          <div class="case-result" data-i18n="c1.result" class="lang-active">календарь ведётся голосом — ноль ручного ввода</div>
-          <div class="case-result" data-i18n="c1.result.en">the calendar runs on voice — zero manual entry</div>
+          <div class="case-bw">
+            <div class="bw-was lang-active" data-i18n="c1.was"><span>было</span>встречи переносились вручную, конфликты ловили глазами</div>
+            <div class="bw-was" data-i18n="c1.was.en"><span>was</span>meetings were rescheduled by hand, conflicts caught by eye</div>
+            <div class="bw-now lang-active" data-i18n="c1.now"><span>стало</span>календарь ведётся голосом — ноль ручного ввода</div>
+            <div class="bw-now" data-i18n="c1.now.en"><span>now</span>the calendar runs on voice — zero manual entry</div>
+          </div>
           <div class="case-tags">
             <span class="case-tag">Telegram</span><span class="case-tag">Google API</span><span class="case-tag">Voice</span>
           </div>
@@ -869,12 +881,16 @@
         </svg>
         <div class="case-body">
           <div class="case-num">case_02/</div>
-          <div class="case-title" data-i18n="c3.title" class="lang-active">Менеджер задач + синхронизация с Trello</div>
+          <div class="case-title lang-active" data-i18n="c3.title">Менеджер задач + синхронизация с Trello</div>
           <div class="case-title" data-i18n="c3.title.en">Voice Task Manager + Trello Sync</div>
-          <div class="case-desc" data-i18n="c3.desc" class="lang-active">Руководитель ставит задачи голосом, бот сам определяет исполнителя и срок, синхронизирует с Trello в обе стороны. Онбординг сотрудников, сторож с автовосстановлением</div>
+          <div class="case-desc lang-active" data-i18n="c3.desc">Руководитель ставит задачи голосом, бот сам определяет исполнителя и срок, синхронизирует с Trello в обе стороны. Онбординг сотрудников, сторож с автовосстановлением</div>
           <div class="case-desc" data-i18n="c3.desc.en">Manager assigns tasks by voice; the bot detects assignee and deadline, syncs with Trello both ways. Includes onboarding flow and a self-healing watchdog</div>
-          <div class="case-result" data-i18n="c3.result" class="lang-active">ни одна задача из чата не теряется — всё на доске</div>
-          <div class="case-result" data-i18n="c3.result.en">no task from the chat gets lost — all on the board</div>
+          <div class="case-bw">
+            <div class="bw-was lang-active" data-i18n="c3.was"><span>было</span>задачи терялись в общем чате</div>
+            <div class="bw-was" data-i18n="c3.was.en"><span>was</span>tasks kept sinking in the group chat</div>
+            <div class="bw-now lang-active" data-i18n="c3.now"><span>стало</span>каждая задача — на доске, с исполнителем и сроком</div>
+            <div class="bw-now" data-i18n="c3.now.en"><span>now</span>every task lands on the board with an assignee and deadline</div>
+          </div>
           <div class="case-tags"><span class="case-tag">Telegram</span><span class="case-tag">Trello API</span></div>
           <a class="case-more" href="cases/menedzher-zadach/"><span data-i18n="c3.more" class="lang-active">подробный разбор →</span><span data-i18n="c3.more.en">full case study →</span></a>
         </div>
@@ -894,12 +910,16 @@
         </svg>
         <div class="case-body">
           <div class="case-num">case_03/</div>
-          <div class="case-title" data-i18n="c6.title" class="lang-active">Учёт расходов → автоматический P&amp;L</div>
+          <div class="case-title lang-active" data-i18n="c6.title">Учёт расходов → автоматический P&amp;L</div>
           <div class="case-title" data-i18n="c6.title.en">AI Expense Tracker to P&amp;L Sheets</div>
-          <div class="case-desc" data-i18n="c6.desc" class="lang-active">Сотрудники присылают траты текстом, голосом или фото чека — бот пишет строку в общий PNL. Все расчёты — в коде, не в модели. 120 автотестов, ролевой доступ</div>
+          <div class="case-desc lang-active" data-i18n="c6.desc">Сотрудники присылают траты текстом, голосом или фото чека — бот пишет строку в общий PNL. Все расчёты — в коде, не в модели. 120 автотестов, ролевой доступ</div>
           <div class="case-desc" data-i18n="c6.desc.en">Staff log expenses by text, voice, or receipt photo — the bot writes a row to a shared P&amp;L. All math runs in code, never the model. 120 automated tests, role-based access</div>
-          <div class="case-result" data-i18n="c6.result" class="lang-active">P&amp;L собирается сам — бухгалтерская рутина исчезла</div>
-          <div class="case-result" data-i18n="c6.result.en">the P&amp;L builds itself — bookkeeping busywork gone</div>
+          <div class="case-bw">
+            <div class="bw-was lang-active" data-i18n="c6.was"><span>было</span>чеки собирали в конце месяца, траты восстанавливали по памяти</div>
+            <div class="bw-was" data-i18n="c6.was.en"><span>was</span>receipts were collected at month-end, expenses recalled from memory</div>
+            <div class="bw-now lang-active" data-i18n="c6.now"><span>стало</span>P&L обновляется сразу после траты</div>
+            <div class="bw-now" data-i18n="c6.now.en"><span>now</span>the P&L updates the moment an expense happens</div>
+          </div>
           <div class="case-tags"><span class="case-tag">OCR</span><span class="case-tag">Sheets</span></div>
           <a class="case-more" href="cases/uchet-rashodov/"><span data-i18n="c6.more" class="lang-active">подробный разбор →</span><span data-i18n="c6.more.en">full case study →</span></a>
         </div>
@@ -919,12 +939,16 @@
         </svg>
         <div class="case-body">
           <div class="case-num">case_04/</div>
-          <div class="case-title" data-i18n="c7.title" class="lang-active">RAG-консультант по базе знаний</div>
+          <div class="case-title lang-active" data-i18n="c7.title">RAG-консультант по базе знаний</div>
           <div class="case-title" data-i18n="c7.title.en">RAG Knowledge Assistant (Telegram)</div>
-          <div class="case-desc" data-i18n="c7.desc" class="lang-active">Загружаете регламенты и прайсы — бот отвечает строго по документам со ссылкой на источник. Гибридный поиск, защита от выдуманных ответов. 322 автотеста</div>
+          <div class="case-desc lang-active" data-i18n="c7.desc">Загружаете регламенты и прайсы — бот отвечает строго по документам со ссылкой на источник. Гибридный поиск, защита от выдуманных ответов. 322 автотеста</div>
           <div class="case-desc" data-i18n="c7.desc.en">Upload policies and price lists — the bot answers strictly from documents, always citing the source. Hybrid search, blocks fabricated answers. 322 automated tests</div>
-          <div class="case-result" data-i18n="c7.result" class="lang-active">ответ по регламентам за секунды — коллег не дёргают</div>
-          <div class="case-result" data-i18n="c7.result.en">policy answers in seconds — no more pinging colleagues</div>
+          <div class="case-bw">
+            <div class="bw-was lang-active" data-i18n="c7.was"><span>было</span>сотрудники дёргали коллег по каждому вопросу</div>
+            <div class="bw-was" data-i18n="c7.was.en"><span>was</span>employees pinged colleagues over every question</div>
+            <div class="bw-now lang-active" data-i18n="c7.now"><span>стало</span>бот отвечает по регламентам со ссылкой на источник</div>
+            <div class="bw-now" data-i18n="c7.now.en"><span>now</span>the bot answers from policies, citing the source</div>
+          </div>
           <div class="case-tags"><span class="case-tag">RAG</span><span class="case-tag">Vector Search</span></div>
           <a class="case-more" href="cases/baza-znaniy/"><span data-i18n="c7.more" class="lang-active">подробный разбор →</span><span data-i18n="c7.more.en">full case study →</span></a>
         </div>
@@ -954,12 +978,16 @@
         </svg>
         <div class="case-body">
           <div class="case-num">case_05/</div>
-          <div class="case-title" data-i18n="c17.title" class="lang-active">Транскрибатор встреч и голосовых</div>
+          <div class="case-title lang-active" data-i18n="c17.title">Транскрибатор встреч и голосовых</div>
           <div class="case-title" data-i18n="c17.title.en">Meeting &amp; Voice Note Transcriber</div>
-          <div class="case-desc" data-i18n="c17.desc" class="lang-active">Голосовые, записи встреч и видео превращаются в текст с резюме, протоколом и задачами. Личный архив с поиском, аудио удаляется после обработки. 130 автотестов</div>
+          <div class="case-desc lang-active" data-i18n="c17.desc">Голосовые, записи встреч и видео превращаются в текст с резюме, протоколом и задачами. Личный архив с поиском, аудио удаляется после обработки. 130 автотестов</div>
           <div class="case-desc" data-i18n="c17.desc.en">Voice notes, meeting recordings, and video turn into text with a summary, minutes, and tasks. Private searchable archive; audio deleted after processing. 130 automated tests</div>
-          <div class="case-result" data-i18n="c17.result" class="lang-active">протокол часовой встречи — за минуту</div>
-          <div class="case-result" data-i18n="c17.result.en">minutes of an hour-long meeting — in one minute</div>
+          <div class="case-bw">
+            <div class="bw-was lang-active" data-i18n="c17.was"><span>было</span>встречи переслушивали, договорённости терялись</div>
+            <div class="bw-was" data-i18n="c17.was.en"><span>was</span>meetings were re-listened to, agreements got lost</div>
+            <div class="bw-now lang-active" data-i18n="c17.now"><span>стало</span>протокол и задачи готовы за минуту</div>
+            <div class="bw-now" data-i18n="c17.now.en"><span>now</span>minutes and tasks are ready in one minute</div>
+          </div>
           <div class="case-tags"><span class="case-tag">Telegram</span><span class="case-tag">Whisper</span><span class="case-tag">Obsidian</span></div>
           <a class="case-more" href="cases/transkribator/"><span data-i18n="c17.more" class="lang-active">подробный разбор →</span><span data-i18n="c17.more.en">full case study →</span></a>
         </div>
@@ -981,12 +1009,16 @@
         </svg>
         <div class="case-body">
           <div class="case-num">case_06/</div>
-          <div class="case-title" data-i18n="c18.title" class="lang-active">ИИ-менеджер продаж 24/7</div>
+          <div class="case-title lang-active" data-i18n="c18.title">ИИ-менеджер продаж 24/7</div>
           <div class="case-title" data-i18n="c18.title.en">24/7 AI Sales Manager</div>
-          <div class="case-desc" data-i18n="c18.desc" class="lang-active">Первая линия продаж: отвечает лидам мгновенно в любое время, говорит по фактам компании, квалифицирует и передаёт менеджеру уже тёплого клиента</div>
+          <div class="case-desc lang-active" data-i18n="c18.desc">Первая линия продаж: отвечает лидам мгновенно в любое время, говорит по фактам компании, квалифицирует и передаёт менеджеру уже тёплого клиента</div>
           <div class="case-desc" data-i18n="c18.desc.en">A first line for sales: replies to leads instantly at any hour, sticks to company facts, qualifies, and hands managers a warm client</div>
-          <div class="case-result" data-i18n="c18.result" class="lang-active">ответ за секунды вместо часа — лиды не остывают</div>
-          <div class="case-result" data-i18n="c18.result.en">seconds to reply instead of an hour — leads stay warm</div>
+          <div class="case-bw">
+            <div class="bw-was lang-active" data-i18n="c18.was"><span>было</span>лиды ждали ответа до утра — и остывали</div>
+            <div class="bw-was" data-i18n="c18.was.en"><span>was</span>leads waited until morning — and went cold</div>
+            <div class="bw-now lang-active" data-i18n="c18.now"><span>стало</span>ответ за секунды, менеджеру — тёплый клиент</div>
+            <div class="bw-now" data-i18n="c18.now.en"><span>now</span>a reply in seconds, a warm client for the manager</div>
+          </div>
           <div class="case-tags"><span class="case-tag">Telegram</span><span class="case-tag">CRM</span><span class="case-tag">Knowledge Base</span></div>
           <a class="case-more" href="cases/ii-prodazhi/"><span data-i18n="c18.more" class="lang-active">подробный разбор →</span><span data-i18n="c18.more.en">full case study →</span></a>
         </div>
@@ -1025,84 +1057,84 @@
   <!-- ============ SERVICES ============ -->
   <section class="block" id="services">
     <div class="block-head">
-      <div class="block-tag" data-i18n="services.tag" class="lang-active">услуги</div>
+      <div class="block-tag lang-active" data-i18n="services.tag">услуги</div>
       <div class="block-tag" data-i18n="services.tag.en">services</div>
-      <h2 class="block-title" data-i18n="services.title" class="lang-active">Что мы делаем</h2>
+      <h2 class="block-title lang-active" data-i18n="services.title">Что мы делаем</h2>
       <h2 class="block-title" data-i18n="services.title.en">What we do</h2>
-      <p class="block-sub" data-i18n="services.sub" class="lang-active">Цены — по запросу, зависят от объёма и сложности задачи. Ниже — направления, в которых мы работаем</p>
+      <p class="block-sub lang-active" data-i18n="services.sub">Цены — по запросу, зависят от объёма и сложности задачи. Ниже — направления, в которых мы работаем</p>
       <p class="block-sub" data-i18n="services.sub.en">Pricing is quoted per project, depending on scope and complexity. Below are the areas we work in</p>
     </div>
     <div class="svc-grid" id="svc-grid">
       <div class="svc-card">
         <svg class="bot-icon" viewBox="0 0 32 32"><rect x="10" y="29" width="5" height="2" fill="#0a0a0a"/><rect x="17" y="29" width="5" height="2" fill="#0a0a0a"/><rect x="8" y="18" width="16" height="11" fill="#1a1a1a" stroke="#3ed17f"/><rect x="12" y="21" width="8" height="6" fill="none" stroke="#3ed17f"/><rect x="14" y="23" width="4" height="2" fill="#3ed17f"/><rect x="4" y="20" width="4" height="5" fill="#ededed"/><rect x="24" y="20" width="4" height="5" fill="#ededed"/><rect x="7" y="6" width="18" height="12" fill="#ededed"/><rect x="13" y="15" width="6" height="1" fill="#1a1a1a"/><rect x="10" y="9" width="4" height="4" fill="#0a0a0a"/><rect x="18" y="9" width="4" height="4" fill="#0a0a0a"/><rect x="11" y="10" width="2" height="2" fill="#3ed17f"/><rect x="19" y="10" width="2" height="2" fill="#3ed17f"/></svg>
-        <div class="svc-title" data-i18n="svc1.title" class="lang-active">ИИ-секретарь и календарь</div>
+        <div class="svc-title lang-active" data-i18n="svc1.title">ИИ-секретарь и календарь</div>
         <div class="svc-title" data-i18n="svc1.title.en">AI Secretary &amp; Calendar</div>
-        <div class="svc-desc" data-i18n="svc1.desc" class="lang-active">Telegram-агент ведёт календарь голосом: встречи, переносы, таймзоны, утренние брифинги</div>
+        <div class="svc-desc lang-active" data-i18n="svc1.desc">Telegram-агент ведёт календарь голосом: встречи, переносы, таймзоны, утренние брифинги</div>
         <div class="svc-desc" data-i18n="svc1.desc.en">A Telegram agent runs your calendar by voice: meetings, reschedules, time zones, morning briefings</div>
-        <a class="svc-price" data-i18n="svc.price" class="lang-active" href="https://t.me/stavzzz?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D0%98%D0%98-%D1%81%D0%B5%D0%BA%D1%80%D0%B5%D1%82%D0%B0%D1%80%D1%8C%20%D0%B4%D0%BB%D1%8F%20%D0%BA%D0%B0%D0%BB%D0%B5%D0%BD%D0%B4%D0%B0%D1%80%D1%8F." target="_blank" rel="noopener"><svg class="svc-price-bot" viewBox="0 0 32 32" aria-hidden="true"><rect x="15" y="1" width="2" height="4" fill="currentColor"/><rect x="14" y="0" width="4" height="1" fill="currentColor"/><rect x="7" y="6" width="18" height="12" fill="currentColor"/><rect x="10" y="9" width="4" height="4" fill="#0a0a0a"/><rect x="18" y="9" width="4" height="4" fill="#0a0a0a"/></svg>Узнать цену →</a>
+        <a class="svc-price lang-active" data-i18n="svc.price" href="https://t.me/stavzzz?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D0%98%D0%98-%D1%81%D0%B5%D0%BA%D1%80%D0%B5%D1%82%D0%B0%D1%80%D1%8C%20%D0%B4%D0%BB%D1%8F%20%D0%BA%D0%B0%D0%BB%D0%B5%D0%BD%D0%B4%D0%B0%D1%80%D1%8F." target="_blank" rel="noopener"><svg class="svc-price-bot" viewBox="0 0 32 32" aria-hidden="true"><rect x="15" y="1" width="2" height="4" fill="currentColor"/><rect x="14" y="0" width="4" height="1" fill="currentColor"/><rect x="7" y="6" width="18" height="12" fill="currentColor"/><rect x="10" y="9" width="4" height="4" fill="#0a0a0a"/><rect x="18" y="9" width="4" height="4" fill="#0a0a0a"/></svg>Узнать цену →</a>
         <a class="svc-price" data-i18n="svc.price.en" href="https://t.me/stavzzz?text=Hi%21%20I%27m%20interested%20in%20an%20AI%20secretary%20for%20my%20calendar." target="_blank" rel="noopener"><svg class="svc-price-bot" viewBox="0 0 32 32" aria-hidden="true"><rect x="15" y="1" width="2" height="4" fill="currentColor"/><rect x="14" y="0" width="4" height="1" fill="currentColor"/><rect x="7" y="6" width="18" height="12" fill="currentColor"/><rect x="10" y="9" width="4" height="4" fill="#0a0a0a"/><rect x="18" y="9" width="4" height="4" fill="#0a0a0a"/></svg>Price request →</a>
       </div>
       <div class="svc-card">
         <svg class="bot-icon" viewBox="0 0 32 32"><rect x="10" y="4" width="12" height="2" fill="#ededed"/><rect x="8" y="6" width="16" height="10" fill="#ededed"/><rect x="10" y="9" width="12" height="4" fill="#0a0a0a"/><rect x="12" y="10" width="2" height="2" fill="#3ed17f"/><rect x="16" y="10" width="2" height="2" fill="#3ed17f"/><rect x="20" y="10" width="1" height="2" fill="#3ed17f"/><rect x="14" y="16" width="4" height="2" fill="#1f6b41"/><rect x="9" y="18" width="14" height="9" fill="#1a1a1a" stroke="#3ed17f"/><rect x="13" y="20" width="6" height="5" fill="#0f2a1b"/><rect x="5" y="19" width="4" height="8" fill="#3ed17f"/><rect x="23" y="19" width="4" height="8" fill="#3ed17f"/><rect x="11" y="27" width="4" height="4" fill="#ededed"/><rect x="17" y="27" width="4" height="4" fill="#ededed"/></svg>
-        <div class="svc-title" data-i18n="svc2.title" class="lang-active">Менеджер задач для команды</div>
+        <div class="svc-title lang-active" data-i18n="svc2.title">Менеджер задач для команды</div>
         <div class="svc-title" data-i18n="svc2.title.en">Team Task Manager</div>
-        <div class="svc-desc" data-i18n="svc2.desc" class="lang-active">Задачи голосом из чата — в карточки на доске с исполнителем и сроком. Синхронизация с Trello в обе стороны</div>
+        <div class="svc-desc lang-active" data-i18n="svc2.desc">Задачи голосом из чата — в карточки на доске с исполнителем и сроком. Синхронизация с Trello в обе стороны</div>
         <div class="svc-desc" data-i18n="svc2.desc.en">Voice tasks from chat become board cards with assignees and deadlines. Two-way Trello sync</div>
-        <a class="svc-price" data-i18n="svc.price" class="lang-active" href="https://t.me/stavzzz?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%20%D0%B7%D0%B0%D0%B4%D0%B0%D1%87%20%D0%B4%D0%BB%D1%8F%20%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D1%8B." target="_blank" rel="noopener"><svg class="svc-price-bot" viewBox="0 0 32 32" aria-hidden="true"><rect x="15" y="1" width="2" height="4" fill="currentColor"/><rect x="14" y="0" width="4" height="1" fill="currentColor"/><rect x="7" y="6" width="18" height="12" fill="currentColor"/><rect x="10" y="9" width="4" height="4" fill="#0a0a0a"/><rect x="18" y="9" width="4" height="4" fill="#0a0a0a"/></svg>Узнать цену →</a>
+        <a class="svc-price lang-active" data-i18n="svc.price" href="https://t.me/stavzzz?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%20%D0%B7%D0%B0%D0%B4%D0%B0%D1%87%20%D0%B4%D0%BB%D1%8F%20%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D1%8B." target="_blank" rel="noopener"><svg class="svc-price-bot" viewBox="0 0 32 32" aria-hidden="true"><rect x="15" y="1" width="2" height="4" fill="currentColor"/><rect x="14" y="0" width="4" height="1" fill="currentColor"/><rect x="7" y="6" width="18" height="12" fill="currentColor"/><rect x="10" y="9" width="4" height="4" fill="#0a0a0a"/><rect x="18" y="9" width="4" height="4" fill="#0a0a0a"/></svg>Узнать цену →</a>
         <a class="svc-price" data-i18n="svc.price.en" href="https://t.me/stavzzz?text=Hi%21%20I%27m%20interested%20in%20a%20task%20manager%20for%20my%20team." target="_blank" rel="noopener"><svg class="svc-price-bot" viewBox="0 0 32 32" aria-hidden="true"><rect x="15" y="1" width="2" height="4" fill="currentColor"/><rect x="14" y="0" width="4" height="1" fill="currentColor"/><rect x="7" y="6" width="18" height="12" fill="currentColor"/><rect x="10" y="9" width="4" height="4" fill="#0a0a0a"/><rect x="18" y="9" width="4" height="4" fill="#0a0a0a"/></svg>Price request →</a>
       </div>
       <div class="svc-card">
         <svg class="bot-icon" viewBox="0 0 32 32"><rect x="15" y="1" width="2" height="4" fill="#ededed"/><rect x="14" y="0" width="4" height="1" fill="#3ed17f"/><rect x="7" y="6" width="18" height="12" fill="#ededed"/><rect x="10" y="9" width="4" height="4" fill="#0a0a0a"/><rect x="18" y="9" width="4" height="4" fill="#0a0a0a"/><rect x="11" y="10" width="2" height="2" fill="#3ed17f"/><rect x="19" y="10" width="2" height="2" fill="#3ed17f"/><rect x="13" y="15" width="6" height="1" fill="#1a1a1a"/><rect x="8" y="18" width="16" height="11" fill="#1a1a1a" stroke="#3ed17f"/><rect x="12" y="21" width="8" height="6" fill="none" stroke="#3ed17f"/><rect x="14" y="23" width="4" height="2" fill="#3ed17f"/><rect x="4" y="20" width="4" height="5" fill="#ededed"/><rect x="24" y="20" width="4" height="5" fill="#ededed"/></svg>
-        <div class="svc-title" data-i18n="svc3.title" class="lang-active">Финансовый учёт и P&amp;L</div>
+        <div class="svc-title lang-active" data-i18n="svc3.title">Финансовый учёт и P&amp;L</div>
         <div class="svc-title" data-i18n="svc3.title.en">Finance Tracking &amp; P&amp;L</div>
-        <div class="svc-desc" data-i18n="svc3.desc" class="lang-active">Траты текстом, голосом или фото чека — в таблицу в реальном времени. Валюты, роли, аналитика по кнопкам</div>
+        <div class="svc-desc lang-active" data-i18n="svc3.desc">Траты текстом, голосом или фото чека — в таблицу в реальном времени. Валюты, роли, аналитика по кнопкам</div>
         <div class="svc-desc" data-i18n="svc3.desc.en">Expenses by text, voice, or receipt photo land in your sheet in real time. Currencies, roles, one-tap analytics</div>
-        <a class="svc-price" data-i18n="svc.price" class="lang-active" href="https://t.me/stavzzz?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D1%84%D0%B8%D0%BD%D0%B0%D0%BD%D1%81%D0%BE%D0%B2%D1%8B%D0%B9%20%D0%B1%D0%BE%D1%82%20%D0%B4%D0%BB%D1%8F%20%D1%83%D1%87%D1%91%D1%82%D0%B0%20%D1%80%D0%B0%D1%81%D1%85%D0%BE%D0%B4%D0%BE%D0%B2." target="_blank" rel="noopener"><svg class="svc-price-bot" viewBox="0 0 32 32" aria-hidden="true"><rect x="15" y="1" width="2" height="4" fill="currentColor"/><rect x="14" y="0" width="4" height="1" fill="currentColor"/><rect x="7" y="6" width="18" height="12" fill="currentColor"/><rect x="10" y="9" width="4" height="4" fill="#0a0a0a"/><rect x="18" y="9" width="4" height="4" fill="#0a0a0a"/></svg>Узнать цену →</a>
+        <a class="svc-price lang-active" data-i18n="svc.price" href="https://t.me/stavzzz?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D1%84%D0%B8%D0%BD%D0%B0%D0%BD%D1%81%D0%BE%D0%B2%D1%8B%D0%B9%20%D0%B1%D0%BE%D1%82%20%D0%B4%D0%BB%D1%8F%20%D1%83%D1%87%D1%91%D1%82%D0%B0%20%D1%80%D0%B0%D1%81%D1%85%D0%BE%D0%B4%D0%BE%D0%B2." target="_blank" rel="noopener"><svg class="svc-price-bot" viewBox="0 0 32 32" aria-hidden="true"><rect x="15" y="1" width="2" height="4" fill="currentColor"/><rect x="14" y="0" width="4" height="1" fill="currentColor"/><rect x="7" y="6" width="18" height="12" fill="currentColor"/><rect x="10" y="9" width="4" height="4" fill="#0a0a0a"/><rect x="18" y="9" width="4" height="4" fill="#0a0a0a"/></svg>Узнать цену →</a>
         <a class="svc-price" data-i18n="svc.price.en" href="https://t.me/stavzzz?text=Hi%21%20I%27m%20interested%20in%20a%20finance%20bot%20for%20expense%20tracking." target="_blank" rel="noopener"><svg class="svc-price-bot" viewBox="0 0 32 32" aria-hidden="true"><rect x="15" y="1" width="2" height="4" fill="currentColor"/><rect x="14" y="0" width="4" height="1" fill="currentColor"/><rect x="7" y="6" width="18" height="12" fill="currentColor"/><rect x="10" y="9" width="4" height="4" fill="#0a0a0a"/><rect x="18" y="9" width="4" height="4" fill="#0a0a0a"/></svg>Price request →</a>
       </div>
       <div class="svc-card">
         <svg class="bot-icon" viewBox="0 0 32 32"><rect x="11" y="2" width="2" height="4" fill="#3ed17f"/><rect x="19" y="2" width="2" height="4" fill="#3ed17f"/><rect x="9" y="6" width="14" height="10" fill="#ededed"/><rect x="10" y="10" width="12" height="3" fill="#0a0a0a"/><rect x="12" y="11" width="8" height="1" fill="#3ed17f"/><rect x="14" y="16" width="4" height="2" fill="#6a6a6a"/><rect x="11" y="18" width="10" height="10" fill="#1a1a1a" stroke="#3ed17f"/><rect x="14" y="20" width="4" height="1" fill="#3ed17f"/><rect x="14" y="23" width="4" height="1" fill="#3ed17f"/><rect x="8" y="19" width="3" height="7" fill="#ededed"/><rect x="21" y="19" width="3" height="7" fill="#ededed"/><rect x="12" y="28" width="3" height="3" fill="#1a1a1a"/><rect x="17" y="28" width="3" height="3" fill="#1a1a1a"/></svg>
-        <div class="svc-title" data-i18n="svc4.title" class="lang-active">ИИ-база знаний</div>
+        <div class="svc-title lang-active" data-i18n="svc4.title">ИИ-база знаний</div>
         <div class="svc-title" data-i18n="svc4.title.en">AI Knowledge Base</div>
-        <div class="svc-desc" data-i18n="svc4.desc" class="lang-active">Бот отвечает сотрудникам по вашим регламентам и прайсам — со ссылкой на источник, без выдумок</div>
+        <div class="svc-desc lang-active" data-i18n="svc4.desc">Бот отвечает сотрудникам по вашим регламентам и прайсам — со ссылкой на источник, без выдумок</div>
         <div class="svc-desc" data-i18n="svc4.desc.en">A bot answers your team from your own policies and price lists — citing sources, no fabrications</div>
-        <a class="svc-price" data-i18n="svc.price" class="lang-active" href="https://t.me/stavzzz?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D0%98%D0%98-%D0%B1%D0%B0%D0%B7%D0%B0%20%D0%B7%D0%BD%D0%B0%D0%BD%D0%B8%D0%B9%20%D0%BF%D0%BE%20%D0%B4%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D0%BC%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8." target="_blank" rel="noopener"><svg class="svc-price-bot" viewBox="0 0 32 32" aria-hidden="true"><rect x="15" y="1" width="2" height="4" fill="currentColor"/><rect x="14" y="0" width="4" height="1" fill="currentColor"/><rect x="7" y="6" width="18" height="12" fill="currentColor"/><rect x="10" y="9" width="4" height="4" fill="#0a0a0a"/><rect x="18" y="9" width="4" height="4" fill="#0a0a0a"/></svg>Узнать цену →</a>
+        <a class="svc-price lang-active" data-i18n="svc.price" href="https://t.me/stavzzz?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D0%98%D0%98-%D0%B1%D0%B0%D0%B7%D0%B0%20%D0%B7%D0%BD%D0%B0%D0%BD%D0%B8%D0%B9%20%D0%BF%D0%BE%20%D0%B4%D0%BE%D0%BA%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D0%B0%D0%BC%20%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D0%B8." target="_blank" rel="noopener"><svg class="svc-price-bot" viewBox="0 0 32 32" aria-hidden="true"><rect x="15" y="1" width="2" height="4" fill="currentColor"/><rect x="14" y="0" width="4" height="1" fill="currentColor"/><rect x="7" y="6" width="18" height="12" fill="currentColor"/><rect x="10" y="9" width="4" height="4" fill="#0a0a0a"/><rect x="18" y="9" width="4" height="4" fill="#0a0a0a"/></svg>Узнать цену →</a>
         <a class="svc-price" data-i18n="svc.price.en" href="https://t.me/stavzzz?text=Hi%21%20I%27m%20interested%20in%20an%20AI%20knowledge%20base%20for%20our%20documents." target="_blank" rel="noopener"><svg class="svc-price-bot" viewBox="0 0 32 32" aria-hidden="true"><rect x="15" y="1" width="2" height="4" fill="currentColor"/><rect x="14" y="0" width="4" height="1" fill="currentColor"/><rect x="7" y="6" width="18" height="12" fill="currentColor"/><rect x="10" y="9" width="4" height="4" fill="#0a0a0a"/><rect x="18" y="9" width="4" height="4" fill="#0a0a0a"/></svg>Price request →</a>
       </div>
       <div class="svc-card">
         <svg class="bot-icon" viewBox="0 0 32 32"><rect x="10" y="29" width="5" height="2" fill="#0a0a0a"/><rect x="17" y="29" width="5" height="2" fill="#0a0a0a"/><rect x="8" y="18" width="16" height="11" fill="#1a1a1a" stroke="#3ed17f"/><rect x="12" y="21" width="8" height="6" fill="none" stroke="#3ed17f"/><rect x="14" y="23" width="4" height="2" fill="#3ed17f"/><rect x="4" y="20" width="4" height="5" fill="#ededed"/><rect x="24" y="20" width="4" height="5" fill="#ededed"/><rect x="7" y="6" width="18" height="12" fill="#ededed"/><rect x="13" y="15" width="6" height="1" fill="#1a1a1a"/><rect x="10" y="9" width="4" height="4" fill="#0a0a0a"/><rect x="18" y="9" width="4" height="4" fill="#0a0a0a"/><rect x="11" y="10" width="2" height="2" fill="#3ed17f"/><rect x="19" y="10" width="2" height="2" fill="#3ed17f"/></svg>
-        <div class="svc-title" data-i18n="svc5.title" class="lang-active">Транскрибация встреч</div>
+        <div class="svc-title lang-active" data-i18n="svc5.title">Транскрибация встреч</div>
         <div class="svc-title" data-i18n="svc5.title.en">Meeting Transcription</div>
-        <div class="svc-desc" data-i18n="svc5.desc" class="lang-active">Голосовые, созвоны и видео — в текст с резюме, протоколом и задачами. Личный архив с поиском</div>
+        <div class="svc-desc lang-active" data-i18n="svc5.desc">Голосовые, созвоны и видео — в текст с резюме, протоколом и задачами. Личный архив с поиском</div>
         <div class="svc-desc" data-i18n="svc5.desc.en">Voice notes, calls, and video turned into text with summaries, minutes, and tasks. A private searchable archive</div>
-        <a class="svc-price" data-i18n="svc.price" class="lang-active" href="https://t.me/stavzzz?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D1%82%D1%80%D0%B0%D0%BD%D1%81%D0%BA%D1%80%D0%B8%D0%B1%D0%B0%D1%82%D0%BE%D1%80%20%D0%B2%D1%81%D1%82%D1%80%D0%B5%D1%87%20%D0%B8%20%D0%B3%D0%BE%D0%BB%D0%BE%D1%81%D0%BE%D0%B2%D1%8B%D1%85." target="_blank" rel="noopener"><svg class="svc-price-bot" viewBox="0 0 32 32" aria-hidden="true"><rect x="15" y="1" width="2" height="4" fill="currentColor"/><rect x="14" y="0" width="4" height="1" fill="currentColor"/><rect x="7" y="6" width="18" height="12" fill="currentColor"/><rect x="10" y="9" width="4" height="4" fill="#0a0a0a"/><rect x="18" y="9" width="4" height="4" fill="#0a0a0a"/></svg>Узнать цену →</a>
+        <a class="svc-price lang-active" data-i18n="svc.price" href="https://t.me/stavzzz?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D1%82%D1%80%D0%B0%D0%BD%D1%81%D0%BA%D1%80%D0%B8%D0%B1%D0%B0%D1%82%D0%BE%D1%80%20%D0%B2%D1%81%D1%82%D1%80%D0%B5%D1%87%20%D0%B8%20%D0%B3%D0%BE%D0%BB%D0%BE%D1%81%D0%BE%D0%B2%D1%8B%D1%85." target="_blank" rel="noopener"><svg class="svc-price-bot" viewBox="0 0 32 32" aria-hidden="true"><rect x="15" y="1" width="2" height="4" fill="currentColor"/><rect x="14" y="0" width="4" height="1" fill="currentColor"/><rect x="7" y="6" width="18" height="12" fill="currentColor"/><rect x="10" y="9" width="4" height="4" fill="#0a0a0a"/><rect x="18" y="9" width="4" height="4" fill="#0a0a0a"/></svg>Узнать цену →</a>
         <a class="svc-price" data-i18n="svc.price.en" href="https://t.me/stavzzz?text=Hi%21%20I%27m%20interested%20in%20meeting%20and%20voice%20note%20transcription." target="_blank" rel="noopener"><svg class="svc-price-bot" viewBox="0 0 32 32" aria-hidden="true"><rect x="15" y="1" width="2" height="4" fill="currentColor"/><rect x="14" y="0" width="4" height="1" fill="currentColor"/><rect x="7" y="6" width="18" height="12" fill="currentColor"/><rect x="10" y="9" width="4" height="4" fill="#0a0a0a"/><rect x="18" y="9" width="4" height="4" fill="#0a0a0a"/></svg>Price request →</a>
       </div>
       <div class="svc-card">
         <svg class="bot-icon" viewBox="0 0 32 32"><rect x="10" y="4" width="12" height="2" fill="#ededed"/><rect x="8" y="6" width="16" height="10" fill="#ededed"/><rect x="10" y="9" width="12" height="4" fill="#0a0a0a"/><rect x="12" y="10" width="2" height="2" fill="#3ed17f"/><rect x="16" y="10" width="2" height="2" fill="#3ed17f"/><rect x="20" y="10" width="1" height="2" fill="#3ed17f"/><rect x="14" y="16" width="4" height="2" fill="#1f6b41"/><rect x="9" y="18" width="14" height="9" fill="#1a1a1a" stroke="#3ed17f"/><rect x="13" y="20" width="6" height="5" fill="#0f2a1b"/><rect x="5" y="19" width="4" height="8" fill="#3ed17f"/><rect x="23" y="19" width="4" height="8" fill="#3ed17f"/><rect x="11" y="27" width="4" height="4" fill="#ededed"/><rect x="17" y="27" width="4" height="4" fill="#ededed"/></svg>
-        <div class="svc-title" data-i18n="svc6.title" class="lang-active">ИИ-менеджер продаж</div>
+        <div class="svc-title lang-active" data-i18n="svc6.title">ИИ-менеджер продаж</div>
         <div class="svc-title" data-i18n="svc6.title.en">AI Sales Manager</div>
-        <div class="svc-desc" data-i18n="svc6.desc" class="lang-active">Первая линия продаж: мгновенные ответы лидам 24/7, квалификация, передача менеджеру тёплого клиента</div>
+        <div class="svc-desc lang-active" data-i18n="svc6.desc">Первая линия продаж: мгновенные ответы лидам 24/7, квалификация, передача менеджеру тёплого клиента</div>
         <div class="svc-desc" data-i18n="svc6.desc.en">A first line for sales: instant replies to leads 24/7, qualification, handover of a warm client to a human</div>
-        <a class="svc-price" data-i18n="svc.price" class="lang-active" href="https://t.me/stavzzz?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D0%98%D0%98-%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%20%D0%BF%D1%80%D0%BE%D0%B4%D0%B0%D0%B6." target="_blank" rel="noopener"><svg class="svc-price-bot" viewBox="0 0 32 32" aria-hidden="true"><rect x="15" y="1" width="2" height="4" fill="currentColor"/><rect x="14" y="0" width="4" height="1" fill="currentColor"/><rect x="7" y="6" width="18" height="12" fill="currentColor"/><rect x="10" y="9" width="4" height="4" fill="#0a0a0a"/><rect x="18" y="9" width="4" height="4" fill="#0a0a0a"/></svg>Узнать цену →</a>
+        <a class="svc-price lang-active" data-i18n="svc.price" href="https://t.me/stavzzz?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D0%98%D0%98-%D0%BC%D0%B5%D0%BD%D0%B5%D0%B4%D0%B6%D0%B5%D1%80%20%D0%BF%D1%80%D0%BE%D0%B4%D0%B0%D0%B6." target="_blank" rel="noopener"><svg class="svc-price-bot" viewBox="0 0 32 32" aria-hidden="true"><rect x="15" y="1" width="2" height="4" fill="currentColor"/><rect x="14" y="0" width="4" height="1" fill="currentColor"/><rect x="7" y="6" width="18" height="12" fill="currentColor"/><rect x="10" y="9" width="4" height="4" fill="#0a0a0a"/><rect x="18" y="9" width="4" height="4" fill="#0a0a0a"/></svg>Узнать цену →</a>
         <a class="svc-price" data-i18n="svc.price.en" href="https://t.me/stavzzz?text=Hi%21%20I%27m%20interested%20in%20an%20AI%20sales%20manager." target="_blank" rel="noopener"><svg class="svc-price-bot" viewBox="0 0 32 32" aria-hidden="true"><rect x="15" y="1" width="2" height="4" fill="currentColor"/><rect x="14" y="0" width="4" height="1" fill="currentColor"/><rect x="7" y="6" width="18" height="12" fill="currentColor"/><rect x="10" y="9" width="4" height="4" fill="#0a0a0a"/><rect x="18" y="9" width="4" height="4" fill="#0a0a0a"/></svg>Price request →</a>
       </div>
       <div class="svc-card">
         <svg class="bot-icon" viewBox="0 0 32 32"><rect x="15" y="1" width="2" height="4" fill="#ededed"/><rect x="14" y="0" width="4" height="1" fill="#3ed17f"/><rect x="7" y="6" width="18" height="12" fill="#ededed"/><rect x="10" y="9" width="4" height="4" fill="#0a0a0a"/><rect x="18" y="9" width="4" height="4" fill="#0a0a0a"/><rect x="11" y="10" width="2" height="2" fill="#3ed17f"/><rect x="19" y="10" width="2" height="2" fill="#3ed17f"/><rect x="13" y="15" width="6" height="1" fill="#1a1a1a"/><rect x="8" y="18" width="16" height="11" fill="#1a1a1a" stroke="#3ed17f"/><rect x="12" y="21" width="8" height="6" fill="none" stroke="#3ed17f"/><rect x="14" y="23" width="4" height="2" fill="#3ed17f"/><rect x="4" y="20" width="4" height="5" fill="#ededed"/><rect x="24" y="20" width="4" height="5" fill="#ededed"/></svg>
-        <div class="svc-title" data-i18n="svc7.title" class="lang-active">Создание CRM под ключ</div>
+        <div class="svc-title lang-active" data-i18n="svc7.title">Создание CRM под ключ</div>
         <div class="svc-title" data-i18n="svc7.title.en">Custom CRM Development</div>
-        <div class="svc-desc" data-i18n="svc7.desc" class="lang-active">Своя CRM под процессы компании: воронка сделок, карточки клиентов, автоматизация — без лишних модулей чужого SaaS</div>
+        <div class="svc-desc lang-active" data-i18n="svc7.desc">Своя CRM под процессы компании: воронка сделок, карточки клиентов, автоматизация — без лишних модулей чужого SaaS</div>
         <div class="svc-desc" data-i18n="svc7.desc.en">A custom CRM built around your process: deal pipeline, client records, automation — without the bloat of someone else's SaaS</div>
-        <a class="svc-price" data-i18n="svc.price" class="lang-active" href="https://t.me/stavzzz?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%20CRM%20%D0%BF%D0%BE%D0%B4%20%D0%BA%D0%BB%D1%8E%D1%87." target="_blank" rel="noopener"><svg class="svc-price-bot" viewBox="0 0 32 32" aria-hidden="true"><rect x="15" y="1" width="2" height="4" fill="currentColor"/><rect x="14" y="0" width="4" height="1" fill="currentColor"/><rect x="7" y="6" width="18" height="12" fill="currentColor"/><rect x="10" y="9" width="4" height="4" fill="#0a0a0a"/><rect x="18" y="9" width="4" height="4" fill="#0a0a0a"/></svg>Узнать цену →</a>
+        <a class="svc-price lang-active" data-i18n="svc.price" href="https://t.me/stavzzz?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D1%81%D0%BE%D0%B7%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%20CRM%20%D0%BF%D0%BE%D0%B4%20%D0%BA%D0%BB%D1%8E%D1%87." target="_blank" rel="noopener"><svg class="svc-price-bot" viewBox="0 0 32 32" aria-hidden="true"><rect x="15" y="1" width="2" height="4" fill="currentColor"/><rect x="14" y="0" width="4" height="1" fill="currentColor"/><rect x="7" y="6" width="18" height="12" fill="currentColor"/><rect x="10" y="9" width="4" height="4" fill="#0a0a0a"/><rect x="18" y="9" width="4" height="4" fill="#0a0a0a"/></svg>Узнать цену →</a>
         <a class="svc-price" data-i18n="svc.price.en" href="https://t.me/stavzzz?text=Hi%21%20I%27m%20interested%20in%20a%20custom%20CRM." target="_blank" rel="noopener"><svg class="svc-price-bot" viewBox="0 0 32 32" aria-hidden="true"><rect x="15" y="1" width="2" height="4" fill="currentColor"/><rect x="14" y="0" width="4" height="1" fill="currentColor"/><rect x="7" y="6" width="18" height="12" fill="currentColor"/><rect x="10" y="9" width="4" height="4" fill="#0a0a0a"/><rect x="18" y="9" width="4" height="4" fill="#0a0a0a"/></svg>Price request →</a>
       </div>
       <div class="svc-card">
         <svg class="bot-icon" viewBox="0 0 32 32"><rect x="11" y="2" width="2" height="4" fill="#3ed17f"/><rect x="19" y="2" width="2" height="4" fill="#3ed17f"/><rect x="9" y="6" width="14" height="10" fill="#ededed"/><rect x="10" y="10" width="12" height="3" fill="#0a0a0a"/><rect x="12" y="11" width="8" height="1" fill="#3ed17f"/><rect x="14" y="16" width="4" height="2" fill="#6a6a6a"/><rect x="11" y="18" width="10" height="10" fill="#1a1a1a" stroke="#3ed17f"/><rect x="14" y="20" width="4" height="1" fill="#3ed17f"/><rect x="14" y="23" width="4" height="1" fill="#3ed17f"/><rect x="8" y="19" width="3" height="7" fill="#ededed"/><rect x="21" y="19" width="3" height="7" fill="#ededed"/><rect x="12" y="28" width="3" height="3" fill="#1a1a1a"/><rect x="17" y="28" width="3" height="3" fill="#1a1a1a"/></svg>
-        <div class="svc-title" data-i18n="svc8.title" class="lang-active">Сайты и SEO-агенты</div>
+        <div class="svc-title lang-active" data-i18n="svc8.title">Сайты и SEO-агенты</div>
         <div class="svc-title" data-i18n="svc8.title.en">Websites &amp; SEO Agents</div>
-        <div class="svc-desc" data-i18n="svc8.desc" class="lang-active">Продающие сайты и лендинги + SEO-агенты, которые сами ведут блог и наращивают трафик из поиска</div>
+        <div class="svc-desc lang-active" data-i18n="svc8.desc">Продающие сайты и лендинги + SEO-агенты, которые сами ведут блог и наращивают трафик из поиска</div>
         <div class="svc-desc" data-i18n="svc8.desc.en">Sales websites and landing pages, plus SEO agents that run your blog and grow search traffic on their own</div>
-        <a class="svc-price" data-i18n="svc.price" class="lang-active" href="https://t.me/stavzzz?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D1%81%D0%B0%D0%B9%D1%82%20%D0%B8%20SEO-%D0%B0%D0%B3%D0%B5%D0%BD%D1%82%20%D0%B4%D0%BB%D1%8F%20%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%BD%D1%82%D0%B0." target="_blank" rel="noopener"><svg class="svc-price-bot" viewBox="0 0 32 32" aria-hidden="true"><rect x="15" y="1" width="2" height="4" fill="currentColor"/><rect x="14" y="0" width="4" height="1" fill="currentColor"/><rect x="7" y="6" width="18" height="12" fill="currentColor"/><rect x="10" y="9" width="4" height="4" fill="#0a0a0a"/><rect x="18" y="9" width="4" height="4" fill="#0a0a0a"/></svg>Узнать цену →</a>
+        <a class="svc-price lang-active" data-i18n="svc.price" href="https://t.me/stavzzz?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D1%81%D0%B0%D0%B9%D1%82%20%D0%B8%20SEO-%D0%B0%D0%B3%D0%B5%D0%BD%D1%82%20%D0%B4%D0%BB%D1%8F%20%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%BD%D1%82%D0%B0." target="_blank" rel="noopener"><svg class="svc-price-bot" viewBox="0 0 32 32" aria-hidden="true"><rect x="15" y="1" width="2" height="4" fill="currentColor"/><rect x="14" y="0" width="4" height="1" fill="currentColor"/><rect x="7" y="6" width="18" height="12" fill="currentColor"/><rect x="10" y="9" width="4" height="4" fill="#0a0a0a"/><rect x="18" y="9" width="4" height="4" fill="#0a0a0a"/></svg>Узнать цену →</a>
         <a class="svc-price" data-i18n="svc.price.en" href="https://t.me/stavzzz?text=Hi%21%20I%27m%20interested%20in%20a%20website%20and%20an%20SEO%20content%20agent." target="_blank" rel="noopener"><svg class="svc-price-bot" viewBox="0 0 32 32" aria-hidden="true"><rect x="15" y="1" width="2" height="4" fill="currentColor"/><rect x="14" y="0" width="4" height="1" fill="currentColor"/><rect x="7" y="6" width="18" height="12" fill="currentColor"/><rect x="10" y="9" width="4" height="4" fill="#0a0a0a"/><rect x="18" y="9" width="4" height="4" fill="#0a0a0a"/></svg>Price request →</a>
       </div>
     </div>
@@ -1117,43 +1149,43 @@
   <!-- ============ PRICING ============ -->
   <section class="block" id="pricing">
     <div class="block-head">
-      <div class="block-tag" data-i18n="pricing.tag" class="lang-active">цены</div>
+      <div class="block-tag lang-active" data-i18n="pricing.tag">цены</div>
       <div class="block-tag" data-i18n="pricing.tag.en">pricing</div>
-      <h2 class="block-title" data-i18n="pricing.title" class="lang-active">Сколько это стоит</h2>
+      <h2 class="block-title lang-active" data-i18n="pricing.title">Сколько это стоит</h2>
       <h2 class="block-title" data-i18n="pricing.title.en">What it costs</h2>
-      <p class="block-sub" data-i18n="pricing.sub" class="lang-active">Каждое внедрение считаем индивидуально — но чтобы вы могли сориентироваться, вот честные ориентиры</p>
+      <p class="block-sub lang-active" data-i18n="pricing.sub">Каждое внедрение считаем индивидуально — но чтобы вы могли сориентироваться, вот честные ориентиры</p>
       <p class="block-sub" data-i18n="pricing.sub.en">Every deployment is priced individually — but here are honest reference points so you can orient yourself</p>
     </div>
 
     <div class="price-grid">
       <div class="price-card featured">
-        <div class="price-kicker" data-i18n="price1.k" class="lang-active">внедрение</div>
+        <div class="price-kicker lang-active" data-i18n="price1.k">внедрение</div>
         <div class="price-kicker" data-i18n="price1.k.en">deployment</div>
-        <div class="price-num" data-i18n="price1.n" class="lang-active">от $200</div>
+        <div class="price-num lang-active" data-i18n="price1.n">от $200</div>
         <div class="price-num" data-i18n="price1.n.en">from $200</div>
-        <div class="price-title" data-i18n="price1.t" class="lang-active">Агент под ключ</div>
+        <div class="price-title lang-active" data-i18n="price1.t">Агент под ключ</div>
         <div class="price-title" data-i18n="price1.t.en">Agent, turnkey</div>
-        <div class="price-desc" data-i18n="price1.d" class="lang-active">Настройка, запуск на вашем сервере, обучение команды. Цена растёт с объёмом и количеством интеграций</div>
+        <div class="price-desc lang-active" data-i18n="price1.d">Настройка, запуск на вашем сервере, обучение команды. Цена растёт с объёмом и количеством интеграций</div>
         <div class="price-desc" data-i18n="price1.d.en">Setup, launch on your own server, team onboarding. Price scales with scope and the number of integrations</div>
       </div>
       <div class="price-card">
-        <div class="price-kicker" data-i18n="price2.k" class="lang-active">расчёт</div>
+        <div class="price-kicker lang-active" data-i18n="price2.k">расчёт</div>
         <div class="price-kicker" data-i18n="price2.k.en">estimate</div>
-        <div class="price-num" data-i18n="price2.n" class="lang-active">$0 <small>— оценка бесплатно</small></div>
+        <div class="price-num lang-active" data-i18n="price2.n">$0 <small>— оценка бесплатно</small></div>
         <div class="price-num" data-i18n="price2.n.en">$0 <small>— the estimate is free</small></div>
-        <div class="price-title" data-i18n="price2.t" class="lang-active">Точная цена — по задаче</div>
+        <div class="price-title lang-active" data-i18n="price2.t">Точная цена — по задаче</div>
         <div class="price-title" data-i18n="price2.t.en">Exact price per task</div>
-        <div class="price-desc" data-i18n="price2.d" class="lang-active">Короткий созвон или переписка — и в тот же день пришлём вилку цены под вашу задачу. Без «менеджер свяжется с вами»</div>
+        <div class="price-desc lang-active" data-i18n="price2.d">Короткий созвон или переписка — и в тот же день пришлём вилку цены под вашу задачу. Без «менеджер свяжется с вами»</div>
         <div class="price-desc" data-i18n="price2.d.en">A short call or a chat — and you get a price range for your task the same day. No “a manager will contact you.”</div>
       </div>
       <div class="price-card">
-        <div class="price-kicker" data-i18n="price3.k" class="lang-active">сопровождение</div>
+        <div class="price-kicker lang-active" data-i18n="price3.k">сопровождение</div>
         <div class="price-kicker" data-i18n="price3.k.en">support</div>
-        <div class="price-num" data-i18n="price3.n" class="lang-active">$100–200 <small>/ мес</small></div>
+        <div class="price-num lang-active" data-i18n="price3.n">$100–200 <small>/ мес</small></div>
         <div class="price-num" data-i18n="price3.n.en">$100–200 <small>/ mo</small></div>
-        <div class="price-title" data-i18n="price3.t" class="lang-active">Подписка на поддержку</div>
+        <div class="price-title lang-active" data-i18n="price3.t">Подписка на поддержку</div>
         <div class="price-title" data-i18n="price3.t.en">Support subscription</div>
-        <div class="price-desc" data-i18n="price3.d" class="lang-active">Поддержка проекта, исправление ошибок и саппорт на связи. Стоимость зависит от проекта; отключается в любой момент</div>
+        <div class="price-desc lang-active" data-i18n="price3.d">Поддержка проекта, исправление ошибок и саппорт на связи. Стоимость зависит от проекта; отключается в любой момент</div>
         <div class="price-desc" data-i18n="price3.d.en">Project support, bug fixes, and a support line you can reach. Depends on the project; cancel anytime</div>
       </div>
     </div>
@@ -1167,11 +1199,11 @@
   <!-- ============ TEAM ============ -->
   <section class="block" id="team">
     <div class="block-head">
-      <div class="block-tag" data-i18n="team.tag" class="lang-active">команда</div>
+      <div class="block-tag lang-active" data-i18n="team.tag">команда</div>
       <div class="block-tag" data-i18n="team.tag.en">team</div>
-      <h2 class="block-title" data-i18n="team.title" class="lang-active">Кто делает</h2>
+      <h2 class="block-title lang-active" data-i18n="team.title">Кто делает</h2>
       <h2 class="block-title" data-i18n="team.title.en">Who's behind this</h2>
-      <p class="block-sub" data-i18n="team.sub" class="lang-active">За ИИ-Гаражом стоят два человека — инженер, который каждый день строит агентов, и архитектор решений с опытом в бизнес-аналитике</p>
+      <p class="block-sub lang-active" data-i18n="team.sub">За ИИ-Гаражом стоят два человека — инженер, который каждый день строит агентов, и архитектор решений с опытом в бизнес-аналитике</p>
       <p class="block-sub" data-i18n="team.sub.en">Behind AI Garage are two people — an engineer who builds agents every day and a solutions architect with a business-analysis background</p>
     </div>
 
@@ -1179,18 +1211,18 @@
       <div class="team-card">
         <img class="team-photo" src="team-stas.jpg" alt="Стас — главный инженер ИИ-Гараж" width="480" height="548" loading="lazy">
         <div class="team-body">
-          <div class="svc-title" data-i18n="team1.name" class="lang-active">Стас — главный инженер</div>
+          <div class="svc-title lang-active" data-i18n="team1.name">Стас — главный инженер</div>
           <div class="svc-title" data-i18n="team1.name.en">Stas — Lead Engineer</div>
-          <div class="svc-desc" data-i18n="team1.bio" class="lang-active">Сооснователь школы «ИИвизация», где учит создавать ИИ-агентов. Два года в ИИ — собрал агентов, ботов, CRM и интеграции под самые разные задачи. Тот случай, когда человек, обучающий строить агентов, строит их и для клиентов</div>
+          <div class="svc-desc lang-active" data-i18n="team1.bio">Сооснователь школы «ИИвизация», где учит создавать ИИ-агентов. Два года в ИИ — собрал агентов, ботов, CRM и интеграции под самые разные задачи. Тот случай, когда человек, обучающий строить агентов, строит их и для клиентов</div>
           <div class="svc-desc" data-i18n="team1.bio.en">Co-founder of the "AIvization" school, where he teaches people to build AI agents. Two years in AI — built agents, bots, CRMs and integrations for all kinds of tasks. The kind of person who teaches others to build agents, and builds them for clients too</div>
         </div>
       </div>
       <div class="team-card">
         <img class="team-photo" src="team-uliana.jpg" alt="Ульяна — архитектор решений ИИ-Гараж" width="480" height="548" loading="lazy">
         <div class="team-body">
-          <div class="svc-title" data-i18n="team2.name" class="lang-active">Ульяна — архитектор решений</div>
+          <div class="svc-title lang-active" data-i18n="team2.name">Ульяна — архитектор решений</div>
           <div class="svc-title" data-i18n="team2.name.en">Uliana — Solutions Architect</div>
-          <div class="svc-desc" data-i18n="team2.bio" class="lang-active">5 лет в бизнес-аналитике — поэтому сначала считает, потом строит. Собирает агентов-менеджеров под задачи любого масштаба: от кофейни до логистики</div>
+          <div class="svc-desc lang-active" data-i18n="team2.bio">5 лет в бизнес-аналитике — поэтому сначала считает, потом строит. Собирает агентов-менеджеров под задачи любого масштаба: от кофейни до логистики</div>
           <div class="svc-desc" data-i18n="team2.bio.en">5 years in business analysis — so she calculates first, builds second. Designs manager-agents for tasks of any scale, from a coffee shop to logistics</div>
         </div>
       </div>
@@ -1215,9 +1247,9 @@
 
   <!-- ============ CONTACT ============ -->
   <section class="contact-block" id="contact">
-    <div class="contact-title" data-i18n="contact.title" class="lang-active">Где у вас больше всего рутины?</div>
+    <div class="contact-title lang-active" data-i18n="contact.title">Где у вас больше всего рутины?</div>
     <div class="contact-title" data-i18n="contact.title.en">Where does your team lose the most time?</div>
-    <p class="contact-sub" data-i18n="contact.sub" class="lang-active">Поделитесь болью — расскажите, какие рутинные действия хотели бы автоматизировать. Покажем, что можно отдать роботам, и честно скажем, если автоматизация не нужна</p>
+    <p class="contact-sub lang-active" data-i18n="contact.sub">Поделитесь болью — расскажите, какие рутинные действия хотели бы автоматизировать. Покажем, что можно отдать роботам, и честно скажем, если автоматизация не нужна</p>
     <p class="contact-sub" data-i18n="contact.sub.en">Share your pain — tell us which routine tasks you would love to automate. We will show what robots can take over, and say honestly if automation is not worth it</p>
     <a class="btn primary contact-cta" href="https://t.me/stavzzz" target="_blank" rel="noopener">
       <span data-i18n="contact.cta" class="lang-active">Оставить заявку в Telegram →</span>
