@@ -137,6 +137,16 @@
   }
   .btn:hover { transform: translateY(-1px); box-shadow: 0 12px 30px rgba(76,174,134,.35); }
 
+  .next-btn {
+    display: flex; align-items: center; justify-content: space-between; gap: 14px;
+    margin: 0 0 16px; padding: 18px 22px; text-decoration: none;
+    background: color-mix(in srgb, var(--surface-2) 92%, transparent);
+    border: 1px solid var(--accent-dim); border-radius: 12px; transition: border-color .15s;
+  }
+  .next-btn:hover { border-color: var(--accent); }
+  .next-btn .k { font-size: 10.5px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: .06em; display: block; margin-bottom: 4px; }
+  .next-btn .t { font-weight: 700; font-size: 14.5px; color: var(--ink); }
+  .next-btn .arr { color: var(--accent); font-size: 20px; flex: none; }
   .others { display: grid; gap: 8px; margin: 0 0 8px; }
   .others a {
     display: block; padding: 13px 18px; border: 1px solid rgba(255,255,255,.08); border-radius: 10px;
@@ -230,10 +240,16 @@
   </div>
 
   <h2>Другие разборы</h2>
+  <a class="next-btn" href="../baza-znaniy/">
+    <div>
+      <span class="k">следующий разбор</span>
+      <span class="t">База знаний: ответы по документам за секунды</span>
+    </div>
+    <span class="arr">→</span>
+  </a>
   <div class="others">
     <a href="../ii-sekretar/">ИИ-секретарь: календарь, который ведёт себя сам</a>
     <a href="../menedzher-zadach/">Менеджер задач: из голосового — в карточку на доске</a>
-    <a href="../baza-znaniy/">База знаний: ответы по документам за секунды</a>
     <a href="../transkribator/">Транскрибатор: из часовой встречи — протокол за минуту</a>
     <a href="../ii-prodazhi/">ИИ-менеджер продаж: отвечает лидам за секунды, 24/7</a>
   </div>
