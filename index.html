@@ -447,7 +447,37 @@
   }
 
   /* ---- services ---- */
-  .svc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+  .svc-carousel { position: relative; }
+  .svc-grid {
+    display: flex; gap: 16px; overflow-x: auto;
+    scroll-snap-type: x mandatory; scroll-behavior: smooth;
+    scrollbar-width: none; -ms-overflow-style: none;
+  }
+  .svc-grid::-webkit-scrollbar { display: none; }
+  .svc-grid .svc-card { flex: 0 0 calc((100% - 32px) / 3); scroll-snap-align: start; }
+  @media (max-width: 900px) {
+    .svc-grid .svc-card { flex-basis: calc((100% - 16px) / 2); }
+  }
+  @media (max-width: 600px) {
+    .svc-grid .svc-card { flex-basis: 86%; }
+  }
+  .svc-side {
+    position: absolute; top: 50%; transform: translateY(-50%); z-index: 5;
+    width: 44px; height: 44px; border-radius: 50%;
+    background: color-mix(in srgb, var(--surface-2) 88%, transparent);
+    -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+    border: 1px solid var(--accent-dim); color: var(--accent);
+    font-size: 18px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,.5);
+    transition: background .15s, border-color .15s, color .15s;
+  }
+  .svc-side:hover { background: var(--accent-dim); color: var(--ink); border-color: var(--accent); }
+  .svc-side.prev { left: -22px; }
+  .svc-side.next { right: -22px; }
+  @media (max-width: 1180px) {
+    .svc-side.prev { left: 6px; }
+    .svc-side.next { right: 6px; }
+  }
   .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; max-width: 720px; margin: 0 auto 40px; }
   .team-card {
     background: linear-gradient(160deg, rgba(255,255,255,.045), transparent 40%), color-mix(in srgb, var(--surface-2) 92%, transparent);
@@ -999,7 +1029,10 @@
       <p class="block-sub" data-i18n="services.sub" class="lang-active">Цены — по запросу, зависят от объёма и сложности задачи. Ниже — направления, в которых мы работаем.</p>
       <p class="block-sub" data-i18n="services.sub.en">Pricing is quoted per project, depending on scope and complexity. Below are the areas we work in.</p>
     </div>
-    <div class="svc-grid">
+    <div class="svc-carousel">
+      <button class="svc-side prev" onclick="slideSvc(-1)" aria-label="Предыдущие услуги">←</button>
+      <button class="svc-side next" onclick="slideSvc(1)" aria-label="Следующие услуги">→</button>
+    <div class="svc-grid" id="svc-grid">
       <div class="svc-card">
         <svg class="bot-icon" viewBox="0 0 32 32"><rect x="10" y="29" width="5" height="2" fill="#0a0a0a"/><rect x="17" y="29" width="5" height="2" fill="#0a0a0a"/><rect x="8" y="18" width="16" height="11" fill="#1a1a1a" stroke="#3ed17f"/><rect x="12" y="21" width="8" height="6" fill="none" stroke="#3ed17f"/><rect x="14" y="23" width="4" height="2" fill="#3ed17f"/><rect x="4" y="20" width="4" height="5" fill="#ededed"/><rect x="24" y="20" width="4" height="5" fill="#ededed"/><rect x="7" y="6" width="18" height="12" fill="#ededed"/><rect x="13" y="15" width="6" height="1" fill="#1a1a1a"/><rect x="10" y="9" width="4" height="4" fill="#0a0a0a"/><rect x="18" y="9" width="4" height="4" fill="#0a0a0a"/><rect x="11" y="10" width="2" height="2" fill="#3ed17f"/><rect x="19" y="10" width="2" height="2" fill="#3ed17f"/></svg>
         <div class="svc-title" data-i18n="svc1.title" class="lang-active">ИИ-секретарь и календарь</div>
@@ -1072,6 +1105,11 @@
         <a class="svc-price" data-i18n="svc.price" class="lang-active" href="https://t.me/stavzzz?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%98%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82%20%D1%81%D0%B0%D0%B9%D1%82%20%D0%B8%20SEO-%D0%B0%D0%B3%D0%B5%D0%BD%D1%82%20%D0%B4%D0%BB%D1%8F%20%D0%BA%D0%BE%D0%BD%D1%82%D0%B5%D0%BD%D1%82%D0%B0." target="_blank" rel="noopener"><svg class="svc-price-bot" viewBox="0 0 32 32" aria-hidden="true"><rect x="15" y="1" width="2" height="4" fill="currentColor"/><rect x="14" y="0" width="4" height="1" fill="currentColor"/><rect x="7" y="6" width="18" height="12" fill="currentColor"/><rect x="10" y="9" width="4" height="4" fill="#0a0a0a"/><rect x="18" y="9" width="4" height="4" fill="#0a0a0a"/></svg>Узнать цену →</a>
         <a class="svc-price" data-i18n="svc.price.en" href="https://t.me/stavzzz?text=Hi%21%20I%27m%20interested%20in%20a%20website%20and%20an%20SEO%20content%20agent." target="_blank" rel="noopener"><svg class="svc-price-bot" viewBox="0 0 32 32" aria-hidden="true"><rect x="15" y="1" width="2" height="4" fill="currentColor"/><rect x="14" y="0" width="4" height="1" fill="currentColor"/><rect x="7" y="6" width="18" height="12" fill="currentColor"/><rect x="10" y="9" width="4" height="4" fill="#0a0a0a"/><rect x="18" y="9" width="4" height="4" fill="#0a0a0a"/></svg>Price request →</a>
       </div>
+    </div>
+    </div>
+
+    <div class="case-nav">
+      <div class="case-dots" id="svc-dots"></div>
     </div>
   </section>
 
@@ -1217,6 +1255,41 @@ function updateCaseDots() {
   rebuildCaseDots();
 })();
 
+
+function slideSvc(dir) {
+  var grid = document.getElementById('svc-grid');
+  grid.scrollBy({ left: dir * grid.clientWidth, behavior: 'smooth' });
+}
+
+function rebuildSvcDots() {
+  var grid = document.getElementById('svc-grid');
+  var dots = document.getElementById('svc-dots');
+  var pages = Math.max(1, Math.ceil(grid.scrollWidth / grid.clientWidth));
+  var html = '';
+  for (var i = 0; i < pages; i++) html += '<div class="case-dot"></div>';
+  dots.innerHTML = html;
+  updateSvcDots();
+}
+
+function updateSvcDots() {
+  var grid = document.getElementById('svc-grid');
+  var dots = document.getElementById('svc-dots').children;
+  if (!dots.length) return;
+  var idx = Math.min(dots.length - 1, Math.round(grid.scrollLeft / grid.clientWidth));
+  for (var i = 0; i < dots.length; i++) dots[i].classList.toggle('active', i === idx);
+}
+
+(function() {
+  var grid = document.getElementById('svc-grid');
+  var ticking = false;
+  grid.addEventListener('scroll', function() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function() { updateSvcDots(); ticking = false; });
+  });
+  window.addEventListener('resize', rebuildSvcDots);
+  rebuildSvcDots();
+})();
 
 (function() {
   var saved = null;
