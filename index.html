@@ -473,6 +473,32 @@
   @media (max-width: 600px) {
     .svc-grid .svc-card { flex-basis: 86%; }
   }
+  /* ---- pricing ---- */
+  .price-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 800px) { .price-grid { grid-template-columns: 1fr; } }
+  .price-card {
+    background: linear-gradient(160deg, rgba(255,255,255,.045), transparent 40%), color-mix(in srgb, var(--surface-2) 92%, transparent);
+    -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px);
+    border: 1px solid rgba(255,255,255,.08); border-radius: 12px; padding: 26px 24px;
+    box-shadow: 0 1px 0 rgba(255,255,255,.06) inset, 0 20px 48px rgba(0,0,0,.4);
+    display: flex; flex-direction: column; gap: 10px;
+    transition: border-color .2s;
+  }
+  .price-card:hover { border-color: var(--accent-dim); }
+  .price-card.featured { border-color: var(--accent-dim); background: linear-gradient(160deg, rgba(76,174,134,.07), transparent 50%), color-mix(in srgb, var(--surface-2) 92%, transparent); }
+  .price-kicker { font-size: 11px; color: var(--ink-faint); text-transform: uppercase; letter-spacing: .06em; }
+  .price-kicker::before { content: '// '; opacity: .6; }
+  .price-num { font-family: var(--serif); font-weight: 600; font-size: 30px; color: var(--accent); line-height: 1.1; }
+  .price-num small { font-family: var(--mono); font-size: 12px; color: var(--ink-soft); font-weight: 400; }
+  .price-title { font-weight: 700; font-size: 15px; }
+  .price-desc { font-size: 13px; color: var(--ink-soft); line-height: 1.6; flex-grow: 1; }
+  .price-note {
+    margin-top: 22px; padding: 18px 22px; border: 1px solid var(--accent-dim); border-radius: 12px;
+    background: var(--accent-soft); display: flex; align-items: center; justify-content: space-between; gap: 18px; flex-wrap: wrap;
+  }
+  .price-note .txt { font-size: 13.5px; color: var(--ink); }
+  .price-note .txt b { color: var(--accent); }
+
   .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; max-width: 720px; margin: 0 auto 40px; }
   .team-card {
     background: linear-gradient(160deg, rgba(255,255,255,.045), transparent 40%), color-mix(in srgb, var(--surface-2) 92%, transparent);
@@ -614,6 +640,8 @@
       <a href="#cases" data-i18n="nav.cases.en">cases</a>
       <a href="#services" data-i18n="nav.services" class="lang-active">услуги</a>
       <a href="#services" data-i18n="nav.services.en">services</a>
+      <a href="#pricing" data-i18n="nav.pricing" class="lang-active">цены</a>
+      <a href="#pricing" data-i18n="nav.pricing.en">pricing</a>
       <a href="#team" data-i18n="nav.team" class="lang-active">команда</a>
       <a href="#team" data-i18n="nav.team.en">team</a>
       <a href="blog/" data-i18n="nav.blog" class="lang-active">блог</a>
@@ -1103,6 +1131,56 @@
       <button class="case-arrow" onclick="slideSvc(-1)" aria-label="Предыдущие услуги">←</button>
       <div class="case-dots" id="svc-dots"></div>
       <button class="case-arrow" onclick="slideSvc(1)" aria-label="Следующие услуги">→</button>
+    </div>
+  </section>
+
+  <!-- ============ PRICING ============ -->
+  <section class="block" id="pricing">
+    <div class="block-head">
+      <div class="block-tag" data-i18n="pricing.tag" class="lang-active">цены</div>
+      <div class="block-tag" data-i18n="pricing.tag.en">pricing</div>
+      <h2 class="block-title" data-i18n="pricing.title" class="lang-active">Сколько это стоит</h2>
+      <h2 class="block-title" data-i18n="pricing.title.en">What it costs</h2>
+      <p class="block-sub" data-i18n="pricing.sub" class="lang-active">Каждое внедрение считаем индивидуально — но чтобы вы могли сориентироваться, вот честные ориентиры.</p>
+      <p class="block-sub" data-i18n="pricing.sub.en">Every deployment is priced individually — but here are honest reference points so you can orient yourself.</p>
+    </div>
+
+    <div class="price-grid">
+      <div class="price-card featured">
+        <div class="price-kicker" data-i18n="price1.k" class="lang-active">внедрение</div>
+        <div class="price-kicker" data-i18n="price1.k.en">deployment</div>
+        <div class="price-num" data-i18n="price1.n" class="lang-active">от $200</div>
+        <div class="price-num" data-i18n="price1.n.en">from $200</div>
+        <div class="price-title" data-i18n="price1.t" class="lang-active">Агент под ключ</div>
+        <div class="price-title" data-i18n="price1.t.en">Agent, turnkey</div>
+        <div class="price-desc" data-i18n="price1.d" class="lang-active">Настройка, запуск на вашем сервере, обучение команды. Цена растёт с объёмом и количеством интеграций.</div>
+        <div class="price-desc" data-i18n="price1.d.en">Setup, launch on your own server, team onboarding. Price scales with scope and the number of integrations.</div>
+      </div>
+      <div class="price-card">
+        <div class="price-kicker" data-i18n="price2.k" class="lang-active">расчёт</div>
+        <div class="price-kicker" data-i18n="price2.k.en">estimate</div>
+        <div class="price-num" data-i18n="price2.n" class="lang-active">$0 <small>— оценка бесплатно</small></div>
+        <div class="price-num" data-i18n="price2.n.en">$0 <small>— the estimate is free</small></div>
+        <div class="price-title" data-i18n="price2.t" class="lang-active">Точная цена — по задаче</div>
+        <div class="price-title" data-i18n="price2.t.en">Exact price per task</div>
+        <div class="price-desc" data-i18n="price2.d" class="lang-active">Короткий созвон или переписка — и в тот же день пришлём вилку цены под вашу задачу. Без «менеджер свяжется с вами».</div>
+        <div class="price-desc" data-i18n="price2.d.en">A short call or a chat — and you get a price range for your task the same day. No “a manager will contact you.”</div>
+      </div>
+      <div class="price-card">
+        <div class="price-kicker" data-i18n="price3.k" class="lang-active">сопровождение</div>
+        <div class="price-kicker" data-i18n="price3.k.en">support</div>
+        <div class="price-num" data-i18n="price3.n" class="lang-active">$100–200 <small>/ мес</small></div>
+        <div class="price-num" data-i18n="price3.n.en">$100–200 <small>/ mo</small></div>
+        <div class="price-title" data-i18n="price3.t" class="lang-active">Подписка на поддержку</div>
+        <div class="price-title" data-i18n="price3.t.en">Support subscription</div>
+        <div class="price-desc" data-i18n="price3.d" class="lang-active">Поддержка проекта, исправление ошибок и саппорт на связи. Стоимость зависит от проекта; отключается в любой момент.</div>
+        <div class="price-desc" data-i18n="price3.d.en">Project support, bug fixes, and a support line you can reach. Depends on the project; cancel anytime.</div>
+      </div>
+    </div>
+
+    <div class="price-note">
+      <div class="txt"><span data-i18n="pricing.note" class="lang-active">Напишите, что хотите автоматизировать, — <b>в тот же день пришлём ориентир цены</b>.</span><span data-i18n="pricing.note.en">Tell us what you want to automate — <b>we’ll send a price estimate the same day</b>.</span></div>
+      <a class="btn primary" href="https://t.me/stavzzz?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%21%20%D0%A5%D0%BE%D1%87%D1%83%20%D1%83%D0%B7%D0%BD%D0%B0%D1%82%D1%8C%20%D0%BE%D1%80%D0%B8%D0%B5%D0%BD%D1%82%D0%B8%D1%80%20%D1%86%D0%B5%D0%BD%D1%8B.%20%D0%97%D0%B0%D0%B4%D0%B0%D1%87%D0%B0%3A%20" target="_blank" rel="noopener"><span data-i18n="pricing.cta" class="lang-active">Узнать свою цену →</span><span data-i18n="pricing.cta.en">Get your price →</span></a>
     </div>
   </section>
 
